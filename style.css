@@ -1,0 +1,153 @@
+.page {
+  background-color: #000;
+  color: #fff;
+  font-family: sans-serif;
+}
+/* div,
+p,
+h1,
+h2,
+h3,
+h4,
+img,
+section,
+main,
+header,
+a {
+  border: 1px solid red;
+} */
+.header {
+  display: flex;
+  max-width: 880px;
+  margin: 45px auto 0 auto;
+}
+
+.content {
+  margin-top: 41px;
+}
+.content__line {
+  height: 0px;
+  max-width: 880px;
+  border: 1px solid #545454;
+  margin: 0 auto;
+  margin-bottom: 40px;
+}
+.profile {
+  display: flex;
+  max-width: 880px;
+  margin: auto;
+  position: relative;
+  margin-bottom: 46.25px;
+}
+.profile__pic {
+  border-radius: 50%;
+  max-width: 120px;
+  min-height: 120px;
+}
+.profile__text {
+  margin: auto 18px auto 30px;
+}
+.profile__main {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+.profile__main_name {
+  margin: 0 auto;
+  font-size: 42px;
+  height: 39px;
+}
+.profile__edit {
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  border: 1px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 18px;
+}
+
+.profile__edit_svg {
+  width: 10px;
+  height: 10px;
+}
+
+.profile__text_explorer {
+  padding: 0;
+  margin-top: 16px;
+  line-height: 21.78px;
+  font-size: 18px;
+}
+
+.profile__add {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  bottom: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 50px;
+  border: 1px solid white;
+  margin: auto 0;
+}
+.profile__plus {
+  width: 22px;
+  height: 22px;
+}
+.gallery {
+  margin: 0 auto;
+  max-width: 880px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  column-gap: 17px;
+  row-gap: 21px;
+}
+.gallery__item {
+  border-radius: 10px;
+  background-color: rgb(255, 255, 255);
+  min-height: 361px;
+  max-width: 282px;
+}
+.gallery__image {
+  max-width: 282px;
+  min-height: 282px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+@media screen and (max-width: 955px) {
+  .page {
+    margin-left: 27px;
+    margin-right: 27px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .profile {
+    flex-direction: column;
+    align-items: center;
+  }
+  .profile__text_explorer {
+    text-align: center;
+    margin-bottom: 36px;
+    line-height: 16.94px;
+    font-size: 14px;
+  }
+  .profile__add {
+    position: static;
+  }
+  .profile__add {
+    width: 95vw;
+    margin: 0 19px 0 19px;
+  }
+  .profile__main_name {
+    max-height: 22px;
+    margin-top: 30px;
+    font-size: 22px;
+    line-height: 26.63px;
+  }
+}
