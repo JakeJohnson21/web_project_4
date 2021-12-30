@@ -1,7 +1,7 @@
 .page {
   background-color: #000;
   color: #fff;
-  font-family: sans-serif;
+  font-family: "Inter";
 }
 /* div,
 p,
@@ -21,7 +21,10 @@ a {
   max-width: 880px;
   margin: 45px auto 0 auto;
 }
-
+.header__svg {
+  max-width: 173px;
+  min-height: 33px;
+}
 .content {
   margin-top: 41px;
 }
@@ -56,6 +59,8 @@ a {
   margin: 0 auto;
   font-size: 42px;
   height: 39px;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
 }
 .profile__edit {
   width: 24px;
@@ -76,8 +81,10 @@ a {
 .profile__text_explorer {
   padding: 0;
   margin-top: 16px;
+  font-family: "Inter", sans-serif;
   line-height: 21.78px;
   font-size: 18px;
+  font-weight: 400;
 }
 
 .profile__add {
@@ -107,9 +114,12 @@ a {
   row-gap: 21px;
 }
 .gallery__item {
+  display: flex;
+  flex-direction: column;
+  position: relative;
   border-radius: 10px;
   background-color: rgb(255, 255, 255);
-  min-height: 361px;
+  max-height: 361px;
   max-width: 282px;
 }
 .gallery__image {
@@ -118,11 +128,59 @@ a {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
+.gallery__text {
+  display: flex;
+  align-items: center;
+}
+
+.gallery__place {
+  font-family: "Inter", sans-serif;
+  font-weight: 900;
+  line-height: 29.05px;
+  font-size: 24px;
+  margin-left: 21px;
+  color: black;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 222px;
+}
+.gallery__icon {
+  position: absolute;
+  right: 18px;
+  width: 21px;
+  height: 19px;
+}
+
+.footer {
+  margin: 0 auto;
+  max-width: 880px;
+}
+.copyright {
+  color: #545454;
+  margin-top: 67px;
+  margin-bottom: 60px;
+}
 
 @media screen and (max-width: 955px) {
   .page {
     margin-left: 27px;
     margin-right: 27px;
+  }
+  .gallery {
+    max-width: 581px;
+    margin: 0 auto;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+  }
+  .gallery__image {
+    max-width: auto;
+  }
+  .gallery__item {
+    max-width: auto;
+  }
+  .footer {
+    max-width: 581px;
   }
 }
 
@@ -137,10 +195,10 @@ a {
     line-height: 16.94px;
     font-size: 14px;
   }
+
   .profile__add {
+    max-width: 581px;
     position: static;
-  }
-  .profile__add {
     width: 95vw;
     margin: 0 19px 0 19px;
   }
@@ -149,5 +207,34 @@ a {
     margin-top: 30px;
     font-size: 22px;
     line-height: 26.63px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .header__svg {
+    max-width: 126px;
+    min-height: 24px;
+  }
+  .page {
+    margin-left: 19px;
+    margin-right: 19px;
+  }
+  .gallery {
+    max-width: 282px;
+    grid-template-columns: 282px;
+    grid-template-rows: repeat(6, 1fr);
+  }
+  .footer {
+    max-width: 282px;
+  }
+  .copyright {
+    margin-top: 50px;
+    margin-bottom: 36px;
+  }
+}
+
+@media screen and (max-width: 330px) {
+  .profile__text {
+    margin: 0;
   }
 }
