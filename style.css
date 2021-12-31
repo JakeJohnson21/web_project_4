@@ -72,6 +72,9 @@ a {
   align-items: center;
   margin-left: 18px;
 }
+.profile__edit:hover {
+  opacity: 0.6;
+}
 
 .profile__edit_svg {
   width: 10px;
@@ -100,25 +103,46 @@ a {
   border: 1px solid white;
   margin: auto 0;
 }
+.profile__add:hover {
+  opacity: 0.6;
+}
 .profile__plus {
   width: 22px;
   height: 22px;
 }
-.edit {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
+.edit__background {
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  position: fixed;
+  top: 0;
+  opacity: 0.5;
+}
+.edit__close-icon {
+  position: fixed;
+  width: 40px;
+  top: 50%;
+  left: 50%;
+  margin-top: -210px;
+  margin-left: 215px;
+}
+.edit__close-icon:hover {
+  opacity: 0.6;
+}
+.edit {
+  display: none;
+}
 .edit__box {
   box-sizing: border-box;
   padding: 34px 36px 36px;
   border-radius: 10px;
-  display: flex;
-  flex-direction: column;
+
   position: fixed;
-  top: 195px;
-  border: 1px solid red;
+  top: 50%;
+  left: 50%;
+  margin-top: -165px;
+  margin-left: -215px;
   background-color: white;
   color: black;
   max-width: 430px;
@@ -166,6 +190,10 @@ a {
   font-size: 18px;
   font-weight: 400;
   line-height: 21.78px;
+  border-radius: 2px;
+}
+.edit__save:hover {
+  opacity: 0.8;
 }
 .gallery {
   margin: 0 auto;
@@ -213,6 +241,13 @@ a {
   right: 18px;
   width: 21px;
   height: 19px;
+}
+.gallery__icon:hover {
+  opacity: 0.5;
+}
+.gallery__icon:active {
+  background-image: url("images/black-heart.svg");
+  opacity: 1;
 }
 
 .footer {
