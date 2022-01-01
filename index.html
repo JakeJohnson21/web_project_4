@@ -10,7 +10,7 @@
   </head>
   <body class="page">
     <header class="header">
-      <img src="images/around.svg" alt="" class="header__svg" />
+      <img src="images/around.svg" alt="Around the U.S." class="header__svg" />
     </header>
     <main class="content">
       <div class="content__line"></div>
@@ -24,7 +24,11 @@
           <div class="profile__main">
             <h2 class="profile__main_name">Jacques Cousteau</h2>
             <div class="profile__edit">
-              <img class="profile__edit_svg" src="images/arrow.svg" />
+              <img
+                class="profile__edit_svg"
+                src="images/arrow.svg"
+                alt="arrow pointed towards bottom left."
+              />
             </div>
           </div>
           <p class="profile__text_explorer">Explorer</p>
@@ -37,64 +41,115 @@
 
       <section class="gallery">
         <div class="gallery__item">
-          <img src="images/milwaukee.jpg" alt="" class="gallery__image" />
+          <img
+            src="images/milwaukee.jpg"
+            alt="Milwaukee from Marina"
+            class="gallery__image"
+          />
           <div class="gallery__text">
             <p class="gallery__place">Milwaukee Wisconsin</p>
             <img
               src="images/heart.svg"
-              alt=""
+              alt="heart button"
               class="gallery__icon"
-              onclick="toggleState(this)"
             />
           </div>
         </div>
         <div class="gallery__item">
-          <img src="images/chicago.jpg" alt="" class="gallery__image" />
+          <img
+            src="images/chicago.jpg"
+            alt="Chicago from Willis Tower"
+            class="gallery__image"
+          />
           <div class="gallery__text">
             <p class="gallery__place">Chicago</p>
-            <img src="images/heart.svg" alt="" class="gallery__icon" />
+            <img
+              src="images/heart.svg"
+              alt="heart button"
+              class="gallery__icon"
+            />
           </div>
         </div>
         <div class="gallery__item">
-          <img src="images/waikiki.jpg" alt="" class="gallery__image" />
+          <img
+            src="images/waikiki.jpg"
+            alt="Waikiki from Diamond head lookout"
+            class="gallery__image"
+          />
           <div class="gallery__text">
             <p class="gallery__place">Waikiki Beach O'ahu</p>
-            \ <img src="images/heart.svg" alt="" class="gallery__icon" />
+            \
+            <img
+              src="images/heart.svg"
+              alt="heart button"
+              class="gallery__icon"
+            />
           </div>
         </div>
         <div class="gallery__item">
-          <img src="images/sydney.jpg" alt="" class="gallery__image" />
+          <img
+            src="images/sydney.jpg"
+            alt="Sydney Harbour"
+            class="gallery__image"
+          />
           <div class="gallery__text">
             <p class="gallery__place">Sydney Harbour</p>
-            <img src="images/heart.svg" alt="" class="gallery__icon" />
+            <img
+              src="images/heart.svg"
+              alt="heart button"
+              class="gallery__icon"
+            />
           </div>
         </div>
         <div class="gallery__item">
-          <img src="images/london.jpg" alt="" class="gallery__image" />
+          <img
+            src="images/london.jpg"
+            alt="London at dusk"
+            class="gallery__image"
+          />
           <div class="gallery__text">
             <p class="gallery__place">London</p>
-            <img src="images/heart.svg" alt="" class="gallery__icon" />
+            <img
+              src="images/heart.svg"
+              alt="heart button"
+              class="gallery__icon"
+            />
           </div>
         </div>
         <div class="gallery__item">
-          <img src="images/dubai.jpg" alt="" class="gallery__image" />
+          <img
+            src="images/dubai.jpg"
+            alt="Dubai at dusk"
+            class="gallery__image"
+          />
           <div class="gallery__text">
             <p class="gallery__place">Dubai</p>
-            <img src="images/heart.svg" alt="" class="gallery__icon" />
+            <img
+              src="images/heart.svg"
+              alt="heart button"
+              class="gallery__icon"
+            />
           </div>
         </div>
       </section>
       <section class="edit">
         <div class="edit__background"></div>
-        <img src="images/Close Icon.svg" alt="" class="edit__close-icon" />
-        <div class="edit__box">
+        <img
+          src="images/Close-Icon.svg"
+          alt="an X icon"
+          class="edit__close-icon"
+        />
+        <form class="edit__box">
           <h2 class="edit__profile">Edit profile</h2>
-          <input type="name" class="edit__name" placeholder="Name" />
-          <div class="edit__line"></div>
-          <input type="title" class="edit__title" placeholder="About me" />
-          <div class="edit__line"></div>
-          <button type="button" class="edit__save">Save</button>
-        </div>
+
+          <input
+            type="text"
+            class="edit__input"
+            placeholder="Jacques Cousteau"
+          />
+          <input type="text" class="edit__input" placeholder="About me" />
+          <button type="submit" class="edit__save">Save</button>
+        </form>
       </section>
     </main>
     <footer class="footer">
