@@ -27,7 +27,7 @@ editPopup.addEventListener("click", tog);
 editIcon.addEventListener("click", tog);
 
 function toggleModalVisibility() {
-  console.log((titleInput.value = personTitle.textContent));
+  personName.textContent = document.querySelector(".edit__name").value;
   nameInput.value = personName.textContent;
 }
 

@@ -1,0 +1,32 @@
+.page {
+  background-color: #000;
+  color: #fff;
+  font-family: "Inter";
+}
+/* div,
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  img,
+  section,
+  main,
+  header,
+  a {
+    border: 1px solid red;
+  } */
+
+@media screen and (max-width: 955px) {
+  .page {
+    margin-left: 27px;
+    margin-right: 27px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .page {
+    margin-left: 19px;
+    margin-right: 19px;
+  }
+}
