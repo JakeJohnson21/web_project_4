@@ -29,13 +29,13 @@ editCloseIcon.addEventListener("click", tog);
 
 function toggleModalVisibility() {
   personName.value = nameInput.textContent;
-  return (nameInput.value = personName.textContent);
+  nameInput.value = personName.textContent;
 }
 
 function formSubmitHandler(evt) {
   personTitle.textContent = titleInput.value;
   personName.textContent = nameInput.value;
-
+  toggleModalVisibility();
   evt.preventDefault();
 }
 save.addEventListener("submit", formSubmitHandler);
