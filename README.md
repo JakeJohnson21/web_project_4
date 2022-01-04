@@ -1,16 +1,7 @@
 # Project 4: Around The U.S.
 
-### Overview
+This project features a Profile and gallery type page. It uses html, css, javascript, responsive design, and a little bit of magic. Hover effects work on all links and like buttons. The page allows the user to create and enter their own profile info. If the form is submitted blank, the default Profile will stay in its place.
 
-- Figma
-- Images
+Jake Johnson
 
-**Figma**
-
-- [Link to the project in Figma](https://www.figma.com/file/SurN1jaeEQIhuZEDMhmWWf/Sprint-4-Around-The-U.S.-desktop-mobile?node-id=0%3A1)
-
-**Images**
-
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster.
-
-Have fun with JavaScript!
+Github pages https://github.com/JakeJohnson21/web_project_4/settings/pages

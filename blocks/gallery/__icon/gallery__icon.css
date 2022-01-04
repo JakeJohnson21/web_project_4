@@ -7,7 +7,7 @@
 .gallery__icon:hover {
   opacity: 0.5;
 }
-.gallery__icon:active {
+/* .gallery__icon:active {
   background-image: url("images/black-heart.svg");
   opacity: 1;
-}
+} */
