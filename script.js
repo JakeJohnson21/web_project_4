@@ -20,6 +20,7 @@ let editBox = document.querySelector(".edit__box");
 function toggleFormVisibility() {
   if (edit.style.display === "none") {
     edit.style.display = "block";
+    edit;
   } else {
     edit.style.display = "none";
   }
