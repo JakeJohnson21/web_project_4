@@ -17,39 +17,30 @@ let save = document.querySelector(".edit__save");
 //form edit box
 let editBox = document.querySelector(".edit__box");
 
-function tog() {
+function toggleFormVisibility() {
   if (edit.style.display === "none") {
     edit.style.display = "block";
   } else {
     edit.style.display = "none";
   }
 }
-editOpenPopup.addEventListener("click", tog);
-editCloseIcon.addEventListener("click", tog);
+editOpenPopup.addEventListener("click", toggleFormVisibility);
+editCloseIcon.addEventListener("click", toggleFormVisibility);
 
-function toggleModalVisibility() {
-  personName.value = nameInput.textContent;
-  nameInput.value = personName.textContent;
+function ifFormIsEmpty() {
+  if (nameInput.value.length === 0) {
+    personName.textContent = "Jacques Cousteau";
+  }
+  if (titleInput.value.length === 0) {
+    personTitle.textContent = "Explorer";
+  }
 }
 
 function formSubmitHandler(evt) {
   personTitle.textContent = titleInput.value;
   personName.textContent = nameInput.value;
-  toggleModalVisibility();
+  ifFormIsEmpty();
   evt.preventDefault();
 }
-save.addEventListener("submit", formSubmitHandler);
-
-// editCloseIcon.addEventListener("click", () => {
-//   edit.classList.remove("modal_open");
-// });
-
-// editOpenPopup.addEventListener("click", () => {
-//   edit.classList.add("modal_open");
-// });
-
-// edit.addEventListener("click", (e) => {
-//   if (e.target === edit) {
-//     edit.classList.remove("modal_open");
-//   }
-// });
+editBox.addEventListener("submit", formSubmitHandler);
+save.addEventListener("click", toggleFormVisibility);
