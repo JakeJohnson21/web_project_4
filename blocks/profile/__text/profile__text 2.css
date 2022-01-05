@@ -1,9 +1,0 @@
-.profile__text {
-  margin: auto 18px auto 30px;
-}
-
-@media screen and (max-width: 330px) {
-  .profile__text {
-    margin: 0;
-  }
-}

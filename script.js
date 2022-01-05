@@ -1,9 +1,9 @@
 //popup box
 let edit = document.querySelector(".edit");
 //the button on the main page to open the edit popup dialogue box
-let editOpenPopup = document.querySelector(".profile__edit");
+let editOpenPopup = document.querySelector(".profile__edit-button");
 //the X to close out the popup
-let editCloseIcon = edit.querySelector(".edit__close-icon");
+let editCloseIcon = edit.querySelector(".edit__close-button");
 // The end point for the persons name
 let personName = document.querySelector(".profile__main_name");
 // The end point for explorer

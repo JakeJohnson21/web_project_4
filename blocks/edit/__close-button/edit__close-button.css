@@ -1,0 +1,14 @@
+.edit__close-button {
+  background: none;
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  border: none;
+}
+
+@media screen and (max-width: 540px) {
+  .edit__close-button {
+    right: 0;
+    top: -48px;
+  }
+}
