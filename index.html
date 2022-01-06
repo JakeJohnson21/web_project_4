@@ -148,29 +148,31 @@
         </div>
       </section>
       <section class="edit edit_none">
-        <form class="edit__box">
-          <button class="edit__close-button" type="button">
-            <img
-              src="images/Close-Icon.svg"
-              alt="an X icon"
-              class="edit__close-button_icon"
+        <div class="edit__overlay">
+          <form class="edit__box">
+            <button class="edit__close-button" type="button">
+              <img
+                src="images/Close-Icon.svg"
+                alt="an X icon"
+                class="edit__close-button_icon"
+              />
+            </button>
+            <h2 class="edit__profile">Edit profile</h2>
+            <input
+              name="name"
+              type="text"
+              class="edit__input edit__input_name"
+              placeholder="Jacques Cousteau"
             />
-          </button>
-          <h2 class="edit__profile">Edit profile</h2>
-          <input
-            name="name"
-            type="text"
-            class="edit__input edit__input_name"
-            placeholder="Jacques Cousteau"
-          />
-          <input
-            name="title"
-            type="text"
-            class="edit__input edit__input_title"
-            placeholder="About me"
-          />
-          <button type="submit" class="edit__save">Save</button>
-        </form>
+            <input
+              name="title"
+              type="text"
+              class="edit__input edit__input_title"
+              placeholder="About me"
+            />
+            <button type="submit" class="edit__save">Save</button>
+          </form>
+        </div>
       </section>
     </main>
     <footer class="footer">

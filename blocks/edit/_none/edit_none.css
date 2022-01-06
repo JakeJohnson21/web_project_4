@@ -1,3 +1,9 @@
 .edit_none {
-  display: none;
+  position: fixed;
+  display: flex;
+  background: (0, 0, 0, 0.5);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
