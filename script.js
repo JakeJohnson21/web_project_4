@@ -17,17 +17,12 @@ let save = document.querySelector(".edit__save");
 //form edit box
 let editBox = document.querySelector(".edit__box");
 
-function toggleFormVisibility() {
-  if (edit.style.display === "none") {
-    edit.style.display = "block";
-    edit;
-  } else {
-    edit.style.display = "none";
-  }
+function closePopup() {
+  edit.classList.toggle("edit");
 }
-editOpenPopup.addEventListener("click", toggleFormVisibility);
-editCloseIcon.addEventListener("click", toggleFormVisibility);
-
+function openPopup() {
+  edit.classList.toggle("edit");
+}
 function ifFormIsEmpty() {
   if (nameInput.value.length === 0) {
     personName.textContent = "Jacques Cousteau";
@@ -36,12 +31,13 @@ function ifFormIsEmpty() {
     personTitle.textContent = "Explorer";
   }
 }
-
 function formSubmitHandler(evt) {
   personTitle.textContent = titleInput.value;
   personName.textContent = nameInput.value;
   ifFormIsEmpty();
   evt.preventDefault();
 }
+editOpenPopup.addEventListener("click", openPopup);
+editCloseIcon.addEventListener("click", closePopup);
 editBox.addEventListener("submit", formSubmitHandler);
-save.addEventListener("click", toggleFormVisibility);
+save.addEventListener("click", closePopup);
