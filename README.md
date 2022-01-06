@@ -4,4 +4,4 @@ This project features a Profile and gallery type page. It uses html, css, javasc
 
 Jake Johnson
 
-Github pages https://github.com/JakeJohnson21/web_project_4/settings/pages
+Github pages https://jakejohnson21.github.io/web_project_4/
