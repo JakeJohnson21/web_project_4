@@ -1,5 +1,11 @@
 .profile__main {
   display: flex;
   justify-content: flex-start;
-  align-items: flex-end;
+  align-items: center;
+}
+
+@media screen and (max-width: 800px) {
+  .profile__main {
+    margin-top: 30px;
+  }
 }

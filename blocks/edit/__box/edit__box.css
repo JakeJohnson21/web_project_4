@@ -8,10 +8,10 @@
   margin-top: -165px;
   margin-left: -215px;
   background-color: white;
+  opacity: 1;
   color: black;
   max-width: 430px;
   min-height: 330px;
-  position: relative;
 }
 
 @media screen and (max-width: 480px) {
