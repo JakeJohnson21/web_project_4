@@ -18,10 +18,10 @@ let save = document.querySelector(".edit__save");
 let editBox = document.querySelector(".edit__box");
 
 function closePopup() {
-  edit.classList.toggle("edit");
+  edit.classList.toggle("edit_none");
 }
 function openPopup() {
-  edit.classList.toggle("edit");
+  edit.classList.toggle("edit_none");
 }
 function ifFormIsEmpty() {
   if (nameInput.value.length === 0) {
