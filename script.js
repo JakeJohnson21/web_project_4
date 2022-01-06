@@ -17,26 +17,28 @@ let save = document.querySelector(".edit__save");
 //form edit box
 let editBox = document.querySelector(".edit__box");
 
-function formSubmitHandler(evt) {
-  personTitle.textContent = titleInput.value;
-  personName.textContent = nameInput.value;
-  // ifFormIsEmpty();
-  evt.preventDefault();
-}
 function openPopup() {
   edit.classList.toggle("edit_none");
 }
 function closePopup() {
   edit.classList.toggle("edit_none");
 }
-// function ifFormIsEmpty() {
-//   if (nameInput.value.length === 0) {
-//     personName.textContent = "Jacques Cousteau";
-//   }
-//   if (titleInput.value.length === 0) {
-//     personTitle.textContent = "Explorer";
-//   }
-// }
+
+function formSubmitHandler(evt) {
+  personTitle.textContent = titleInput.value;
+  personName.textContent = nameInput.value;
+  ifFormIsEmpty();
+  evt.preventDefault();
+}
+
+function ifFormIsEmpty() {
+  if (nameInput.value.length === 0) {
+    personName.textContent = "Jacques Cousteau";
+  }
+  if (titleInput.value.length === 0) {
+    personTitle.textContent = "Explorer";
+  }
+}
 
 editOpenPopup.addEventListener("click", openPopup);
 editCloseIcon.addEventListener("click", closePopup);
@@ -53,15 +55,6 @@ save.addEventListener("click", closePopup);
 // }
 // editOpenPopup.addEventListener("click", toggleFormVisibility);
 // editCloseIcon.addEventListener("click", toggleFormVisibility);
-
-// function ifFormIsEmpty() {
-//   if (nameInput.value.length === 0) {
-//     personName.textContent = "Jacques Cousteau";
-//   }
-//   if (titleInput.value.length === 0) {
-//     personTitle.textContent = "Explorer";
-//   }
-// }
 
 // function formSubmitHandler(evt) {
 //   personTitle.textContent = titleInput.value;
