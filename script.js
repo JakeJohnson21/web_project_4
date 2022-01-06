@@ -17,27 +17,57 @@ let save = document.querySelector(".edit__save");
 //form edit box
 let editBox = document.querySelector(".edit__box");
 
-function closePopup() {
-  edit.classList.toggle("edit_none");
+function formSubmitHandler(evt) {
+  personTitle.textContent = titleInput.value;
+  personName.textContent = nameInput.value;
+  // ifFormIsEmpty();
+  evt.preventDefault();
 }
 function openPopup() {
   edit.classList.toggle("edit_none");
 }
-function ifFormIsEmpty() {
-  if (nameInput.value.length === 0) {
-    personName.textContent = "Jacques Cousteau";
-  }
-  if (titleInput.value.length === 0) {
-    personTitle.textContent = "Explorer";
-  }
+function closePopup() {
+  edit.classList.toggle("edit_none");
 }
-function formSubmitHandler(evt) {
-  personTitle.textContent = titleInput.value;
-  personName.textContent = nameInput.value;
-  ifFormIsEmpty();
-  evt.preventDefault();
-}
+// function ifFormIsEmpty() {
+//   if (nameInput.value.length === 0) {
+//     personName.textContent = "Jacques Cousteau";
+//   }
+//   if (titleInput.value.length === 0) {
+//     personTitle.textContent = "Explorer";
+//   }
+// }
+
 editOpenPopup.addEventListener("click", openPopup);
 editCloseIcon.addEventListener("click", closePopup);
 editBox.addEventListener("submit", formSubmitHandler);
 save.addEventListener("click", closePopup);
+
+// function toggleFormVisibility() {
+//   if (edit.style.display === "none") {
+//     edit.style.display = "block";
+//     edit;
+//   } else {
+//     edit.style.display = "none";
+//   }
+// }
+// editOpenPopup.addEventListener("click", toggleFormVisibility);
+// editCloseIcon.addEventListener("click", toggleFormVisibility);
+
+// function ifFormIsEmpty() {
+//   if (nameInput.value.length === 0) {
+//     personName.textContent = "Jacques Cousteau";
+//   }
+//   if (titleInput.value.length === 0) {
+//     personTitle.textContent = "Explorer";
+//   }
+// }
+
+// function formSubmitHandler(evt) {
+//   personTitle.textContent = titleInput.value;
+//   personName.textContent = nameInput.value;
+//   ifFormIsEmpty();
+//   evt.preventDefault();
+// }
+// editBox.addEventListener("submit", formSubmitHandler);
+// save.addEventListener("click", toggleFormVisibility);
