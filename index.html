@@ -15,23 +15,26 @@
     <main class="content">
       <div class="content__line"></div>
       <section class="profile">
-        <img
-          class="profile__pic"
-          src="images/image.jpg"
-          alt="old man with a red hat smiling"
-        />
         <div class="profile__text">
+          <img
+            class="profile__pic"
+            src="images/image.jpg"
+            alt="old man with a red hat smiling"
+          />
           <div class="profile__main">
-            <h2 class="profile__main_name">Jacques Cousteau</h2>
+            <div class="profile__title">
+              <h2 class="profile__main_name">Jacques Cousteau</h2>
+
+              <button class="profile__edit-button" type="button">
+                <img
+                  class="profile__edit-button_icon"
+                  src="images/arrow.svg"
+                  alt="arrow pointed towards bottom left."
+                />
+              </button>
+            </div>
             <p class="profile__text_explorer">Explorer</p>
           </div>
-          <button class="profile__edit-button" type="button">
-            <img
-              class="profile__edit-button_icon"
-              src="images/arrow.svg"
-              alt="arrow pointed towards bottom left."
-            />
-          </button>
         </div>
 
         <button class="profile__add" type="button">

@@ -1,0 +1,9 @@
+.profile__title {
+  display: flex;
+}
+
+@media screen and (max-width: 640px) {
+  .profile__title {
+    max-width: 282px;
+  }
+}
