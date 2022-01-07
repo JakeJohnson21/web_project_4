@@ -1,9 +1,10 @@
-.header__svg {
+.header__logo {
   max-width: 173px;
   min-height: 33px;
+  padding-bottom: 41px;
 }
 @media screen and (max-width: 640px) {
-  .header__svg {
+  .header__logo {
     max-width: 126px;
     min-height: 24px;
   }

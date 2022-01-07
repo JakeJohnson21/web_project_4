@@ -10,10 +10,10 @@
   </head>
   <body class="page">
     <header class="header">
-      <img src="images/around.svg" alt="Around the U.S." class="header__svg" />
+      <img src="images/around.svg" alt="Around the U.S." class="header__l" />
     </header>
     <main class="content">
-      <div class="content__line"></div>
+      <!-- <div class="content__line"></div> -->
       <section class="profile">
         <div class="profile__text">
           <img
@@ -150,21 +150,19 @@
           </div>
         </div>
       </section>
-      <section class="modal_none modal">
-        <form class="modal__box">
-          <button class="modal__close-button" type="button">
-            <img
-              src="images/Close-Icon.svg"
-              alt="an X icon"
-              class="modal__close-button_icon"
-            />
-          </button>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">© 2021 Jake Johnson</p>
+    </footer>
+    <div class="modal_none modal">
+      <div class="modal__container">
+        <form class="modal__box" name="edit-profile">
           <h2 class="modal__profile">Edit profile</h2>
           <input
             name="name"
             type="text"
             class="modal__input modal__input_name"
-            placeholder="Jacques Cousteau"
+            placeholder="Name"
           />
           <input
             name="title"
@@ -174,11 +172,15 @@
           />
           <button type="submit" class="modal__save">Save</button>
         </form>
-      </section>
-    </main>
-    <footer class="footer">
-      <p class="footer__copyright">© 2021 Jake Johnson</p>
-    </footer>
+        <button class="modal__close-button" type="button">
+          <!-- <img
+            src="images/Close-Icon.svg"
+            alt="an X icon"
+            class="modal__close-button_icon"
+          /> -->
+        </button>
+      </div>
+    </div>
     <script src="script.js"></script>
   </body>
 </html>

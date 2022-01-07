@@ -7,7 +7,7 @@
   font-size: 14px;
   line-height: 16.94px;
   height: 27.26px;
-  border-bottom: 1px solid rgba(0, 0, 0);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   width: 358px;
   box-sizing: border-box;
 }
