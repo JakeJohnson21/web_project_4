@@ -8,6 +8,7 @@
   white-space: nowrap;
   overflow: hidden;
   max-width: 375px;
+  margin-top: 0;
 }
 @media screen and (max-width: 800px) {
   .profile__main_name {

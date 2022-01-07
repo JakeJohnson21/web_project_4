@@ -1,27 +1,27 @@
 //popup box
-let edit = document.querySelector(".edit");
+let edit = document.querySelector(".modal");
 //the button on the main page to open the edit popup dialogue box
 let editOpenPopup = document.querySelector(".profile__edit-button");
 //the X to close out the popup
-let editCloseIcon = edit.querySelector(".edit__close-button");
+let editCloseIcon = document.querySelector(".modal__close-button");
 // The end point for the persons name
 let personName = document.querySelector(".profile__main_name");
 // The end point for explorer
 let personTitle = document.querySelector(".profile__text_explorer");
 //the name input field
-let nameInput = document.querySelector(".edit__input_name");
+let nameInput = document.querySelector(".modal__input_name");
 //the title (explorer) input field
-let titleInput = document.querySelector(".edit__input_title");
+let titleInput = document.querySelector(".modal__input_title");
 // the SAVE button
-let save = document.querySelector(".edit__save");
+let save = document.querySelector(".modal__save");
 //form edit box
-let editBox = document.querySelector(".edit__box");
+let editBox = document.querySelector(".modal__box");
 
 function openPopup() {
-  edit.classList.toggle("edit_none");
+  edit.classList.toggle("modal_none");
 }
 function closePopup() {
-  edit.classList.toggle("edit_none");
+  edit.classList.toggle("modal_none");
 }
 
 function formSubmitHandler(evt) {

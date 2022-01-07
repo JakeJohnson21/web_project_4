@@ -1,4 +1,4 @@
-.edit__input {
+.modal__input {
   border: none;
   margin-top: 54px;
   font-family: "Inter", sans-serif;
@@ -11,11 +11,11 @@
   width: 358px;
   box-sizing: border-box;
 }
-.edit__input:last-of-type {
+.modal__input:last-of-type {
   margin-top: 29.74px;
 }
 @media screen and (max-width: 480px) {
-  .edit__input {
+  .modal__input {
     width: 100%;
   }
 }

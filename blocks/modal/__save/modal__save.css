@@ -1,4 +1,4 @@
-.edit__save {
+.modal__save {
   margin-top: 48px;
   width: 358px;
   background-color: black;
@@ -11,11 +11,11 @@
   line-height: 21.78px;
   border-radius: 2px;
 }
-.edit__save:hover {
+.modal__save:hover {
   opacity: 0.8;
 }
 @media screen and (max-width: 480px) {
-  .edit__save {
+  .modal__save {
     width: 70vw;
     margin-right: 22px;
   }

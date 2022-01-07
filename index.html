@@ -23,15 +23,15 @@
         <div class="profile__text">
           <div class="profile__main">
             <h2 class="profile__main_name">Jacques Cousteau</h2>
-            <button class="profile__edit-button" type="button">
-              <img
-                class="profile__edit-button_icon"
-                src="images/arrow.svg"
-                alt="arrow pointed towards bottom left."
-              />
-            </button>
+            <p class="profile__text_explorer">Explorer</p>
           </div>
-          <p class="profile__text_explorer">Explorer</p>
+          <button class="profile__edit-button" type="button">
+            <img
+              class="profile__edit-button_icon"
+              src="images/arrow.svg"
+              alt="arrow pointed towards bottom left."
+            />
+          </button>
         </div>
 
         <button class="profile__add" type="button">
@@ -147,29 +147,29 @@
           </div>
         </div>
       </section>
-      <section class="edit_none edit">
-        <form class="edit__box">
-          <button class="edit__close-button" type="button">
+      <section class="modal_none modal">
+        <form class="modal__box">
+          <button class="modal__close-button" type="button">
             <img
               src="images/Close-Icon.svg"
               alt="an X icon"
-              class="edit__close-button_icon"
+              class="modal__close-button_icon"
             />
           </button>
-          <h2 class="edit__profile">Edit profile</h2>
+          <h2 class="modal__profile">Edit profile</h2>
           <input
             name="name"
             type="text"
-            class="edit__input edit__input_name"
+            class="modal__input modal__input_name"
             placeholder="Jacques Cousteau"
           />
           <input
             name="title"
             type="text"
-            class="edit__input edit__input_title"
+            class="modal__input modal__input_title"
             placeholder="About me"
           />
-          <button type="submit" class="edit__save">Save</button>
+          <button type="submit" class="modal__save">Save</button>
         </form>
       </section>
     </main>

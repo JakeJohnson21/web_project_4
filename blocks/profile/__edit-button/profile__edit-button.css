@@ -9,6 +9,7 @@
   align-items: center;
   margin-left: 18px;
   position: relative;
+  margin-top: 18px;
 }
 .profile__edit-button:hover {
   opacity: 0.6;
@@ -20,6 +21,7 @@
     width: 18px;
     height: 18px;
     margin-left: 10px;
-    align-self: flex-end;
+    margin-top: 34px;
+    align-self: flex-start;
   }
 }
