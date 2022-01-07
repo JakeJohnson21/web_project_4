@@ -16,7 +16,7 @@
 }
 @media screen and (max-width: 480px) {
   .modal__save {
-    width: 70vw;
+    width: 100%;
     margin-right: 22px;
   }
 }

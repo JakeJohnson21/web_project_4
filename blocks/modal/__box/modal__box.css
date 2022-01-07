@@ -12,7 +12,7 @@
 }
 
 @media screen and (max-width: 480px) {
-  .modal_box {
+  .modal__box {
     margin: auto 19px;
     padding-left: 22px;
     padding-right: 22px;
