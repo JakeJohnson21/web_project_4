@@ -9,6 +9,7 @@
   align-items: center;
   margin-left: 18px;
   position: relative;
+  margin-bottom: 8px;
 }
 .profile__edit-button:hover {
   opacity: 0.6;

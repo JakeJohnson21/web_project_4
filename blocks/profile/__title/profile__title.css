@@ -1,5 +1,6 @@
 .profile__title {
   display: flex;
+  align-items: flex-end;
 }
 
 @media screen and (max-width: 640px) {
