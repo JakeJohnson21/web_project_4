@@ -1,7 +1,20 @@
 .gallery__like-button {
+  background-image: url(../../../images/heart__svg.svg);
+  background-color: transparent;
+  background-repeat: no-repeat;
   border: none;
-  background: none;
   margin-right: 18px;
   padding: 0;
+  width: 21px;
+  height: 21px;
   position: relative;
+}
+
+.gallery__like-button:hover {
+  opacity: 0.5;
+}
+
+.gallery__like-button:active {
+  background-image: url("../../../images/black-heart.svg");
+  opacity: 1;
 }

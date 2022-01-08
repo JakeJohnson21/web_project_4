@@ -1,12 +1,10 @@
 .profile__add {
-  background-image: url(../../../images/plus__svg.svg);
   background-color: transparent;
-  background-repeat: no-repeat;
   position: relative;
-  width: 22px;
-  height: 22px;
+  width: 150px;
+  height: 50px;
 
-  border: 1px solid white;
+  border: 2px solid white;
   margin: auto 0;
 }
 .profile__add:hover {

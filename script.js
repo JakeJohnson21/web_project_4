@@ -5,13 +5,13 @@ let editOpenPopup = document.querySelector(".profile__edit-button");
 //the X to close out the popup
 let editCloseIcon = document.querySelector(".modal__close-button");
 // The end point for the persons name
-let personName = document.querySelector(".profile__main_name");
+let personName = document.querySelector(".profile__title-name");
 // The end point for explorer
-let personTitle = document.querySelector(".profile__text_explorer");
+let personTitle = document.querySelector(".profile__text-job");
 //the name input field
-let nameInput = document.querySelector(".modal__input_name");
+let nameInput = document.querySelector(".modal__input_profile_name");
 //the title (explorer) input field
-let titleInput = document.querySelector(".modal__input_title");
+let titleInput = document.querySelector(".modal__input_profile_title");
 // the SAVE button
 let save = document.querySelector(".modal__save");
 //form edit box
@@ -19,6 +19,8 @@ let editBox = document.querySelector(".modal__box");
 
 function openPopup() {
   edit.classList.toggle("modal_none");
+  titleInput.value = personTitle.textContent;
+  nameInput.value = personName.textContent;
 }
 function closePopup() {
   edit.classList.toggle("modal_none");
@@ -27,23 +29,22 @@ function closePopup() {
 function formSubmitHandler(evt) {
   personTitle.textContent = titleInput.value;
   personName.textContent = nameInput.value;
-  ifFormIsEmpty();
   evt.preventDefault();
+  closePopup();
 }
 
-function ifFormIsEmpty() {
-  if (nameInput.value.length === 0) {
-    personName.textContent = "Jacques Cousteau";
-  }
-  if (titleInput.value.length === 0) {
-    personTitle.textContent = "Explorer";
-  }
-}
+// function ifFormIsEmpty() {
+//   if (nameInput.value.length === 0) {
+//     personName.textContent = "Jacques Cousteau";
+//   }
+//   if (titleInput.value.length === 0) {
+//     personTitle.textContent = "Explorer";
+//   }
+// }
 
 editOpenPopup.addEventListener("click", openPopup);
 editCloseIcon.addEventListener("click", closePopup);
 editBox.addEventListener("submit", formSubmitHandler);
-save.addEventListener("click", closePopup);
 
 // function toggleFormVisibility() {
 //   if (edit.style.display === "none") {

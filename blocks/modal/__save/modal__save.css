@@ -1,4 +1,7 @@
 .modal__save {
+  border: none;
+  margin: 0;
+  padding: 0;
   margin-top: 48px;
   width: 358px;
   background-color: black;
@@ -16,6 +19,8 @@
 }
 @media screen and (max-width: 480px) {
   .modal__save {
+    font-size: 14px;
+    line-height: 16.94px;
     width: 100%;
     margin-right: 22px;
   }
