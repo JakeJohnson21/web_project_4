@@ -1,7 +1,10 @@
 .profile__edit-button {
-  background: transparent;
-  width: 24px;
-  height: 24px;
+  background-image: url(../../../../images/arrow__svg.svg);
+  background-color: transparent;
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  padding: 7px;
   margin: 0;
   border: 1px solid white;
   display: flex;
