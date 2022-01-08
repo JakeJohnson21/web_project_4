@@ -1,14 +1,14 @@
-.modal__close-button-icon {
+.edit__close-button-icon {
   width: 40px;
 }
 
-.modal__close-button_icon:hover {
+.edit__close-button_icon:hover {
   opacity: 0.6;
   cursor: pointer;
 }
 
 @media screen and (max-width: 550px) {
-  .modal__close-button_icon {
+  .edit__close-button_icon {
     width: 26px;
   }
 }

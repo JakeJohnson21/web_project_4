@@ -1,4 +1,7 @@
-.profile__edit-button_icon {
+.profile__edit-button-icon {
+  background-image: url(../../../../images/arrow__svg.svg);
+  background-color: transparent;
+  background-repeat: none;
   width: 10px;
   height: 10px;
 }
