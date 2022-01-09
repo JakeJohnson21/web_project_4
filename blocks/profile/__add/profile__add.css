@@ -9,8 +9,7 @@
   height: 50px;
   border-radius: 2px;
   border: 2px solid white;
-  display: flex;
-  align-self: flex-start;
+
   margin-top: 27px;
 }
 .profile__add:hover {
