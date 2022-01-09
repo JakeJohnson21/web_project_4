@@ -1,6 +1,6 @@
 .modal__close-button {
   background-image: url(../../../images/Close-Icon-svg.svg);
-  background-repeat: none;
+  background-repeat: no-repeat;
   background-color: transparent;
   position: absolute;
   top: -40px;

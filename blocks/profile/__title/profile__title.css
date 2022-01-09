@@ -6,6 +6,5 @@
 @media screen and (max-width: 640px) {
   .profile__title {
     max-width: 282px;
-    align-items: flex-end;
   }
 }
