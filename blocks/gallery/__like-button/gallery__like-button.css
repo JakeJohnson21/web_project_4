@@ -8,13 +8,16 @@
   width: 21px;
   height: 21px;
   position: relative;
+  cursor: pointer;
 }
 
 .gallery__like-button:hover {
   opacity: 0.5;
+  cursor: pointer;
 }
 
 .gallery__like-button:active {
   background-image: url("../../../images/black-heart.svg");
   opacity: 1;
+  cursor: pointer;
 }
