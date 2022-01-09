@@ -26,7 +26,7 @@
 
 @media screen and (max-width: 640px) {
   .page {
-    margin-left: 19px;
-    margin-right: 19px;
+    margin-left: 0;
+    margin-right: 0;
   }
 }
