@@ -19,9 +19,9 @@
 
 @media screen and (max-width: 800px) {
   .profile__add {
-    max-width: 581px;
+    min-width: 282px;
     position: static;
-    width: 95vw;
+
     margin: 36px 19px 0 19px;
   }
 }
