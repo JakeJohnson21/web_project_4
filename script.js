@@ -1,9 +1,9 @@
 //popup box
-let edit = document.querySelector(".modal");
+let edit = document.querySelectorAll(".modal");
 //the button on the main page to open the edit popup dialogue box
 let editOpenPopup = document.querySelector(".profile__edit-button");
 //the X to close out the popup
-let editCloseIcon = document.querySelector(".modal__close-button");
+let editCloseIcon = document.querySelectorAll(".modal__close-button");
 // The end point for the persons name
 let personName = document.querySelector(".profile__title-name");
 // The end point for explorer
@@ -16,6 +16,16 @@ let titleInput = document.querySelector(".modal__input_profile_title");
 let save = document.querySelector(".modal__save");
 //form edit box
 let editBox = document.querySelector(".modal__box");
+//add button
+let addOpenPopup = document.querySelector(".profile__add");
+//new place main modal
+let modalPlace = document.querySelector(".modal__place");
+//the photo title input field
+let photoTitleInput = document.querySelector(".modal__input_image_title");
+//the photo source input field
+let photoInput = document.querySelector(".modal__input_image_link");
+//The gallery image place for input
+let galleryImage = document.querySelector;
 
 function openPopup() {
   edit.classList.toggle("modal_none");
@@ -25,6 +35,8 @@ function openPopup() {
 function closePopup() {
   edit.classList.toggle("modal_none");
 }
+
+function photoSubmitHandler(evt) {}
 
 function formSubmitHandler(evt) {
   personTitle.textContent = titleInput.value;
@@ -41,7 +53,9 @@ function formSubmitHandler(evt) {
 //     personTitle.textContent = "Explorer";
 //   }
 // }
-
+addOpenPopup.addEventListener("click", function () {
+  edit.classList.toggle("modal_none");
+});
 editOpenPopup.addEventListener("click", openPopup);
 editCloseIcon.addEventListener("click", closePopup);
 editBox.addEventListener("submit", formSubmitHandler);

@@ -1,0 +1,7 @@
+.image__container {
+  min-height: 540px;
+  width: auto;
+  background-image: url(../../../images/milwaukee.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+}

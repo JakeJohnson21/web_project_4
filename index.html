@@ -133,7 +133,7 @@
     <footer class="footer">
       <p class="footer__copyright">© 2021 Jake Johnson</p>
     </footer>
-    <div class="modal_none modal">
+    <div class="modal_none modal" id="modal1">
       <div class="modal__container">
         <form class="modal__box" name="edit-profile">
           <h2 class="modal__profile">Edit profile</h2>
@@ -155,6 +155,46 @@
             Save
           </button>
         </form>
+        <button
+          class="modal__close-button"
+          type="button"
+          aria-label="close"
+        ></button>
+      </div>
+    </div>
+    <div class="modal modal__place modal_none" id="modal2">
+      <div class="modal__container">
+        <form class="modal__box modal__place-box" name="edit-place">
+          <h2 class="modal__profile">New Place</h2>
+          <input
+            name="name"
+            type="text"
+            class="modal__input modal__input_image_title"
+            placeholder="Title"
+            required
+          />
+          <input
+            name="title"
+            type="text"
+            class="modal__input modal__input_image_link"
+            placeholder="Image link"
+            required
+          />
+          <button type="submit" class="modal__save" aria-label="save">
+            Save
+          </button>
+        </form>
+        <button
+          class="modal__close-button"
+          type="button"
+          aria-label="close"
+        ></button>
+      </div>
+    </div>
+    <div class="image__popup">
+      <div class="image__container">
+        p.image__caption
+
         <button
           class="modal__close-button"
           type="button"
