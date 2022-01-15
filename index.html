@@ -37,17 +37,21 @@
         <button class="profile__add" type="button" aria-label="add"></button>
       </section>
 
-      <section class="gallery">
-        <div class="gallery__item">
+      <section class="">
+        <ul class="card"></ul>
+        <!-- <div class="gallery__item">
+
+
           <img
             src="images/milwaukee.jpg"
             alt="Milwaukee from Marina"
             class="gallery__image"
           />
+          <img src="images/Trash.svg" alt="trash icon" class="gallery__trash" />
           <div class="gallery__text">
             <h2 class="gallery__place">Milwaukee Wisconsin</h2>
             <button
-              class="gallery__like-button"
+              class="gallery__like-button gallery__like-button_active"
               type="button"
               aria-label="love"
             ></button>
@@ -59,10 +63,11 @@
             alt="Chicago from Willis Tower"
             class="gallery__image"
           />
+          <img src="images/Trash.svg" alt="trash icon" class="gallery__trash" />
           <div class="gallery__text">
             <h2 class="gallery__place">Chicago</h2>
             <button
-              class="gallery__like-button"
+              class="gallery__like-button gallery__like-button_active"
               type="button"
               aria-label="love"
             ></button>
@@ -74,10 +79,11 @@
             alt="Waikiki from Diamond head lookout"
             class="gallery__image"
           />
+          <img src="images/Trash.svg" alt="trash icon" class="gallery__trash" />
           <div class="gallery__text">
             <h2 class="gallery__place">Waikiki Beach O'ahu</h2>
             <button
-              class="gallery__like-button"
+              class="gallery__like-button gallery__like-button_active"
               type="button"
               aria-label="love"
             ></button>
@@ -89,10 +95,11 @@
             alt="Sydney Harbour"
             class="gallery__image"
           />
+          <img src="images/Trash.svg" alt="trash icon" class="gallery__trash" />
           <div class="gallery__text">
             <h2 class="gallery__place">Sydney Harbour</h2>
             <button
-              class="gallery__like-button"
+              class="gallery__like-button gallery__like-button_active"
               type="button"
               aria-label="love"
             ></button>
@@ -104,10 +111,11 @@
             alt="London at dusk"
             class="gallery__image"
           />
+          <img src="images/Trash.svg" alt="trash icon" class="gallery__trash" />
           <div class="gallery__text">
             <h2 class="gallery__place">London</h2>
             <button
-              class="gallery__like-button"
+              class="gallery__like-button gallery__like-button_active"
               type="button"
               aria-label="love"
             ></button>
@@ -119,6 +127,7 @@
             alt="Dubai at dusk"
             class="gallery__image"
           />
+          <img src="images/Trash.svg" alt="trash icon" class="gallery__trash" />
           <div class="gallery__text">
             <h2 class="gallery__place">Dubai</h2>
             <button
@@ -127,7 +136,7 @@
               aria-label="love"
             ></button>
           </div>
-        </div>
+        </div> -->
       </section>
     </main>
     <footer class="footer">
@@ -191,17 +200,22 @@
         ></button>
       </div>
     </div>
-    <div class="image__popup">
-      <div class="image__container">
-        p.image__caption
 
-        <button
-          class="modal__close-button"
-          type="button"
-          aria-label="close"
-        ></button>
+    <template id="card-template">
+      <div class="card__item">
+        <div class="card__image"></div>
+        <img src="images/Trash.svg" alt="trash icon" class="card__trash" />
+        <div class="card__text">
+          <h2 class="card__place"></h2>
+          <button
+            class="card__like-button card__like-button_active"
+            type="button"
+            aria-label="love"
+          ></button>
+        </div>
       </div>
-    </div>
+    </template>
+
     <script src="script.js"></script>
   </body>
 </html>
