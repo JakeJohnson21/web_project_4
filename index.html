@@ -37,8 +37,7 @@
         <button class="profile__add" type="button" aria-label="add"></button>
       </section>
 
-      <section class="">
-        <ul class="card"></ul>
+      <section class="cards">
         <!-- <div class="gallery__item">
 
 
@@ -142,7 +141,7 @@
     <footer class="footer">
       <p class="footer__copyright">© 2021 Jake Johnson</p>
     </footer>
-    <div class="modal_none modal" id="modal1">
+    <div class="modal js-edit-modal modal_none">
       <div class="modal__container">
         <form class="modal__box" name="edit-profile">
           <h2 class="modal__profile">Edit profile</h2>
@@ -171,9 +170,9 @@
         ></button>
       </div>
     </div>
-    <div class="modal modal__place modal_none" id="modal2">
+    <div class="modal js-add-modal modal_none">
       <div class="modal__container">
-        <form class="modal__box modal__place-box" name="edit-place">
+        <form class="modal__box" name="edit-place">
           <h2 class="modal__profile">New Place</h2>
           <input
             name="name"
@@ -189,8 +188,8 @@
             placeholder="Image link"
             required
           />
-          <button type="submit" class="modal__save" aria-label="save">
-            Save
+          <button type="submit" class="modal__create" aria-label="create">
+            Create
           </button>
         </form>
         <button
@@ -203,14 +202,14 @@
 
     <template id="card-template">
       <div class="card__item">
-        <div class="card__image"></div>
+        <img class="card__image" src="" alt="place" />
         <img src="images/Trash.svg" alt="trash icon" class="card__trash" />
         <div class="card__text">
           <h2 class="card__place"></h2>
           <button
             class="card__like-button card__like-button_active"
             type="button"
-            aria-label="love"
+            aria-label="like"
           ></button>
         </div>
       </div>

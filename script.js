@@ -1,6 +1,6 @@
-/////////////////
-//  Declarations --------
-/////////////////
+//---------------------------------------------------------------------------//
+//                           INITIAL CARDS ARRAY                             //
+//___________________________________________________________________________//
 
 const initialCards = [
   {
@@ -29,138 +29,168 @@ const initialCards = [
   },
 ];
 
-// Modal-----------
-
-//popup box
-let edit = document.querySelector(".modal");
-//the name input field
+//---------------------------------------------------------------------------//
+//       D                  CARD CONTAINER (GALLERY)                         //
+//___________________________________________________________________________//
+//
+const placeList = document.querySelector(".cards");
+//
+//---------------------------------------------------------------------------//
+//       D                    MODAL DECLARATIONS                             //
+//___________________________________________________________________________//
+//
+//MODAL WINDOW
+let modalWindow = document.querySelector(".modal");
+let editModalWindow = document.querySelector(".js-edit-modal");
+let addModalWindow = document.querySelector(".js-add-modal");
+//
+//MODAL BOX
+let editModalBox = editModalWindow.querySelector(".modal__box");
+let addModalBox = addModalWindow.querySelector(".modal__box");
+//
+//---------------------------------------------------------------------------//
+//      D                     INPUT DECLARATIONS                             //
+//___________________________________________________________________________//
+//
+//PROFILE NAME
 let nameInput = document.querySelector(".modal__input_profile_name");
-//the title (explorer) input field
+//
+//PROFILE TITLE
 let titleInput = document.querySelector(".modal__input_profile_title");
-// the SAVE button
-let save = document.querySelector(".modal__save");
-//form edit box
-let editBox = document.querySelector(".modal__box");
-//new place main modal
-let modalPlace = edit.querySelector(".modal__place");
-//the photo title input field
+//
+//PLACE TITLE
 let photoTitleInput = document.querySelector(".modal__input_image_title");
-//the photo source input field
+//
+//PLACE PHOTO
 let photoInput = document.querySelector(".modal__input_image_link");
-
-// Buttons and other DOM elements ----------
-
-//the X to close out the popup
-let editCloseIcon = document.querySelector(".modal__close-button");
-//the button on the main page to open the edit popup dialogue box
-let editOpenPopup = document.querySelector(".profile__edit-button");
-//add button
-let addOpenPopup = document.querySelector(".profile__add");
-// The end point for the persons name
+//
+//---------------------------------------------------------------------------//
+//      D                INPUT END POINTS (DESTINATION)                      //
+//___________________________________________________________________________//
+//
+//PROFILE NAME
 let personName = document.querySelector(".profile__title-name");
-// The end point for explorer
+//
+//PROFILE TITLE
 let personTitle = document.querySelector(".profile__text-job");
-//The gallery image place for input
-let galleryImage = document.querySelector(".card__image");
-
-const placeList = document.querySelector(".card");
-
-////////
-// TEMPLATES------
-////////////////
-
+//
+//PLACE TITLE
+let cardPlace = document.querySelector(".card__place");
+//
+//PLACE PHOTO
+let cardImage = document.querySelector(".card__image");
+//
+//---------------------------------------------------------------------------//
+//      D                     BUTTON DECLARATIONS                            //
+//___________________________________________________________________________//
+//
+//MODAL SUBMIT BUTTONS
+let save = document.querySelector(".modal__save");
+let create = document.querySelector(".modal__create");
+//
+//ClOSE MODAL BUTTONS
+let editModalCloseBtn = editModalWindow.querySelector(".modal__close-button");
+let addModalCloseBtn = addModalWindow.querySelector(".modal__close-button");
+//
+//OPEN MODAL BUTTONS
+let editOpenPopup = document.querySelector(".profile__edit-button");
+let addOpenPopup = document.querySelector(".profile__add");
+//
+//---------------------------------------------------------------------------//
+//       D               CARD TEMPLATE DECLARATION                           //
+//___________________________________________________________________________//
+//
+//the card template object
 let cardTemplate = document
   .querySelector("#card-template")
   .content.querySelector(".card__item");
+//
+//---------------------------------------------------------------------------//
+//                            OPEN / CLOSE POPUP                             //
+//___________________________________________________________________________//
 
-//////////////
-//  Functions--------
-//////////////
-
-function openPopup() {
-  edit.classList.toggle("modal_none");
-  titleInput.value = personTitle.textContent;
-  nameInput.value = personName.textContent;
+function openPopup(modal) {
+  modal.classList.toggle("modal_none");
+  // titleInput.value = personTitle.textContent;
+  // nameInput.value = personName.textContent;
 }
-function closePopup() {
-  edit.classList.toggle("modal_none");
+function closePopup(modal) {
+  modal.classList.toggle("modal_none");
 }
 
-document.querySelectorAll(".gallery__like-button").forEach((element) =>
+//---------------------------------------------------------------------------//
+//                                 LIKE BUTTON                               //
+//___________________________________________________________________________//
+
+document.querySelectorAll(".card__like-button").forEach((element) =>
   element.addEventListener("click", function (evt) {
-    evt.target.classList.toggle("gallery__like-button_active");
+    evt.target.classList.toggle("card__like-button_active");
   })
 );
-
+//---------------------------------------------------------------------------//
+//                                SUBMIT HANDLER                             //
+//___________________________________________________________________________//
+//
+//
+///Edit profile handler
 function formSubmitHandler(evt) {
   personTitle.textContent = titleInput.value;
   personName.textContent = nameInput.value;
   evt.preventDefault();
   closePopup();
 }
+//
+/// Edit place handler
+function formPlaceSubmitHandler(evt) {
+  cardPlace.textContent = photoTitleInput.value;
+  cardImage.src = `url( ${photoInput.value})`;
 
-//////////////////
-// Event Handlers --------
-//////////////////
+  evt.preventDefault();
+  closePopup();
+}
+//
+//
+//---------------------------------------------------------------------------//
+//                                CARD FUNCTIONS                             //
+//___________________________________________________________________________//
+//
+//
+function createCard() {
+  photoTitleInput.value = cardPlace.textContent;
+  photoInput.value = cardImage.src;
 
-addOpenPopup.addEventListener("click", function () {
-  modalPlace.classList.toggle("modal_none");
-});
-editOpenPopup.addEventListener("click", openPopup);
-editCloseIcon.addEventListener("click", closePopup);
-editBox.addEventListener("submit", formSubmitHandler);
-
-///// Actions ------
-
+  placeList.append(createCard);
+}
+//
+//
+// generate a card from the cloned template
+function generateCard(card) {
+  const cardItemElement = cardTemplate.cloneNode(true);
+  cardItemElement.querySelector(".card__place").textContent = card.name;
+  cardItemElement.querySelector(".card__image").src = card.link;
+  return cardItemElement;
+  //handleLikeIcon
+  //handleDeletecC
+}
+//
+function renderCard(card, container) {
+  container.append(card);
+}
+//
+//initial cards
 initialCards.forEach(function (card) {
-  //clone the template
-  // query name element
-  //query image element
-  // add event listener
+  const newCard = generateCard(card);
+  renderCard(newCard, placeList);
 });
-// function toggleFormVisibility() {
-//   if (edit.style.display === "none") {
-//     edit.style.display = "block";
-//     edit;
-//   } else {
-//     edit.style.display = "none";
-//   }
-// }
-// editOpenPopup.addEventListener("click", toggleFormVisibility);
-// editCloseIcon.addEventListener("click", toggleFormVisibility);
+//
+//
+//---------------------------------------------------------------------------//
+//                                EVENT LISTENERS                            //
+//___________________________________________________________________________//
 
-// function formSubmitHandler(evt) {
-//   personTitle.textContent = titleInput.value;
-//   personName.textContent = nameInput.value;
-//   ifFormIsEmpty();
-//   evt.preventDefault();
-// }
-// editBox.addEventListener("submit", formSubmitHandler);
-// save.addEventListener("click", toggleFormVisibility);
-
-// function addCard(cardTitle, cardSource) {
-//   //get the card "template"
-//   const cardTemplate = document.querySelector("#card-template").content;
-//   //get the elements of card "template"
-//   const cardElement = cardTemplate.querySelector("card").cloneNode(true);
-//   //get the title element
-//   cardElement.querySelector(".card__title").textContent = cardTitle;
-//   //get the image src element
-//   cardElement.querySelector(".card__image").src = cardSource;
-//   // append card item to the gallery
-//   cardContainer.append(cardContainer);
-//   cardElement
-//     .querySelector(".gallery__like-button")
-//     .addEventListener("click", function (evt) {
-//       console.log(evt);
-//     });
-// }
-
-// function ifFormIsEmpty() {
-//   if (nameInput.value.length === 0) {
-//     personName.textContent = "Jacques Cousteau";
-//   }
-//   if (titleInput.value.length === 0) {
-//     personTitle.textContent = "Explorer";
-//   }
-// }
+editOpenPopup.addEventListener("click", () => openPopup(editModalWindow));
+addOpenPopup.addEventListener("click", () => openPopup(addModalWindow));
+editModalCloseBtn.addEventListener("click", () => closePopup(editModalWindow));
+addModalCloseBtn.addEventListener("click", () => closePopup(addModalWindow));
+editModalBox.addEventListener("submit", formSubmitHandler);
+addModalBox.addEventListener("submit", formPlaceSubmitHandler);
