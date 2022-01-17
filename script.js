@@ -40,61 +40,70 @@ const placeList = document.querySelector(".cards");
 //___________________________________________________________________________//
 //
 //MODAL WINDOW
-let modalWindow = document.querySelector(".modal");
-let editModalWindow = document.querySelector(".js-edit-modal");
-let addModalWindow = document.querySelector(".js-add-modal");
+const modalWindow = document.querySelector(".modal");
+const editModalWindow = document.querySelector(".js-edit-modal");
+const addModalWindow = document.querySelector(".js-add-modal");
+const previewImageModalWindow = document.querySelector(".js-preview-modal");
 //
 //MODAL BOX
-let editModalBox = editModalWindow.querySelector(".modal__box");
-let addModalBox = addModalWindow.querySelector(".modal__box");
+const editModalBox = editModalWindow.querySelector(".modal__box");
+const addModalBox = addModalWindow.querySelector(".modal__box");
 //
+//PREVIEW
+const previewImageElement = document.querySelector(".modal__preview-image");
 //---------------------------------------------------------------------------//
 //      D                     INPUT DECLARATIONS                             //
 //___________________________________________________________________________//
 //
 //PROFILE NAME
-let nameInput = document.querySelector(".modal__input_profile_name");
+const nameInput = document.querySelector(".modal__input_profile_name");
 //
 //PROFILE TITLE
-let titleInput = document.querySelector(".modal__input_profile_title");
+const titleInput = document.querySelector(".modal__input_profile_title");
 //
 //PLACE TITLE
-let photoTitleInput = document.querySelector(".modal__input_image_title");
+const photoTitleInput = document.querySelector(".modal__input_image_title");
 //
 //PLACE PHOTO
-let photoInput = document.querySelector(".modal__input_image_link");
+const photoInput = document.querySelector(".modal__input_image_link");
 //
 //---------------------------------------------------------------------------//
 //      D                INPUT END POINTS (DESTINATION)                      //
 //___________________________________________________________________________//
 //
 //PROFILE NAME
-let personName = document.querySelector(".profile__title-name");
+const personName = document.querySelector(".profile__title-name");
 //
 //PROFILE TITLE
-let personTitle = document.querySelector(".profile__text-job");
+const personTitle = document.querySelector(".profile__text-job");
 //
 //PLACE TITLE
-let cardPlace = document.querySelector(".card__place");
+const cardPlace = document.querySelector(".card__place");
 //
 //PLACE PHOTO
-let cardImage = document.querySelector(".card__image");
+const cardImage = document.querySelector(".card__image");
 //
 //---------------------------------------------------------------------------//
 //      D                     BUTTON DECLARATIONS                            //
 //___________________________________________________________________________//
 //
 //MODAL SUBMIT BUTTONS
-let save = document.querySelector(".modal__save");
-let create = document.querySelector(".modal__create");
+const save = document.querySelector(".modal__save");
+const create = document.querySelector(".modal__create");
 //
 //ClOSE MODAL BUTTONS
-let editModalCloseBtn = editModalWindow.querySelector(".modal__close-button");
-let addModalCloseBtn = addModalWindow.querySelector(".modal__close-button");
+const editModalCloseBtn = editModalWindow.querySelector(".modal__close-button");
+const addModalCloseBtn = addModalWindow.querySelector(".modal__close-button");
+const previewImageCloseBtn = previewImageModalWindow.querySelector(
+  ".modal__close-button"
+);
 //
 //OPEN MODAL BUTTONS
-let editOpenPopup = document.querySelector(".profile__edit-button");
-let addOpenPopup = document.querySelector(".profile__add");
+const editOpenPopup = document.querySelector(".profile__edit-button");
+const addOpenPopup = document.querySelector(".profile__add");
+//
+//TRASH REMOVE CARD
+const cardDeleteBtn = document.querySelectorAll(".card__trash");
 //
 //---------------------------------------------------------------------------//
 //       D               CARD TEMPLATE DECLARATION                           //
@@ -111,22 +120,27 @@ let cardTemplate = document
 
 function openPopup(modal) {
   modal.classList.toggle("modal_none");
+  modal.classList.toggle("modal__is-opened");
   // titleInput.value = personTitle.textContent;
   // nameInput.value = personName.textContent;
 }
 function closePopup(modal) {
   modal.classList.toggle("modal_none");
+  modal.classList.toggle("modal__is-opened");
 }
 
 //---------------------------------------------------------------------------//
 //                                 LIKE BUTTON                               //
 //___________________________________________________________________________//
+//
+//
+const toggleLikeButton = document.querySelector(".card__like-button");
+// document.querySelectorAll(".card__like-button").forEach((element) =>
+//   element.addEventListener("click", function (evt) {
+//     evt.target.classList.toggle("card__like-button_active");
+//   })
+// );
 
-document.querySelectorAll(".card__like-button").forEach((element) =>
-  element.addEventListener("click", function (evt) {
-    evt.target.classList.toggle("card__like-button_active");
-  })
-);
 //---------------------------------------------------------------------------//
 //                                SUBMIT HANDLER                             //
 //___________________________________________________________________________//
@@ -167,7 +181,12 @@ function createCard() {
 function generateCard(card) {
   const cardItemElement = cardTemplate.cloneNode(true);
   cardItemElement.querySelector(".card__place").textContent = card.name;
-  cardItemElement.querySelector(".card__image").src = card.link;
+  const imageEl = cardItemElement.querySelector(".card__image");
+  imageEl.src = card.link;
+  imageEl.addEventListener("click", function () {
+    previewImageElement.src = card.link;
+    openPopup(previewImageModalWindow);
+  });
   return cardItemElement;
   //handleLikeIcon
   //handleDeletecC
@@ -185,6 +204,15 @@ initialCards.forEach(function (card) {
 //
 //
 //---------------------------------------------------------------------------//
+//                                REMOVE CARD BTN                            //
+//___________________________________________________________________________//
+//
+//
+function removeCard(card) {
+  card.pop;
+}
+//
+//---------------------------------------------------------------------------//
 //                                EVENT LISTENERS                            //
 //___________________________________________________________________________//
 
@@ -192,5 +220,15 @@ editOpenPopup.addEventListener("click", () => openPopup(editModalWindow));
 addOpenPopup.addEventListener("click", () => openPopup(addModalWindow));
 editModalCloseBtn.addEventListener("click", () => closePopup(editModalWindow));
 addModalCloseBtn.addEventListener("click", () => closePopup(addModalWindow));
+previewImageCloseBtn.addEventListener("click", () =>
+  closePopup(previewImageModalWindow)
+);
+
 editModalBox.addEventListener("submit", formSubmitHandler);
 addModalBox.addEventListener("submit", formPlaceSubmitHandler);
+
+cardDeleteBtn.addEventListener("click", removeCard);
+//add animation
+// card added after filling out modal
+//garbage button to delete
+//like button

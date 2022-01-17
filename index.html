@@ -37,111 +37,12 @@
         <button class="profile__add" type="button" aria-label="add"></button>
       </section>
 
-      <section class="cards">
-        <!-- <div class="gallery__item">
-
-
-          <img
-            src="images/milwaukee.jpg"
-            alt="Milwaukee from Marina"
-            class="gallery__image"
-          />
-          <img src="images/Trash.svg" alt="trash icon" class="gallery__trash" />
-          <div class="gallery__text">
-            <h2 class="gallery__place">Milwaukee Wisconsin</h2>
-            <button
-              class="gallery__like-button gallery__like-button_active"
-              type="button"
-              aria-label="love"
-            ></button>
-          </div>
-        </div>
-        <div class="gallery__item">
-          <img
-            src="images/chicago.jpg"
-            alt="Chicago from Willis Tower"
-            class="gallery__image"
-          />
-          <img src="images/Trash.svg" alt="trash icon" class="gallery__trash" />
-          <div class="gallery__text">
-            <h2 class="gallery__place">Chicago</h2>
-            <button
-              class="gallery__like-button gallery__like-button_active"
-              type="button"
-              aria-label="love"
-            ></button>
-          </div>
-        </div>
-        <div class="gallery__item">
-          <img
-            src="images/waikiki.jpg"
-            alt="Waikiki from Diamond head lookout"
-            class="gallery__image"
-          />
-          <img src="images/Trash.svg" alt="trash icon" class="gallery__trash" />
-          <div class="gallery__text">
-            <h2 class="gallery__place">Waikiki Beach O'ahu</h2>
-            <button
-              class="gallery__like-button gallery__like-button_active"
-              type="button"
-              aria-label="love"
-            ></button>
-          </div>
-        </div>
-        <div class="gallery__item">
-          <img
-            src="images/sydney.jpg"
-            alt="Sydney Harbour"
-            class="gallery__image"
-          />
-          <img src="images/Trash.svg" alt="trash icon" class="gallery__trash" />
-          <div class="gallery__text">
-            <h2 class="gallery__place">Sydney Harbour</h2>
-            <button
-              class="gallery__like-button gallery__like-button_active"
-              type="button"
-              aria-label="love"
-            ></button>
-          </div>
-        </div>
-        <div class="gallery__item">
-          <img
-            src="images/london.jpg"
-            alt="London at dusk"
-            class="gallery__image"
-          />
-          <img src="images/Trash.svg" alt="trash icon" class="gallery__trash" />
-          <div class="gallery__text">
-            <h2 class="gallery__place">London</h2>
-            <button
-              class="gallery__like-button gallery__like-button_active"
-              type="button"
-              aria-label="love"
-            ></button>
-          </div>
-        </div>
-        <div class="gallery__item">
-          <img
-            src="images/dubai.jpg"
-            alt="Dubai at dusk"
-            class="gallery__image"
-          />
-          <img src="images/Trash.svg" alt="trash icon" class="gallery__trash" />
-          <div class="gallery__text">
-            <h2 class="gallery__place">Dubai</h2>
-            <button
-              class="gallery__like-button"
-              type="button"
-              aria-label="love"
-            ></button>
-          </div>
-        </div> -->
-      </section>
+      <section class="cards"></section>
     </main>
     <footer class="footer">
       <p class="footer__copyright">© 2021 Jake Johnson</p>
     </footer>
-    <div class="modal js-edit-modal modal_none">
+    <div class="modal js-edit-modal modal_none modal__is-opened">
       <div class="modal__container">
         <form class="modal__box" name="edit-profile">
           <h2 class="modal__profile">Edit profile</h2>
@@ -170,7 +71,7 @@
         ></button>
       </div>
     </div>
-    <div class="modal js-add-modal modal_none">
+    <div class="modal js-add-modal modal_none modal__is-opened">
       <div class="modal__container">
         <form class="modal__box" name="edit-place">
           <h2 class="modal__profile">New Place</h2>
@@ -199,6 +100,16 @@
         ></button>
       </div>
     </div>
+    <div class="modal js-preview-modal modal_none modal__is-opened">
+      <div class="modal__container modal__content_type_preview">
+        <button
+          class="modal__close-button"
+          type="button"
+          aria-label="close"
+        ></button>
+        <img class="modal__preview-image" src="" alt="" />
+      </div>
+    </div>
 
     <template id="card-template">
       <div class="card__item">
@@ -207,7 +118,7 @@
         <div class="card__text">
           <h2 class="card__place"></h2>
           <button
-            class="card__like-button card__like-button_active"
+            class="card__like-button"
             type="button"
             aria-label="like"
           ></button>
