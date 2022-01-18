@@ -42,8 +42,8 @@
     <footer class="footer">
       <p class="footer__copyright">© 2021 Jake Johnson</p>
     </footer>
-    <div class="modal js-edit-modal modal_none modal__is-opened">
-      <div class="modal__container">
+    <div class="modal js-edit-modal modal_none">
+      <div class="modal__container modal__is-opened">
         <form class="modal__box" name="edit-profile">
           <h2 class="modal__profile">Edit profile</h2>
           <input
@@ -71,8 +71,8 @@
         ></button>
       </div>
     </div>
-    <div class="modal js-add-modal modal_none modal__is-opened">
-      <div class="modal__container">
+    <div class="modal js-add-modal modal_none">
+      <div class="modal__container modal__is-opened">
         <form class="modal__box" name="edit-place">
           <h2 class="modal__profile">New Place</h2>
           <input
@@ -100,8 +100,10 @@
         ></button>
       </div>
     </div>
-    <div class="modal js-preview-modal modal_none modal__is-opened">
-      <div class="modal__container modal__content_type_preview">
+    <div class="modal js-preview-modal modal_none">
+      <div
+        class="modal__container modal__content_type_preview modal__is-opened"
+      >
         <button
           class="modal__close-button"
           type="button"
@@ -118,7 +120,7 @@
         <div class="card__text">
           <h2 class="card__place"></h2>
           <button
-            class="card__like-button"
+            class="card__like-button_active card__like-button"
             type="button"
             aria-label="like"
           ></button>

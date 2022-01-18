@@ -102,9 +102,6 @@ const previewImageCloseBtn = previewImageModalWindow.querySelector(
 const editOpenPopup = document.querySelector(".profile__edit-button");
 const addOpenPopup = document.querySelector(".profile__add");
 //
-//TRASH REMOVE CARD
-const cardDeleteBtn = document.querySelectorAll(".card__trash");
-//
 //---------------------------------------------------------------------------//
 //       D               CARD TEMPLATE DECLARATION                           //
 //___________________________________________________________________________//
@@ -120,26 +117,13 @@ let cardTemplate = document
 
 function openPopup(modal) {
   modal.classList.toggle("modal_none");
-  modal.classList.toggle("modal__is-opened");
   // titleInput.value = personTitle.textContent;
   // nameInput.value = personName.textContent;
 }
+
 function closePopup(modal) {
   modal.classList.toggle("modal_none");
-  modal.classList.toggle("modal__is-opened");
 }
-
-//---------------------------------------------------------------------------//
-//                                 LIKE BUTTON                               //
-//___________________________________________________________________________//
-//
-//
-const toggleLikeButton = document.querySelector(".card__like-button");
-// document.querySelectorAll(".card__like-button").forEach((element) =>
-//   element.addEventListener("click", function (evt) {
-//     evt.target.classList.toggle("card__like-button_active");
-//   })
-// );
 
 //---------------------------------------------------------------------------//
 //                                SUBMIT HANDLER                             //
@@ -172,7 +156,7 @@ function formPlaceSubmitHandler(evt) {
 function createCard() {
   photoTitleInput.value = cardPlace.textContent;
   photoInput.value = cardImage.src;
-
+  generateCard();
   placeList.append(createCard);
 }
 //
@@ -187,9 +171,18 @@ function generateCard(card) {
     previewImageElement.src = card.link;
     openPopup(previewImageModalWindow);
   });
-  return cardItemElement;
   //handleLikeIcon
-  //handleDeletecC
+  const cardEl = cardItemElement.querySelector(".card__like-button");
+  cardEl.addEventListener("click", function () {
+    cardEl.classList.toggle("card__like-button_active");
+  });
+  //handleDeletecCard
+  const trashEl = cardItemElement.querySelector(".card__trash");
+  trashEl.addEventListener("click", function (e) {
+    cardTemplate.remove(cardTemplate.querySelector("card__item"));
+  });
+
+  return cardItemElement;
 }
 //
 function renderCard(card, container) {
@@ -201,16 +194,8 @@ initialCards.forEach(function (card) {
   const newCard = generateCard(card);
   renderCard(newCard, placeList);
 });
+
 //
-//
-//---------------------------------------------------------------------------//
-//                                REMOVE CARD BTN                            //
-//___________________________________________________________________________//
-//
-//
-function removeCard(card) {
-  card.pop;
-}
 //
 //---------------------------------------------------------------------------//
 //                                EVENT LISTENERS                            //
@@ -226,9 +211,3 @@ previewImageCloseBtn.addEventListener("click", () =>
 
 editModalBox.addEventListener("submit", formSubmitHandler);
 addModalBox.addEventListener("submit", formPlaceSubmitHandler);
-
-cardDeleteBtn.addEventListener("click", removeCard);
-//add animation
-// card added after filling out modal
-//garbage button to delete
-//like button

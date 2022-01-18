@@ -12,6 +12,7 @@
 @import url(../blocks/modal/__create/modal__create.css);
 @import url(../blocks/modal/__content/_type/_preview/modal__content_type_preview.css);
 @import url(../blocks/modal/__preview-image/modal__preview-image.css);
+@import url(../blocks/modal/__is-opened/modal__is-opened.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/card/cards.css);
