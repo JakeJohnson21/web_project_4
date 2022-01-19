@@ -51,6 +51,7 @@ const addModalBox = addModalWindow.querySelector(".modal__box");
 //
 //PREVIEW
 const previewImageElement = document.querySelector(".modal__preview-image");
+
 //---------------------------------------------------------------------------//
 //      D                     INPUT DECLARATIONS                             //
 //___________________________________________________________________________//
@@ -140,11 +141,13 @@ function formSubmitHandler(evt) {
 //
 /// Edit place handler
 function formPlaceSubmitHandler(evt) {
-  cardPlace.textContent = photoTitleInput.value;
-  cardImage.src = `url( ${photoInput.value})`;
-
   evt.preventDefault();
-  closePopup();
+  const name = photoTitleInput.value;
+  const link = photoInput.value;
+  const newCard = generateCard({ name, link });
+
+  closePopup(addModalWindow);
+  renderCard(newCard, placeList);
 }
 //
 //
@@ -184,8 +187,8 @@ function generateCard(card) {
   });
   //handleDeletecCard
   const trashEl = cardItemElement.querySelector(".card__trash");
-  trashEl.addEventListener("click", function (e) {
-    cardTemplate.remove(cardTemplate.querySelector("card__item"));
+  trashEl.addEventListener("click", function () {
+    cardItemElement.remove();
   });
 
   return cardItemElement;

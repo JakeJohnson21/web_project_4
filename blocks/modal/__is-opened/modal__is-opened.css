@@ -1,5 +1,7 @@
 .modal__is-opened {
   visibility: visible;
   pointer-events: all;
+  height: auto;
   opacity: 1;
+  transition: visibility 0s linear 1s, opacity 1s linear;
 }
