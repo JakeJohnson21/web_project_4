@@ -51,7 +51,6 @@ const addModalBox = addModalWindow.querySelector(".modal__box");
 //
 //PREVIEW
 const previewImageElement = document.querySelector(".modal__preview-image");
-const previewCaption = previewImageModalWindow.querySelector(".");
 //---------------------------------------------------------------------------//
 //      D                     INPUT DECLARATIONS                             //
 //___________________________________________________________________________//
