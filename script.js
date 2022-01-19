@@ -51,6 +51,7 @@ const addModalBox = addModalWindow.querySelector(".modal__box");
 //
 //PREVIEW
 const previewImageElement = document.querySelector(".modal__preview-image");
+const previewCaption = previewImageModalWindow.querySelector(".");
 //---------------------------------------------------------------------------//
 //      D                     INPUT DECLARATIONS                             //
 //___________________________________________________________________________//
@@ -163,10 +164,16 @@ function createCard() {
 //
 // generate a card from the cloned template
 function generateCard(card) {
+  //initialize clone of the template card
   const cardItemElement = cardTemplate.cloneNode(true);
-  cardItemElement.querySelector(".card__place").textContent = card.name;
+  //declaring the place title input target
+  const titleEl = (cardItemElement.querySelector(".card__place").textContent =
+    card.name);
+  //declaring image element
   const imageEl = cardItemElement.querySelector(".card__image");
+
   imageEl.src = card.link;
+  //listening to show popup image preview.
   imageEl.addEventListener("click", function () {
     previewImageElement.src = card.link;
     openPopup(previewImageModalWindow);
