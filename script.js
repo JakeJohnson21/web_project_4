@@ -117,13 +117,13 @@ let cardTemplate = document
 //___________________________________________________________________________//
 
 function openPopup(modal) {
-  modal.classList.toggle("modal_none");
+  modal.classList.add("modal__is-opened");
   // titleInput.value = personTitle.textContent;
   // nameInput.value = personName.textContent;
 }
 
 function closePopup(modal) {
-  modal.classList.toggle("modal_none");
+  modal.classList.remove("modal__is-opened");
 }
 
 //---------------------------------------------------------------------------//
@@ -136,7 +136,7 @@ function formSubmitHandler(evt) {
   personTitle.textContent = titleInput.value;
   personName.textContent = nameInput.value;
   evt.preventDefault();
-  closePopup();
+  closePopup(editModalWindow);
 }
 //
 /// Edit place handler
