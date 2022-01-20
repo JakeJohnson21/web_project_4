@@ -7,7 +7,6 @@
 @import url(../blocks/modal/__profile/modal__profile.css);
 @import url(../blocks/modal/__save/modal__save.css);
 @import url(../blocks/modal/modal.css);
-@import url(../blocks/modal/_none/modal_none.css);
 @import url(../blocks/modal/__container/modal__container.css);
 @import url(../blocks/modal/__create/modal__create.css);
 @import url(../blocks/modal/__content/_type/_preview/modal__content_type_preview.css);
