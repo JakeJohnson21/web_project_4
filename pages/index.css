@@ -9,7 +9,7 @@
 @import url(../blocks/modal/modal.css);
 @import url(../blocks/modal/__container/modal__container.css);
 @import url(../blocks/modal/__create/modal__create.css);
-@import url(../blocks/modal/__content/_type/_preview/modal__content_type_preview.css);
+@import url(../blocks/modal/__content/_preview/modal__content_preview.css);
 @import url(../blocks/modal/__preview-image/modal__preview-image.css);
 @import url(../blocks/modal/__is-opened/modal__is-opened.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
