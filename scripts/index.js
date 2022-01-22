@@ -78,7 +78,7 @@ const personName = document.querySelector(".profile__title-name");
 const personTitle = document.querySelector(".profile__text-job");
 //
 //PLACE TITLE
-const cardPlace = document.querySelector(".card__place");
+
 //
 //PLACE PHOTO
 const cardImage = document.querySelector(".card__image");
@@ -119,6 +119,11 @@ const cardTemplate = document
 
 function openPopup(modal) {
   modal.classList.add("modal__is-opened");
+}
+function openProfilePopup(modal) {
+  modal.classList.add("modal__is-opened");
+  titleInput.value = personTitle.textContent;
+  nameInput.value = personName.textContent;
 }
 
 function closePopup(modal) {
@@ -164,7 +169,7 @@ function generateCard(card) {
   //initialize clone of the template card
   const cardItemElement = cardTemplate.cloneNode(true);
   //declaring the place title input target
-  const titleEl = (cardItemElement.querySelector(".card__place").textContent =
+  const cardPlace = (cardItemElement.querySelector(".card__place").textContent =
     card.name);
   //declaring image element
   const imageEl = cardItemElement.querySelector(".card__image");
@@ -174,8 +179,8 @@ function generateCard(card) {
   //listening to show popup image preview.
   imageEl.addEventListener("click", function () {
     previewImageElement.src = card.link;
-    previewCaption.textContent = titleEl;
-    previewImageElement.alt = titleEl;
+    previewCaption.textContent = card.name;
+    previewImageElement.alt = card.name;
 
     openPopup(previewImageModalWindow);
   });
@@ -209,7 +214,9 @@ initialCards.forEach(function (card) {
 //                                EVENT LISTENERS                            //
 //___________________________________________________________________________//
 
-editOpenPopup.addEventListener("click", () => openPopup(editModalWindow));
+editOpenPopup.addEventListener("click", () =>
+  openProfilePopup(editModalWindow)
+);
 addOpenPopup.addEventListener("click", () => openPopup(addModalWindow));
 editModalCloseBtn.addEventListener("click", () => closePopup(editModalWindow));
 addModalCloseBtn.addEventListener("click", () => closePopup(addModalWindow));
