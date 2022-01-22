@@ -121,9 +121,9 @@ function openPopup(modal) {
   modal.classList.add("modal__is-opened");
 }
 function openProfilePopup(modal) {
-  modal.classList.add("modal__is-opened");
   titleInput.value = personTitle.textContent;
   nameInput.value = personName.textContent;
+  openPopup(modal);
 }
 
 function closePopup(modal) {
