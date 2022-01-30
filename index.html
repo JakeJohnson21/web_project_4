@@ -44,23 +44,30 @@
     </footer>
     <div class="modal js-edit-modal">
       <div class="modal__container">
-        <form class="modal__box" name="edit-profile">
+        <form class="modal__box" name="edit-profile" novalidate>
           <h2 class="modal__profile">Edit profile</h2>
           <input
+            id="name-input"
             name="name"
             type="text"
             class="modal__input modal__input_profile_name"
             placeholder="Name"
             required
+            minlength="2"
+            maxlength="40"
           />
-          <input
-            name="title"
-            type="text"
-            class="modal__input modal__input_profile_title"
-            placeholder="About me"
-            required
-          />
-          <button type="submit" class="modal__save" aria-label="save">
+          <span id="name-input-error modal__input-error"></span>
+          <input id="title-input" name="title" type="text" class="modal__input
+          modal__input_profile_title" placeholder="About me" required'
+          minlength="2" maxlength="200" />
+
+          <span class="title-input-error modal__input-error"></span>
+          <button
+            type="submit"
+            class="modal__button modal__save"
+            aria-label="save"
+            disabled
+          >
             Save
           </button>
         </form>
@@ -73,23 +80,34 @@
     </div>
     <div class="modal js-add-modal">
       <div class="modal__container">
-        <form class="modal__box" name="edit-place">
+        <form class="modal__box" name="edit-place" novalidate>
           <h2 class="modal__profile">New Place</h2>
           <input
+            id="place-input"
             name="name"
             type="text"
             class="modal__input modal__input_image_title"
             placeholder="Title"
             required
+            minlength="1"
+            maxlength="30"
           />
+          <span id="place-input-error modal__input-error"></span>
           <input
+            id="url-input"
             name="title"
-            type="text"
+            type="url"
             class="modal__input modal__input_image_link"
             placeholder="Image link"
             required
           />
-          <button type="submit" class="modal__create" aria-label="create">
+          <span id="url-input-error modal__input-error"></span>
+          <button
+            type="submit"
+            class="modal__button modal__create"
+            aria-label="create"
+            disabled
+          >
             Create
           </button>
         </form>
@@ -128,5 +146,6 @@
     </template>
 
     <script src="scripts/index.js"></script>
+    <script src="scripts/validate.js"></script>
   </body>
 </html>

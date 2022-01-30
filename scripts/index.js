@@ -209,6 +209,7 @@ initialCards.forEach(function (card) {
   renderCard(newCard, placeList);
 });
 //
+
 //
 //---------------------------------------------------------------------------//
 //                                EVENT LISTENERS                            //
