@@ -163,7 +163,7 @@ function formPlaceSubmitHandler(evt) {
 
 //
 //
-console.log(photoTitleInput);
+
 // generate a card from the cloned template
 function generateCard(card) {
   //initialize clone of the template card
