@@ -44,7 +44,7 @@
     </footer>
     <div class="modal js-edit-modal">
       <div class="modal__container">
-        <form class="modal__box" name="edit-profile" >
+        <form class="modal__box" name="edit-profile" novalidate>
           <h2 class="modal__profile">Edit profile</h2>
           <label name="">
           <input
@@ -65,7 +65,8 @@
           modal__input_profile_title" placeholder="About me" required'
           minlength="2" maxlength="200" />
 
-          <span id="title-input-error" class="modal__input-error"
+          <span id="title-input-error" class="modal__input-error"//'
+          '
             ></span
           ></label>
           <button
