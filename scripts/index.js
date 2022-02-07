@@ -252,9 +252,9 @@ addModalBox.addEventListener("submit", formPlaceSubmitHandler);
 // photoInput.addEventListener("keydown", (evt) => {
 //   closeOnEscape(addModalWindow, evt);
 // });
-document.addEventListener("keypress", (evt) => {
+document.addEventListener("keydown", (evt) => {
   if (evt.key === "Escape") {
-    console.log("hi");
+    closePopup(previewImageModalWindow);
   }
 });
 //
