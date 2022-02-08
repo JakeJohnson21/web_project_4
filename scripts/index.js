@@ -130,9 +130,9 @@ const handleEscapeButton = (evt) => {
     closePopup(document.querySelector(".modal__is-opened"));
   }
 };
-const handleClickOnOverlay = (modal, evt) => {
+const handleClickOnOverlay = (evt) => {
   if (!evt.target.closest(".modal__container")) {
-    closePopup(modal);
+    closePopup(document.querySelector(".modal__is-opened"));
   }
 };
 
