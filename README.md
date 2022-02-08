@@ -6,6 +6,10 @@ This project features a Profile and gallery type page. It uses html, css, javasc
 
 New feature allows user to create their own post. Enter a name and them an image link to create your very own. Clicking on the image posts will expand the image to it's full size depending on the screen size. These elements transition more smoothly with adjustments to display settings, taking advantage of new CSS tools. Lastly the ability to like and unlike posts by clicking on the heart svg. And if you truly hate that post you can now delete it entirely.
 
+# JS Update: (project 6)
+
+The forms are now validated. The button isn't active if the form field contains an invalid statement. The Validation also informs you on what it is exactly that you're missing. Closing the modals are easier than ever with the added fuctionality of the "ESC" key as well as clicking anywhere outside of the modal.
+
 Enjoy the new features!
 
 Jake Johnson,

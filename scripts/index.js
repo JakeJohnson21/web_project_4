@@ -121,17 +121,19 @@ const cardTemplate = document
 //---------------------------------------------------------------------------//
 //                            OPEN / CLOSE POPUP                             //
 //___________________________________________________________________________//
+const closeEscBtn = (evt) => {
+  if (evt.key === "Escape") {
+    closePopup(document.querySelector(".modal__is-opened"));
+  }
+};
 
 function openPopup(modal) {
+  document.addEventListener("keydown", closeEscBtn);
   modal.classList.add("modal__is-opened");
-}
-function openProfilePopup(modal) {
-  titleInput.value = personTitle.textContent;
-  nameInput.value = personName.textContent;
-  openPopup(modal);
 }
 
 function closePopup(modal) {
+  document.removeEventListener("keydown", closeEscBtn);
   modal.classList.remove("modal__is-opened");
 }
 
@@ -154,7 +156,7 @@ function formPlaceSubmitHandler(evt) {
   evt.preventDefault();
   const name = photoTitleInput.value;
   const link = photoInput.value;
-  c;
+
   const newCard = generateCard({ name, link });
   closePopup(addModalWindow);
   renderCard(newCard, placeList);
@@ -221,9 +223,11 @@ initialCards.forEach(function (card) {
 //                                EVENT LISTENERS                            //
 //___________________________________________________________________________//
 
-editOpenPopup.addEventListener("click", () =>
-  openProfilePopup(editModalWindow)
-);
+editOpenPopup.addEventListener("click", () => {
+  titleInput.value = personTitle.textContent;
+  nameInput.value = personName.textContent;
+  openPopup(editModalWindow);
+});
 addOpenPopup.addEventListener("click", () => openPopup(addModalWindow));
 editModalCloseBtn.addEventListener("click", () => closePopup(editModalWindow));
 addModalCloseBtn.addEventListener("click", () => closePopup(addModalWindow));
@@ -234,30 +238,12 @@ previewImageCloseBtn.addEventListener("click", () =>
 editModalBox.addEventListener("submit", formSubmitHandler);
 addModalBox.addEventListener("submit", formPlaceSubmitHandler);
 //
-// const closeOnEscape = (modal, evt) => {
-//   if (evt.key === "Escape") {
-//     closePopup(modal);
-//   }
-// };
-//
-// nameInput.addEventListener("keydown", (evt) => {
-//   closeOnEscape(editModalWindow, evt);
-// });
-// titleInput.addEventListener("keydown", (evt) => {
-//   closeOnEscape(editModalWindow, evt);
-// });
-// photoTitleInput.addEventListener("keydown", (evt) => {
-//   closeOnEscape(addModalWindow, evt);
-// });
-// photoInput.addEventListener("keydown", (evt) => {
-//   closeOnEscape(addModalWindow, evt);
-// });
-document.addEventListener("keydown", (evt) => {
+const closeOnEscape = (modal, evt) => {
   if (evt.key === "Escape") {
-    closePopup(previewImageModalWindow);
+    closePopup(modal);
   }
-});
-//
+};
+
 const clickOnOverlay = (modal, evt) => {
   if (!evt.target.closest(".modal__container")) {
     closePopup(modal);
