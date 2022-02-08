@@ -130,20 +130,22 @@ const handleEscapeButton = (evt) => {
     closePopup(document.querySelector(".modal__is-opened"));
   }
 };
-const handleClickOnOverlay = (evt) => {
+const handleClickOnOverlay = (evt, modal) => {
   if (!evt.target.closest(".modal__container")) {
-    closePopup(document.querySelector(".modal__is-opened"));
+    closePopup(modal);
   }
 };
 
 function openPopup(modal) {
-  document.addEventListener("click", handleClickOnOverlay);
+  document.addEventListener("click", (evt) => handleClickOnOverlay(evt, modal));
   document.addEventListener("keydown", handleEscapeButton);
   modal.classList.add("modal__is-opened");
 }
 
 function closePopup(modal) {
-  document.removeEventListener("click", handleClickOnOverlay);
+  document.removeEventListener("click", (evt) =>
+    handleClickOnOverlay(evt, modal)
+  );
   document.removeEventListener("keydown", handleEscapeButton);
   modal.classList.remove("modal__is-opened");
 }
@@ -240,7 +242,6 @@ editProfilePopupButton.addEventListener("click", () => {
   openPopup(editModalWindow);
 });
 addPlacePopupButton.addEventListener("click", () => {
-  hasInvalidInput();
   openPopup(addModalWindow);
 });
 editModalCloseButton.addEventListener("click", () =>
