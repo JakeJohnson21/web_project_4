@@ -3,4 +3,5 @@
   border-top-right-radius: 10px;
   min-height: 282px;
   object-fit: cover;
+  cursor: pointer;
 }

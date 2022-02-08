@@ -95,19 +95,23 @@ const previewCaption = document.querySelector(".modal__preview-text");
 //___________________________________________________________________________//
 //
 //MODAL SUBMIT BUTTONS
-const save = document.querySelector(".modal__save");
-const create = document.querySelector(".modal__create");
+const editProfileButton = document.querySelector(".modal__save");
+const addPlaceButton = document.querySelector(".modal__create");
 //
 //ClOSE MODAL BUTTONS
-const editModalCloseBtn = editModalWindow.querySelector(".modal__close-button");
-const addModalCloseBtn = addModalWindow.querySelector(".modal__close-button");
-const previewImageCloseBtn = previewImageModalWindow.querySelector(
+const editModalCloseButton = editModalWindow.querySelector(
+  ".modal__close-button"
+);
+const addModalCloseButton = addModalWindow.querySelector(
+  ".modal__close-button"
+);
+const previewImageCloseButton = previewImageModalWindow.querySelector(
   ".modal__close-button"
 );
 //
 //OPEN MODAL BUTTONS
-const editOpenPopup = document.querySelector(".profile__edit-button");
-const addOpenPopup = document.querySelector(".profile__add");
+const editProfilePopupButton = document.querySelector(".profile__edit-button");
+const addPlacePopupButton = document.querySelector(".profile__add");
 //
 //---------------------------------------------------------------------------//
 //       D               CARD TEMPLATE DECLARATION                           //
@@ -121,19 +125,26 @@ const cardTemplate = document
 //---------------------------------------------------------------------------//
 //                            OPEN / CLOSE POPUP                             //
 //___________________________________________________________________________//
-const closeEscBtn = (evt) => {
+const handleEscapeButton = (evt) => {
   if (evt.key === "Escape") {
     closePopup(document.querySelector(".modal__is-opened"));
   }
 };
+const handleClickOnOverlay = (modal, evt) => {
+  if (!evt.target.closest(".modal__container")) {
+    closePopup(modal);
+  }
+};
 
 function openPopup(modal) {
-  document.addEventListener("keydown", closeEscBtn);
+  document.addEventListener("click", handleClickOnOverlay);
+  document.addEventListener("keydown", handleEscapeButton);
   modal.classList.add("modal__is-opened");
 }
 
 function closePopup(modal) {
-  document.removeEventListener("keydown", closeEscBtn);
+  document.removeEventListener("click", handleClickOnOverlay);
+  document.removeEventListener("keydown", handleEscapeButton);
   modal.classList.remove("modal__is-opened");
 }
 
@@ -143,7 +154,7 @@ function closePopup(modal) {
 //
 //
 ///Edit profile handler
-function formSubmitHandler(evt) {
+function handleFormSubmit(evt) {
   evt.preventDefault();
   personTitle.textContent = titleInput.value;
   personName.textContent = nameInput.value;
@@ -152,7 +163,7 @@ function formSubmitHandler(evt) {
 }
 //
 /// Edit place handler
-function formPlaceSubmitHandler(evt) {
+function handleFormPlaceSubmit(evt) {
   evt.preventDefault();
   const name = photoTitleInput.value;
   const link = photoInput.value;
@@ -177,8 +188,8 @@ function generateCard(card) {
   //initialize clone of the template card
   const cardItemElement = cardTemplate.cloneNode(true);
   //declaring the place title input target
-  const cardPlace = (cardItemElement.querySelector(".card__place").textContent =
-    card.name);
+  const cardTitle = cardItemElement.querySelector(".card__place");
+  cardTitle.textContent = card.name;
   //declaring image element
   const imageEl = cardItemElement.querySelector(".card__image");
   imageEl.src = card.link;
@@ -194,9 +205,9 @@ function generateCard(card) {
   });
 
   //handleLikeIcon
-  const cardEl = cardItemElement.querySelector(".card__like-button");
-  cardEl.addEventListener("click", function () {
-    cardEl.classList.toggle("card__like-button_active");
+  const cardLikeButton = cardItemElement.querySelector(".card__like-button");
+  cardLikeButton.addEventListener("click", function () {
+    cardLikeButton.classList.toggle("card__like-button_active");
   });
   //handleDeletecCard
   const trashEl = cardItemElement.querySelector(".card__trash");
@@ -223,39 +234,23 @@ initialCards.forEach(function (card) {
 //                                EVENT LISTENERS                            //
 //___________________________________________________________________________//
 
-editOpenPopup.addEventListener("click", () => {
+editProfilePopupButton.addEventListener("click", () => {
   titleInput.value = personTitle.textContent;
   nameInput.value = personName.textContent;
   openPopup(editModalWindow);
 });
-addOpenPopup.addEventListener("click", () => openPopup(addModalWindow));
-editModalCloseBtn.addEventListener("click", () => closePopup(editModalWindow));
-addModalCloseBtn.addEventListener("click", () => closePopup(addModalWindow));
-previewImageCloseBtn.addEventListener("click", () =>
+addPlacePopupButton.addEventListener("click", () => {
+  hasInvalidInput();
+  openPopup(addModalWindow);
+});
+editModalCloseButton.addEventListener("click", () =>
+  closePopup(editModalWindow)
+);
+addModalCloseButton.addEventListener("click", () => closePopup(addModalWindow));
+previewImageCloseButton.addEventListener("click", () =>
   closePopup(previewImageModalWindow)
 );
 
-editModalBox.addEventListener("submit", formSubmitHandler);
-addModalBox.addEventListener("submit", formPlaceSubmitHandler);
+editModalBox.addEventListener("submit", handleFormSubmit);
+addModalBox.addEventListener("submit", handleFormPlaceSubmit);
 //
-const closeOnEscape = (modal, evt) => {
-  if (evt.key === "Escape") {
-    closePopup(modal);
-  }
-};
-
-const clickOnOverlay = (modal, evt) => {
-  if (!evt.target.closest(".modal__container")) {
-    closePopup(modal);
-  }
-};
-//
-editModalWindow.addEventListener("click", (evt) => {
-  clickOnOverlay(editModalWindow, evt);
-});
-addModalWindow.addEventListener("click", (evt) => {
-  clickOnOverlay(addModalWindow, evt);
-});
-previewImageModalWindow.addEventListener("click", (evt) => {
-  clickOnOverlay(previewImageModalWindow, evt);
-});

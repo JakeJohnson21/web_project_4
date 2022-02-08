@@ -19,7 +19,6 @@
   opacity: 0.8;
   cursor: pointer;
 }
-
 @media screen and (max-width: 480px) {
   .modal__button {
     font-size: 14px;
