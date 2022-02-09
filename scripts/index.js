@@ -137,15 +137,13 @@ const handleClickOnOverlay = (evt, modal) => {
 };
 
 function openPopup(modal) {
-  document.addEventListener("click", (evt) => handleClickOnOverlay(evt, modal));
+  modal.addEventListener("click", (evt) => handleClickOnOverlay(evt, modal));
   document.addEventListener("keydown", handleEscapeButton);
   modal.classList.add("modal__is-opened");
 }
 
 function closePopup(modal) {
-  document.removeEventListener("click", (evt) =>
-    handleClickOnOverlay(evt, modal)
-  );
+  modal.removeEventListener("click", (evt) => handleClickOnOverlay(evt, modal));
   document.removeEventListener("keydown", handleEscapeButton);
   modal.classList.remove("modal__is-opened");
 }

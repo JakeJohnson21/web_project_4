@@ -4,4 +4,10 @@
   opacity: 0.2;
   color: #000000;
   cursor: default;
+  pointer-events: none;
+}
+
+.modal__button_disabled:hover {
+  opacity: 0.2;
+  cursor: default;
 }
