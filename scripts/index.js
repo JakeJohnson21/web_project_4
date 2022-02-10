@@ -246,6 +246,9 @@ editProfilePopupButton.addEventListener("click", () => {
   openPopup(editModalWindow);
 });
 addPlacePopupButton.addEventListener("click", () => {
+  const button = addModalWindow.querySelector(".modal__button");
+  button.disabled = true;
+  button.classList.add("modal__button_disabled");
   openPopup(addModalWindow);
 });
 editModalCloseButton.addEventListener("click", () =>
