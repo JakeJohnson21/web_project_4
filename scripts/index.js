@@ -130,20 +130,24 @@ const handleEscapeButton = (evt) => {
     closePopup(document.querySelector(".modal__is-opened"));
   }
 };
-const handleClickOnOverlay = (evt, modal) => {
+const handleClickOnOverlay = (evt) => {
   if (!evt.target.closest(".modal__container")) {
-    closePopup(modal);
+    closePopup(evt.currentTarget);
   }
 };
 
 function openPopup(modal) {
-  modal.addEventListener("click", (evt) => handleClickOnOverlay(evt, modal));
+  //right here the modal is initally grayed out for the edit modal when it shouldn't
+  //be because the fields are valid. Then the add modal isn't grayed out when
+  //it should be because the fields are invalid
+  // modalButton.classList.add("modal__button_disabled");
+  modal.addEventListener("click", handleClickOnOverlay);
   document.addEventListener("keydown", handleEscapeButton);
   modal.classList.add("modal__is-opened");
 }
 
 function closePopup(modal) {
-  modal.removeEventListener("click", (evt) => handleClickOnOverlay(evt, modal));
+  modal.removeEventListener("click", handleClickOnOverlay);
   document.removeEventListener("keydown", handleEscapeButton);
   modal.classList.remove("modal__is-opened");
 }
@@ -233,6 +237,8 @@ initialCards.forEach(function (card) {
 //---------------------------------------------------------------------------//
 //                                EVENT LISTENERS                            //
 //___________________________________________________________________________//
+
+const modalButton = document.querySelector(".modal__button");
 
 editProfilePopupButton.addEventListener("click", () => {
   titleInput.value = personTitle.textContent;

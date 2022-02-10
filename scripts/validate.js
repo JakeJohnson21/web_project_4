@@ -31,9 +31,12 @@ const hasInvalidInput = (inputList) => {
 
 const toggleButtonState = (inputList, buttonElement, settings) => {
   if (hasInvalidInput(inputList)) {
+    buttonElement.disabled = true;
     buttonElement.classList.add(settings.inactiveButtonClass);
   } else {
-    buttonElement.classList.remove(settings.inactiveButtonClass);
+    buttonElement.disabled = buttonElement.classList.remove(
+      settings.inactiveButtonClass
+    );
   }
 };
 
@@ -59,6 +62,7 @@ const enableValidation = (settings) => {
     setEventListeners(formElement, settings);
   });
 };
+
 enableValidation({
   formSelector: ".modal__box",
   inputSelector: ".modal__input",
