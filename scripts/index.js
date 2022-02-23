@@ -1,5 +1,12 @@
 //---------------------------------------------------------------------------//
-//                           INITIAL CARDS ARRAY                             //
+//          IMPORTS                                                          //
+//___________________________________________________________________________//
+//
+import Card from "./Card.js";
+import FormValidator from "./FormValidator.js";
+//
+//---------------------------------------------------------------------------//
+//          INITIAL CARDS ARRAY                                              //
 //___________________________________________________________________________//
 
 const initialCards = [
@@ -30,13 +37,13 @@ const initialCards = [
 ];
 
 //---------------------------------------------------------------------------//
-//       D                  CARD CONTAINER (GALLERY)                         //
+//       D           CARD CONTAINER (GALLERY)                                //
 //___________________________________________________________________________//
 //
 const placeList = document.querySelector(".cards");
 //
 //---------------------------------------------------------------------------//
-//       D                    MODAL DECLARATIONS                             //
+//       D           MODAL DECLARATIONS                                      //
 //___________________________________________________________________________//
 //
 //GENERAL MODAL WINDOW
@@ -117,11 +124,13 @@ const addPlacePopupButton = document.querySelector(".profile__add");
 //       D               CARD TEMPLATE DECLARATION                           //
 //___________________________________________________________________________//
 //
-//the card template object
+//____________________________//
+//   ---MOVED TO CARD.JS---   //
+//----------------------------//
 const cardTemplate = document
   .querySelector("#card-template")
   .content.querySelector(".card__item");
-//
+// //
 //---------------------------------------------------------------------------//
 //                            OPEN / CLOSE POPUP                             //
 //___________________________________________________________________________//
@@ -137,10 +146,6 @@ const handleClickOnOverlay = (evt) => {
 };
 
 function openPopup(modal) {
-  //right here the modal is initally grayed out for the edit modal when it shouldn't
-  //be because the fields are valid. Then the add modal isn't grayed out when
-  //it should be because the fields are invalid
-  // modalButton.classList.add("modal__button_disabled");
   modal.addEventListener("click", handleClickOnOverlay);
   document.addEventListener("keydown", handleEscapeButton);
   modal.classList.add("modal__is-opened");
@@ -176,7 +181,16 @@ function handleFormPlaceSubmit(evt) {
   closePopup(addModalWindow);
   renderCard(newCard, placeList);
 }
-//
+
+/////  FORMVALIDATOR ->
+/*_handleFormPlaceSubmit(evt) {
+  evt.preventDefault();
+  this.name = photoTitleInput.value;
+  this.link = photoInput.value;
+  this.newCard = generateCard({this.name, this.link});
+  //closePopup(addModalWindow);
+  //renderCard(newCard, PlaceList);
+}*/
 //
 //---------------------------------------------------------------------------//
 //                                CARD FUNCTIONS                             //
@@ -207,18 +221,30 @@ function generateCard(card) {
 
     openPopup(previewImageModalWindow);
   });
-
+  //
+  //
+  //
+  //
+  //
+  //
   //handleLikeIcon
   const cardLikeButton = cardItemElement.querySelector(".card__like-button");
-  cardLikeButton.addEventListener("click", function () {
+  cardLikeButton.addEventListener("click", () => {
     cardLikeButton.classList.toggle("card__like-button_active");
   });
+
+  //
+  //
+  //
+  //
+  //
+  //
+
   //handleDeletecCard
   const trashEl = cardItemElement.querySelector(".card__trash");
-  trashEl.addEventListener("click", function () {
+  trashEl.addEventListener("click", () => {
     cardItemElement.remove();
   });
-
   return cardItemElement;
 }
 //
@@ -262,3 +288,20 @@ previewImageCloseButton.addEventListener("click", () =>
 editModalBox.addEventListener("submit", handleFormSubmit);
 addModalBox.addEventListener("submit", handleFormPlaceSubmit);
 //
+//
+//
+
+const settings = {
+  formSelector: ".modal__box",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__button",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__input_error",
+};
+
+const addFormValidator = new FormValidator(addModalBox, settings);
+addFormValidator.enableValidation();
+
+const editFormValidator = new FormValidator(editModalBox, settings);
+editFormValidator.enableValidation();
