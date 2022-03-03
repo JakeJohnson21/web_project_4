@@ -40,6 +40,18 @@ const initialCards = [
 //       D           CARD CONTAINER (GALLERY)                                //
 //___________________________________________________________________________//
 //
+const data = {
+  title: ".modal__input_image_title",
+  link: ".modal__input_image_link",
+  previewCaption: ".modal__preview-text",
+  previewImageElement: ".modal__preview-image",
+  cardImage: ".card__image",
+};
+//
+//---------------------------------------------------------------------------//
+//       D           CARD CONTAINER (GALLERY)                                //
+//___________________________________________________________________________//
+//
 const placeList = document.querySelector(".cards");
 //
 //---------------------------------------------------------------------------//
@@ -59,7 +71,7 @@ const addModalBox = addModalWindow.querySelector(".modal__box");
 
 //
 //PREVIEW
-const previewImageElement = document.querySelector(".modal__preview-image");
+const previewImageElement = document.querySelector(".js-preview-modal");
 
 //---------------------------------------------------------------------------//
 //      D                     INPUT DECLARATIONS                             //
@@ -120,9 +132,16 @@ const previewImageCloseButton = previewImageModalWindow.querySelector(
 const editProfilePopupButton = document.querySelector(".profile__edit-button");
 const addPlacePopupButton = document.querySelector(".profile__add");
 //
+const cardSelector = "#card-template";
+//
 //---------------------------------------------------------------------------//
 //       D               CARD TEMPLATE DECLARATION                           //
 //___________________________________________________________________________//
+//
+function renderCard(data, container) {
+  const card = new Card(data, cardSelector).generateCard;
+  container.prepend(data);
+}
 //
 //____________________________//
 //   ---MOVED TO CARD.JS---   //
@@ -177,9 +196,9 @@ function handleFormPlaceSubmit(evt) {
   const name = photoTitleInput.value;
   const link = photoInput.value;
 
-  const newCard = generateCard({ name, link });
+  const card = generateCard({ name, link });
   closePopup(addModalWindow);
-  renderCard(newCard, placeList);
+  renderCard(data, placeList);
 }
 
 /////  FORMVALIDATOR ->
@@ -202,59 +221,51 @@ function handleFormPlaceSubmit(evt) {
 //
 
 // generate a card from the cloned template
-function generateCard(card) {
+function generateCard(data) {
   //initialize clone of the template card
   const cardItemElement = cardTemplate.cloneNode(true);
   //declaring the place title input target
   const cardTitle = cardItemElement.querySelector(".card__place");
-  cardTitle.textContent = card.name;
+  cardTitle.textContent = data.name;
   //declaring image element
   const imageEl = cardItemElement.querySelector(".card__image");
-  imageEl.src = card.link;
-  imageEl.alt = card.name;
+  imageEl.src = data.link;
+  imageEl.alt = data.name;
 
   //listening to show popup image preview.
   imageEl.addEventListener("click", function () {
-    previewImageElement.src = card.link;
-    previewCaption.textContent = card.name;
-    previewImageElement.alt = card.name;
+    previewImageElement.src = data.link;
+    previewCaption.textContent = data.name;
+    previewImageElement.alt = data.name;
 
     openPopup(previewImageModalWindow);
   });
-  //
-  //
-  //
-  //
-  //
-  //
-  //handleLikeIcon
-  const cardLikeButton = cardItemElement.querySelector(".card__like-button");
-  cardLikeButton.addEventListener("click", () => {
-    cardLikeButton.classList.toggle("card__like-button_active");
-  });
 
   //
+  // function handleLikeButton() {
+  //   document
+  //     .querySelector(".card__like-button")
+  //     .classList.toggle("card__like-button_active");
+  // }
+  // //handleLikeIcon
+  // const cardLikeButton = cardItemElement.querySelector(".card__like-button");
+  // cardLikeButton.addEventListener("click", handleLikeButton);
   //
+  ///////////////////////////////////////////
   //
-  //
-  //
-  //
-
   //handleDeletecCard
-  const trashEl = cardItemElement.querySelector(".card__trash");
-  trashEl.addEventListener("click", () => {
-    cardItemElement.remove();
-  });
+  // const trashEl = cardItemElement.querySelector(".card__trash");
+  // trashEl.addEventListener("click", () => {
+  //   cardItemElement.remove();
+  // });
   return cardItemElement;
 }
 //
-function renderCard(card, container) {
-  container.prepend(card);
-}
+
 //
 //initial cards
-initialCards.forEach(function (card) {
-  const newCard = generateCard(card);
+initialCards.forEach(function (data) {
+  const newCard = generateCard(data);
   renderCard(newCard, placeList);
 });
 //
@@ -300,6 +311,10 @@ const settings = {
   errorClass: "modal__input_error",
 };
 
+////////// ADD TO CARD.JS --+
+
+//////////////////////////////////////////
+//////////////////////////////////////////
 const addFormValidator = new FormValidator(addModalBox, settings);
 addFormValidator.enableValidation();
 
