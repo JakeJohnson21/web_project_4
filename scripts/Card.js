@@ -16,7 +16,7 @@ const closeModalWindow = () => {
 
 const handleEscapeKeyUp = (evt) => {
   evt.preventDefault();
-  isEscEvent(evt, closePopup);
+  isEscEvent(evt, closeModalPopup);
 };
 
 const isEscEvent = (evt, action) => {
@@ -38,30 +38,36 @@ class Card {
     //   isLiked;
     this._cardSelector = cardSelector;
   }
+
   _getTemplate() {
-    this._element = document
+    return document
       .querySelector(this._cardSelector)
-      .content.querySelector(".card")
+      .content.querySelector(".card__item")
       .cloneNode(true);
   }
   ///////////////////////////////////////////////////////
 
   _handleLikeButton() {
-    const cardLikeButton = this._element.querySelector(".card__like-button");
     cardLikeButton.classList.toggle("card__like-button_active");
   }
-  // _handleDeleteButton() {
-  //   this._element.remove();
-  // }
+  _handleDeleteButton() {
+    this._element.remove();
+  }
   ///////////////////////////////////////////////////////
   /////
   _setEventListeners() {
     //like button
-    cardLikeButton.addEventListener("click", this._handleLikeButton);
+    this._element
+      .querySelector(".card__like-button")
+      .addEventListener("click", () => this._handleLikeButton());
     //delete button
-    // trashEl.addEventListener("click", this._handleDeleteButton);
+    this._element
+      .querySelector(".card__trash")
+      .addEventListener("click", () => this._handleDeleteButton());
     // //preview button
-    imageEl.addEventListener("click", this._handlePreviewPopup);
+    this._element
+      .querySelector(".card__image")
+      .addEventListener("click", () => this._handlePreviewPopup());
   }
   ///////////////////////////////////////////////////////
   _handlePreviewPopup() {
@@ -74,10 +80,13 @@ class Card {
   ///////////////////////////////////////////////////////
   generateCard() {
     this._element = this._getTemplate();
-    this._element.querySelector(".card__image").src = this._link;
-    this._element.querySelector(".card__title").textContent = this._title;
     this._setEventListeners();
-    console.log("element", this._element);
+
+    this._element.querySelector(".card__image").src = this._link;
+    this._element.querySelector(".card__image").alt = this._title;
+    // don't forget the "alt" attribute of the image
+    this._element.querySelector(".card__text").textContent = this._title;
+    return this._element;
   }
 }
 

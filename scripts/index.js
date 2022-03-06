@@ -40,14 +40,14 @@ const initialCards = [
 //       D           CARD CONTAINER (GALLERY)                                //
 //___________________________________________________________________________//
 //
-const data = {
-  title: ".modal__input_image_title",
-  link: ".modal__input_image_link",
-  previewCaption: ".modal__preview-text",
-  previewImageElement: ".modal__preview-image",
-  cardImage: ".card__image",
-};
-//
+// const data = {
+//   title: ".card__place",
+//   link: ".card__image",
+//   previewCaption: ".modal__preview-text",
+//   previewImageElement: ".modal__preview-image",
+//   cardImage: ".card__image",
+// };
+// //
 //---------------------------------------------------------------------------//
 //       D           CARD CONTAINER (GALLERY)                                //
 //___________________________________________________________________________//
@@ -139,9 +139,24 @@ const cardSelector = "#card-template";
 //___________________________________________________________________________//
 //
 function renderCard(data, container) {
-  const card = new Card(data, cardSelector).generateCard;
-  container.prepend(data);
+  const card = new Card(data, cardSelector);
+  container.prepend(card.generateCard());
 }
+function handleFormSubmit(evt) {
+  evt.preventDefault();
+  personTitle.textContent = titleInput.value;
+  personName.textContent = nameInput.value;
+
+  closePopup(editModalWindow);
+}
+//
+/// Edit place handler
+function handleFormPlaceSubmit(evt) {
+  evt.preventDefault();
+  const name = photoTitleInput.value;
+  const link = photoInput.value;
+}
+
 //
 //____________________________//
 //   ---MOVED TO CARD.JS---   //
@@ -182,24 +197,6 @@ function closePopup(modal) {
 //
 //
 ///Edit profile handler
-function handleFormSubmit(evt) {
-  evt.preventDefault();
-  personTitle.textContent = titleInput.value;
-  personName.textContent = nameInput.value;
-
-  closePopup(editModalWindow);
-}
-//
-/// Edit place handler
-function handleFormPlaceSubmit(evt) {
-  evt.preventDefault();
-  const name = photoTitleInput.value;
-  const link = photoInput.value;
-
-  const card = generateCard({ name, link });
-  closePopup(addModalWindow);
-  renderCard(data, placeList);
-}
 
 /////  FORMVALIDATOR ->
 /*_handleFormPlaceSubmit(evt) {
@@ -221,17 +218,7 @@ function handleFormPlaceSubmit(evt) {
 //
 
 // generate a card from the cloned template
-function generateCard(data) {
-  //initialize clone of the template card
-  const cardItemElement = cardTemplate.cloneNode(true);
-  //declaring the place title input target
-  const cardTitle = cardItemElement.querySelector(".card__place");
-  cardTitle.textContent = data.name;
-  //declaring image element
-  const imageEl = cardItemElement.querySelector(".card__image");
-  imageEl.src = data.link;
-  imageEl.alt = data.name;
-
+function generateCard() {
   //listening to show popup image preview.
   imageEl.addEventListener("click", function () {
     previewImageElement.src = data.link;
@@ -265,8 +252,7 @@ function generateCard(data) {
 //
 //initial cards
 initialCards.forEach(function (data) {
-  const newCard = generateCard(data);
-  renderCard(newCard, placeList);
+  renderCard(data, placeList);
 });
 //
 
