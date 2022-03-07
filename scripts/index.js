@@ -40,14 +40,11 @@ const initialCards = [
 //       D           CARD CONTAINER (GALLERY)                                //
 //___________________________________________________________________________//
 //
-// const data = {
-//   title: ".card__place",
-//   link: ".card__image",
-//   previewCaption: ".modal__preview-text",
-//   previewImageElement: ".modal__preview-image",
-//   cardImage: ".card__image",
-// };
-// //
+const cardData = {
+  name: ".card__place",
+  link: ".card__image",
+};
+//
 //---------------------------------------------------------------------------//
 //       D           CARD CONTAINER (GALLERY)                                //
 //___________________________________________________________________________//
@@ -138,33 +135,13 @@ const cardSelector = "#card-template";
 //       D               CARD TEMPLATE DECLARATION                           //
 //___________________________________________________________________________//
 //
+//////////////////////////////////////////////
+
 function renderCard(data, container) {
   const card = new Card(data, cardSelector);
   container.prepend(card.generateCard());
 }
-function handleFormSubmit(evt) {
-  evt.preventDefault();
-  personTitle.textContent = titleInput.value;
-  personName.textContent = nameInput.value;
-
-  closePopup(editModalWindow);
-}
-//
-/// Edit place handler
-function handleFormPlaceSubmit(evt) {
-  evt.preventDefault();
-  const name = photoTitleInput.value;
-  const link = photoInput.value;
-}
-
-//
-//____________________________//
-//   ---MOVED TO CARD.JS---   //
-//----------------------------//
-const cardTemplate = document
-  .querySelector("#card-template")
-  .content.querySelector(".card__item");
-// //
+//////////////////////////////////////////////
 //---------------------------------------------------------------------------//
 //                            OPEN / CLOSE POPUP                             //
 //___________________________________________________________________________//
@@ -197,55 +174,24 @@ function closePopup(modal) {
 //
 //
 ///Edit profile handler
-
-/////  FORMVALIDATOR ->
-/*_handleFormPlaceSubmit(evt) {
+function handleFormSubmit(evt) {
   evt.preventDefault();
-  this.name = photoTitleInput.value;
-  this.link = photoInput.value;
-  this.newCard = generateCard({this.name, this.link});
-  //closePopup(addModalWindow);
-  //renderCard(newCard, PlaceList);
-}*/
-//
-//---------------------------------------------------------------------------//
-//                                CARD FUNCTIONS                             //
-//___________________________________________________________________________//
-//
-//
+  personTitle.textContent = titleInput.value;
+  personName.textContent = nameInput.value;
 
+  closePopup(editModalWindow);
+}
 //
-//
-
-// generate a card from the cloned template
-function generateCard() {
-  //listening to show popup image preview.
-  imageEl.addEventListener("click", function () {
-    previewImageElement.src = data.link;
-    previewCaption.textContent = data.name;
-    previewImageElement.alt = data.name;
-
-    openPopup(previewImageModalWindow);
-  });
-
-  //
-  // function handleLikeButton() {
-  //   document
-  //     .querySelector(".card__like-button")
-  //     .classList.toggle("card__like-button_active");
-  // }
-  // //handleLikeIcon
-  // const cardLikeButton = cardItemElement.querySelector(".card__like-button");
-  // cardLikeButton.addEventListener("click", handleLikeButton);
-  //
-  ///////////////////////////////////////////
-  //
-  //handleDeletecCard
-  // const trashEl = cardItemElement.querySelector(".card__trash");
-  // trashEl.addEventListener("click", () => {
-  //   cardItemElement.remove();
-  // });
-  return cardItemElement;
+/// Edit place handler
+function handleFormPlaceSubmit(evt) {
+  evt.preventDefault();
+  const cardData = {
+    name: ".card__place",
+    link: ".card__image",
+  };
+  // const card = generateCard({ name, link });
+  closePopup(addModalWindow);
+  renderCard(cardData, placeList);
 }
 //
 
@@ -254,6 +200,7 @@ function generateCard() {
 initialCards.forEach(function (data) {
   renderCard(data, placeList);
 });
+//
 //
 
 //
@@ -306,3 +253,6 @@ addFormValidator.enableValidation();
 
 const editFormValidator = new FormValidator(editModalBox, settings);
 editFormValidator.enableValidation();
+
+//help with finishing up the renderCard function where "data" is not defined.
+// how to split up the content in the seperate JS files

@@ -1,41 +1,44 @@
 ///////////////
 const previewImageElement = document.querySelector(".modal__container_preview");
+const previewImageModalWindow = document.querySelector(".js-preview-modal");
 const imageElement = previewImageElement.querySelector(".modal__preview-image");
 const previewCaption = previewImageElement.querySelector(
   ".modal__preview-text"
 );
-const ESC_KEYCODE = 27;
 
-const closeModalWindow = () => {
-  //questioning whether I am selecting
-  //the correct element. -> (previewImageElement)
-  previewImageElement.classList.remove(".modal__is-opened");
-  document.removeEventListener("keyup", handleEscapeButton);
-  handleEscapeKeyUp();
-};
-
-const handleEscapeKeyUp = (evt) => {
-  evt.preventDefault();
-  isEscEvent(evt, closeModalPopup);
-};
-
-const isEscEvent = (evt, action) => {
-  const activePopup = document.querySelector(".modal__is-opened");
-  if (evt.which === ESC_KEYCODE) {
-    action(activePopup);
+const handleEscapeButton = (evt) => {
+  if (evt.key === "Escape") {
+    closePopup(document.querySelector(".modal__is-opened"));
   }
 };
+const handleClickOnOverlay = (evt) => {
+  if (!evt.target.closest(".modal__container")) {
+    closePopup(evt.currentTarget);
+  }
+};
+
+function openPopup(modal) {
+  modal.addEventListener("click", handleClickOnOverlay);
+  document.addEventListener("keydown", handleEscapeButton);
+  modal.classList.add("modal__is-opened");
+}
+
+function closePopup(modal) {
+  modal.removeEventListener("click", handleClickOnOverlay);
+  document.removeEventListener("keydown", handleEscapeButton);
+  modal.classList.remove("modal__is-opened");
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 //---------------------------------------------------------------------------//
 //       CARD CLASS                                                          //
 //___________________________________________________________________________//
 //
+
 class Card {
   constructor(data, cardSelector) {
-    this._title = data.title;
+    this._title = data.name;
     this._link = data.link;
-    this._trashEl = data.trashEl;
-    //   isLiked;
     this._cardSelector = cardSelector;
   }
 
@@ -48,7 +51,9 @@ class Card {
   ///////////////////////////////////////////////////////
 
   _handleLikeButton() {
-    cardLikeButton.classList.toggle("card__like-button_active");
+    this._element
+      .querySelector(".card__like-button")
+      .classList.toggle("card__like-button_active");
   }
   _handleDeleteButton() {
     this._element.remove();
@@ -71,9 +76,9 @@ class Card {
   }
   ///////////////////////////////////////////////////////
   _handlePreviewPopup() {
-    previewImageElement.src = data.link;
-    previewCaption.textContent = data.title;
-    imageElement.alt = data.title;
+    imageElement.src = this._link;
+    previewCaption.textContent = this._title;
+    imageElement.alt = this._title;
 
     openPopup(previewImageModalWindow);
   }
@@ -84,8 +89,8 @@ class Card {
 
     this._element.querySelector(".card__image").src = this._link;
     this._element.querySelector(".card__image").alt = this._title;
-    // don't forget the "alt" attribute of the image
-    this._element.querySelector(".card__text").textContent = this._title;
+    this._element.querySelector(".card__place").textContent = this._title;
+
     return this._element;
   }
 }
