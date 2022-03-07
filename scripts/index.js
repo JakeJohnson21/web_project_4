@@ -4,6 +4,7 @@
 //
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
+import { openPopup, closePopup } from "./utils.js";
 //
 //---------------------------------------------------------------------------//
 //          INITIAL CARDS ARRAY                                              //
@@ -35,15 +36,6 @@ const initialCards = [
     link: "images/dubai.jpg",
   },
 ];
-
-//---------------------------------------------------------------------------//
-//       D           CARD CONTAINER (GALLERY)                                //
-//___________________________________________________________________________//
-//
-const cardData = {
-  name: ".card__place",
-  link: ".card__image",
-};
 //
 //---------------------------------------------------------------------------//
 //       D           CARD CONTAINER (GALLERY)                                //
@@ -55,8 +47,6 @@ const placeList = document.querySelector(".cards");
 //       D           MODAL DECLARATIONS                                      //
 //___________________________________________________________________________//
 //
-//GENERAL MODAL WINDOW
-const modal = document.querySelector(".modal");
 //MODAL WINDOW
 const editModalWindow = document.querySelector(".js-edit-modal");
 const addModalWindow = document.querySelector(".js-add-modal");
@@ -65,11 +55,7 @@ const previewImageModalWindow = document.querySelector(".js-preview-modal");
 //MODAL BOX
 const editModalBox = editModalWindow.querySelector(".modal__box");
 const addModalBox = addModalWindow.querySelector(".modal__box");
-
 //
-//PREVIEW
-const previewImageElement = document.querySelector(".js-preview-modal");
-
 //---------------------------------------------------------------------------//
 //      D                     INPUT DECLARATIONS                             //
 //___________________________________________________________________________//
@@ -86,8 +72,7 @@ const photoTitleInput = document.querySelector(".modal__input_image_title");
 //PLACE PHOTO
 const photoInput = document.querySelector(".modal__input_image_link");
 //
-//MODAL CONTAINER
-const modalContainer = document.querySelector(".modal__container");
+
 //---------------------------------------------------------------------------//
 //      D                INPUT END POINTS (DESTINATION)                      //
 //___________________________________________________________________________//
@@ -97,22 +82,6 @@ const personName = document.querySelector(".profile__title-name");
 //
 //PROFILE TITLE
 const personTitle = document.querySelector(".profile__text-job");
-//
-//PLACE TITLE
-
-//
-//PLACE PHOTO
-const cardImage = document.querySelector(".card__image");
-
-const previewCaption = document.querySelector(".modal__preview-text");
-//
-//---------------------------------------------------------------------------//
-//      D                     BUTTON DECLARATIONS                            //
-//___________________________________________________________________________//
-//
-//MODAL SUBMIT BUTTONS
-const editProfileButton = document.querySelector(".modal__save");
-const addPlaceButton = document.querySelector(".modal__create");
 //
 //ClOSE MODAL BUTTONS
 const editModalCloseButton = editModalWindow.querySelector(
@@ -135,43 +104,13 @@ const cardSelector = "#card-template";
 //       D               CARD TEMPLATE DECLARATION                           //
 //___________________________________________________________________________//
 //
-//////////////////////////////////////////////
+/////////////  RENDER CARD  ////////////////////
 
-function renderCard(data, container) {
-  const card = new Card(data, cardSelector);
+function renderCard({ name, link }, container) {
+  const card = new Card({ name, link }, cardSelector);
   container.prepend(card.generateCard());
 }
-//////////////////////////////////////////////
-//---------------------------------------------------------------------------//
-//                            OPEN / CLOSE POPUP                             //
-//___________________________________________________________________________//
-const handleEscapeButton = (evt) => {
-  if (evt.key === "Escape") {
-    closePopup(document.querySelector(".modal__is-opened"));
-  }
-};
-const handleClickOnOverlay = (evt) => {
-  if (!evt.target.closest(".modal__container")) {
-    closePopup(evt.currentTarget);
-  }
-};
-
-function openPopup(modal) {
-  modal.addEventListener("click", handleClickOnOverlay);
-  document.addEventListener("keydown", handleEscapeButton);
-  modal.classList.add("modal__is-opened");
-}
-
-function closePopup(modal) {
-  modal.removeEventListener("click", handleClickOnOverlay);
-  document.removeEventListener("keydown", handleEscapeButton);
-  modal.classList.remove("modal__is-opened");
-}
-
-//---------------------------------------------------------------------------//
-//                                SUBMIT HANDLER                             //
-//___________________________________________________________________________//
-//
+//_____________________________________________________
 //
 ///Edit profile handler
 function handleFormSubmit(evt) {
@@ -181,28 +120,22 @@ function handleFormSubmit(evt) {
 
   closePopup(editModalWindow);
 }
-//
+//_____________________________________________________
 /// Edit place handler
 function handleFormPlaceSubmit(evt) {
   evt.preventDefault();
-  const cardData = {
-    name: ".card__place",
-    link: ".card__image",
-  };
-  // const card = generateCard({ name, link });
-  closePopup(addModalWindow);
-  renderCard(cardData, placeList);
-}
-//
+  // sets the input values to the card.
+  const name = photoTitleInput.value;
+  const link = photoInput.value;
 
-//
-//initial cards
+  closePopup(addModalWindow);
+  renderCard({ name, link }, placeList);
+}
+//_____________________________________________________
+//     INITIAL CARDS
 initialCards.forEach(function (data) {
   renderCard(data, placeList);
 });
-//
-//
-
 //
 //---------------------------------------------------------------------------//
 //                                EVENT LISTENERS                            //
@@ -215,26 +148,33 @@ editProfilePopupButton.addEventListener("click", () => {
   nameInput.value = personName.textContent;
   openPopup(editModalWindow);
 });
+//__________________________________________________________________________
+//
 addPlacePopupButton.addEventListener("click", () => {
   const button = addModalWindow.querySelector(".modal__button");
   button.disabled = true;
   button.classList.add("modal__button_disabled");
   openPopup(addModalWindow);
 });
+//__________________________________________________________________________
+//
 editModalCloseButton.addEventListener("click", () =>
   closePopup(editModalWindow)
 );
+//________________________________________________________________________________
+//
 addModalCloseButton.addEventListener("click", () => closePopup(addModalWindow));
 previewImageCloseButton.addEventListener("click", () =>
   closePopup(previewImageModalWindow)
 );
-
+//________________________________________________________________________________
+//
 editModalBox.addEventListener("submit", handleFormSubmit);
 addModalBox.addEventListener("submit", handleFormPlaceSubmit);
 //
+//__________________________________________________________________________
 //
-//
-
+// SETTINGS OBJECT
 const settings = {
   formSelector: ".modal__box",
   inputSelector: ".modal__input",
@@ -244,15 +184,11 @@ const settings = {
   errorClass: "modal__input_error",
 };
 
-////////// ADD TO CARD.JS --+
-
-//////////////////////////////////////////
-//////////////////////////////////////////
+//__________________________________________________________________________
+//
 const addFormValidator = new FormValidator(addModalBox, settings);
 addFormValidator.enableValidation();
 
 const editFormValidator = new FormValidator(editModalBox, settings);
 editFormValidator.enableValidation();
-
-//help with finishing up the renderCard function where "data" is not defined.
-// how to split up the content in the seperate JS files
+//__________________________________________________________________________
