@@ -10,6 +10,10 @@ New feature allows user to create their own post. Enter a name and them an image
 
 The forms are now validated. The button isn't active if the form field contains an invalid statement. The Validation also informs you on what it is exactly that you're missing. Closing the modals are easier than ever with the added fuctionality of the "ESC" key as well as clicking anywhere outside of the modal.
 
+# JS Update: (project 7)
+
+The code has been refactored using JS classes and modular JS.
+
 Enjoy the new features!
 
 Jake Johnson,
