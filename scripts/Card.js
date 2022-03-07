@@ -30,14 +30,14 @@ class Card {
   //__________________________________________________________________________
   //
   // heart shaped like button, toggles filled in or outlined.. on / off
-  _handleLikeButton() {
+  _handleLikeButton = () => {
     this._element
       .querySelector(".card__like-button")
       .classList.toggle("card__like-button_active");
-  }
+  };
   // trash can icon for deleting the card, removing it from the list
   _handleDeleteButton() {
-    this._element.remove();
+    this._element = null;
   }
   //__________________________________________________________________________
   //
@@ -72,8 +72,9 @@ class Card {
     //grabs current cards event listeners
     this._setEventListeners();
     // grabs the current cards image / title
-    this._element.querySelector(".card__image").src = this._link;
-    this._element.querySelector(".card__image").alt = this._title;
+    const cardImage = this._element.querySelector(".card__image");
+    cardImage.src = this._link;
+    cardImage.alt = this._title;
     this._element.querySelector(".card__place").textContent = this._title;
     //--returns the withdrawl-- (sends the card with filled in details)
     return this._element;

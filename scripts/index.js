@@ -113,7 +113,7 @@ function renderCard({ name, link }, container) {
 //_____________________________________________________
 //
 ///Edit profile handler
-function handleFormSubmit(evt) {
+function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   personTitle.textContent = titleInput.value;
   personName.textContent = nameInput.value;
@@ -130,7 +130,9 @@ function handleFormPlaceSubmit(evt) {
 
   closePopup(addModalWindow);
   renderCard({ name, link }, placeList);
+  this.reset();
 }
+
 //_____________________________________________________
 //     INITIAL CARDS
 initialCards.forEach(function (data) {
@@ -141,8 +143,6 @@ initialCards.forEach(function (data) {
 //                                EVENT LISTENERS                            //
 //___________________________________________________________________________//
 
-const modalButton = document.querySelector(".modal__button");
-
 editProfilePopupButton.addEventListener("click", () => {
   titleInput.value = personTitle.textContent;
   nameInput.value = personName.textContent;
@@ -151,9 +151,6 @@ editProfilePopupButton.addEventListener("click", () => {
 //__________________________________________________________________________
 //
 addPlacePopupButton.addEventListener("click", () => {
-  const button = addModalWindow.querySelector(".modal__button");
-  button.disabled = true;
-  button.classList.add("modal__button_disabled");
   openPopup(addModalWindow);
 });
 //__________________________________________________________________________
@@ -169,7 +166,7 @@ previewImageCloseButton.addEventListener("click", () =>
 );
 //________________________________________________________________________________
 //
-editModalBox.addEventListener("submit", handleFormSubmit);
+editModalBox.addEventListener("submit", handleProfileFormSubmit);
 addModalBox.addEventListener("submit", handleFormPlaceSubmit);
 //
 //__________________________________________________________________________
