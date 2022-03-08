@@ -104,6 +104,25 @@ const cardSelector = "#card-template";
 //       D               CARD TEMPLATE DECLARATION                           //
 //___________________________________________________________________________//
 //
+// SETTINGS OBJECT
+const settings = {
+  formSelector: ".modal__box",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__button",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__input_error",
+};
+
+//__________________________________________________________________________
+//
+const addFormValidator = new FormValidator(addModalBox, settings);
+addFormValidator.enableValidation();
+
+const editFormValidator = new FormValidator(editModalBox, settings);
+editFormValidator.enableValidation();
+//__________________________________________________________________________
+
 /////////////  RENDER CARD  ////////////////////
 
 function renderCard({ name, link }, container) {
@@ -132,7 +151,6 @@ function handleFormPlaceSubmit(evt) {
   renderCard({ name, link }, placeList);
   addModalBox.reset();
 }
-
 //_____________________________________________________
 //     INITIAL CARDS
 initialCards.forEach(function (data) {
@@ -143,6 +161,8 @@ initialCards.forEach(function (data) {
 //                                EVENT LISTENERS                            //
 //___________________________________________________________________________//
 
+const modalButton = document.querySelector(".modal__button");
+
 editProfilePopupButton.addEventListener("click", () => {
   titleInput.value = personTitle.textContent;
   nameInput.value = personName.textContent;
@@ -151,16 +171,20 @@ editProfilePopupButton.addEventListener("click", () => {
 //__________________________________________________________________________
 //
 addPlacePopupButton.addEventListener("click", () => {
+  addFormValidator.resetValidation();
   openPopup(addModalWindow);
 });
 //__________________________________________________________________________
 //
-editModalCloseButton.addEventListener("click", () =>
-  closePopup(editModalWindow)
-);
+editModalCloseButton.addEventListener("click", () => {
+  closePopup(editModalWindow);
+});
 //________________________________________________________________________________
 //
-addModalCloseButton.addEventListener("click", () => closePopup(addModalWindow));
+addModalCloseButton.addEventListener("click", () => {
+  closePopup(addModalWindow);
+});
+
 previewImageCloseButton.addEventListener("click", () =>
   closePopup(previewImageModalWindow)
 );
@@ -171,21 +195,3 @@ addModalBox.addEventListener("submit", handleFormPlaceSubmit);
 //
 //__________________________________________________________________________
 //
-// SETTINGS OBJECT
-const settings = {
-  formSelector: ".modal__box",
-  inputSelector: ".modal__input",
-  submitButtonSelector: ".modal__button",
-  inactiveButtonClass: "modal__button_disabled",
-  inputErrorClass: "modal__input_type_error",
-  errorClass: "modal__input_error",
-};
-
-//__________________________________________________________________________
-//
-const addFormValidator = new FormValidator(addModalBox, settings);
-addFormValidator.enableValidation();
-
-const editFormValidator = new FormValidator(editModalBox, settings);
-editFormValidator.enableValidation();
-//__________________________________________________________________________

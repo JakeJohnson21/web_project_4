@@ -41,10 +41,11 @@ class FormValidator {
       this._hideInputError(inputElement);
     }
   }
-  resetValidation = () => {
-    this._inputList.forEach(this._hideInputError);
+  resetValidation() {
+    console.log("running");
+    this._inputList.forEach(this._hideInputError.bind(this));
     this._toggleButtonState();
-  };
+  }
 
   _hasInvalidInput() {
     return this._inputList.some((inputElement) => !inputElement.validity.valid);
