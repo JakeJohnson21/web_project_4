@@ -130,7 +130,7 @@ function handleFormPlaceSubmit(evt) {
 
   closePopup(addModalWindow);
   renderCard({ name, link }, placeList);
-  this.reset();
+  addModalBox.reset();
 }
 
 //_____________________________________________________
