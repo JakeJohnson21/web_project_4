@@ -1,0 +1,24 @@
+{
+  "name": "web_project_4",
+  "version": "1.0.0",
+  "description": "This project features a Profile and gallery type page. It uses html, css, javascript, responsive design, and a little bit of magic. Hover effects work on all links and like buttons. The page allows the user to create and enter their own profile info. If the form is submitted blank, the default Profile will stay in its place.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JakeJohnson21/web_project_4.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JakeJohnson21/web_project_4/issues"
+  },
+  "homepage": "https://github.com/JakeJohnson21/web_project_4#readme",
+  "devDependencies": {
+    "webpack": "^5.70.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4"
+  }
+}
