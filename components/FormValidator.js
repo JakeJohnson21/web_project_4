@@ -42,7 +42,6 @@ class FormValidator {
     }
   }
   resetValidation() {
-    console.log("running");
     this._inputList.forEach(this._hideInputError.bind(this));
     this._toggleButtonState();
   }

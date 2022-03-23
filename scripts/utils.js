@@ -13,25 +13,21 @@ const handleEscapeButton = (evt) => {
 };
 // closes modal when clicked anywhere outside of it.
 
-//**&*^(*&%^(*&^()&$#%#%$%$#^&)^$*^&%^*(&&*^%#&^%$(*@#@#$*(#&^(*@#%(&^@)))
 export const handleClickOnOverlay = (evt) => {
   if (!evt.target.closest(".modal__container")) {
     closePopup(evt.currentTarget);
   }
 };
-//**&*^(*&%^(*&^()&$#%#%$%$#^&)^$*^&%^*(&&*^%#&^%$(*@#@#$*(#&^(*@#%(&^@)))
-//**&*^(*&%^(*&^()&$#%#%$%$#^&)^$*^&%^*(&&*^%#&^%$(*@#@#$*(#&^(*@#%(&^@)))
+
 // opens modals and listens for close options
 export function openPopup(modal) {
-  modal.addEventListener("click", handleClickOnOverlay);
-  document.addEventListener("keydown", handleEscapeButton);
   modal.classList.add("modal__is-opened");
+  modal.addEventListener("click", handleClickOnOverlay);
+  document.addEventListener("keyup", handleEscapeButton);
 }
-//**&*^(*&%^(*&^()&$#%#%$%$#^&)^$*^&%^*(&&*^%#&^%$(*@#@#$*(#&^(*@#%(&^@)))
 // closes modals and removes listeners
 export function closePopup(modal) {
   modal.removeEventListener("click", handleClickOnOverlay);
-  document.removeEventListener("keydown", handleEscapeButton);
+  document.removeEventListener("keyup", handleEscapeButton);
   modal.classList.remove("modal__is-opened");
 }
-//**&*^(*&%^(*&^()&$#%#%$%$#^&)^$*^&%^*(&&*^%#&^%$(*@#@#$*(#&^(*@#%(&^@)))+

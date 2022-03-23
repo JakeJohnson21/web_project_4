@@ -7,16 +7,16 @@ export default class PopupWithImages extends Popup {
     this._link = data.link;
   }
 
-  _handlePreviewPopup() {
+  open() {
     imageElement.src = this._link;
     previewCaption.textContent = this._title;
     imageElement.alt = this._title;
+    super.open(previewImageModalWindow);
+  }
 
-    super.open(this._handlePreviewPopup);
-  }
-  setEventListeners() {
-    this._.querySelector(".card__image").addEventListener("click", () =>
-      this._handlePreviewPopup()
-    );
-  }
+  // setEventListeners() {
+  //   this._.querySelector(".card__image").addEventListener("click", () =>
+  //     this._handlePreviewPopup()
+  //   );
+  // }
 }
