@@ -1,5 +1,5 @@
 class UserInfo {
-  constructor({ userName, userTitle }, popupSelector) {
+  constructor({ userName, userTitle }) {
     this.userName = document.querySelector(userName);
     this.userTitle = document.querySelector(userTitle);
   }
