@@ -58,6 +58,8 @@ class Card {
   //__________________________________________________________________________
   //
   // the full size of the image from the card. shows caption.
+
+  // Rafael- do I need to remove this from here?
   _handlePreviewPopup() {
     imageElement.src = this._link;
     previewCaption.textContent = this._title;

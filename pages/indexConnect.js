@@ -32,12 +32,8 @@ import {
 //
 const editForm = new PopupWithForm({
   popupSelector: editModalWindow,
-  handleFormSubmit: (evt) => {
-    evt.preventDefault();
-    const user = new UserInfo({ userName, userinfo }, editModalWindow);
-    this.getUserInfo();
-    this.setUserInfo();
-    editForm.close();
+  handleFormSubmit: (userObject) => {
+    UserInfo.set(userObject);
   },
 });
 
@@ -48,7 +44,7 @@ const addForm = new PopupWithForm({
 //__________________________________________________________________________
 //
 const addFormValidator = new FormValidator(addModalBox, settings);
-addFormValidator.enableValidation();
+addFormValidator.asd();
 
 const editFormValidator = new FormValidator(editModalBox, settings);
 editFormValidator.enableValidation();
@@ -65,8 +61,10 @@ const cardsList = new Section(
       cardsList.addItem(cardElement);
     },
   },
-  placeList
+  ".cards"
 );
+
+cardsList.renderItems();
 //__________________________________________________________________________//
 //__________________________________________________________________________//
 //__________________________________________________________________________//

@@ -1,17 +1,17 @@
-class UserInfo {
-  constructor({ userName, userTitle }, popupSelector) {
+export default class UserInfo {
+  constructor({ userName, userTitle }) {
     this.userName = document.querySelector(userName);
     this.userTitle = document.querySelector(userTitle);
   }
 
   getUserInfo() {
     return {
-      userName: this.userNameText.textContent,
-      userTitle: this.userTitleText.textContent,
+      userName: this.userNameText,
+      userTitle: this.userTitleText,
     };
   }
 
-  setUserInfo(userNameText, userTitleText) {
+  setUserInfo({ userNameText, userTitleText }) {
     this.userName.textContent = userNameText;
     this.userTitle.textContent = userTitleText;
   }

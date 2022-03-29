@@ -24,6 +24,7 @@ export const initialCards = [
     link: "images/dubai.jpg",
   },
 ];
+//-------------------------------------------------------
 //
 export const settings = {
   formSelector: ".modal__box",
@@ -33,6 +34,26 @@ export const settings = {
   inputErrorClass: "modal__input_type_error",
   errorClass: "modal__input_error",
 };
+//-------------------------------------------------------
+//
+// PROFILE CONFIG OBJECT-
+export const profileConfig = {
+  nameInput: ".modal__input_profile_name",
+  titleInput: ".modal__input_profile_title",
+};
+//-------------------------------------------------------
+//
+// PLACE CONFIG OBJECT-
+export const placeConfig = {
+  photoTitleInput: ".modal__input_image_title",
+  photoInput: ".modal__input_image_link",
+};
+//-------------------------------------------------------
+//
+// PHOTO CONFIG OBJECT-
+export const photoConfig = {};
+//
+//-------------------------------------------------------
 
 export const placeList = document.querySelector(".cards");
 export const cardSelector = "#card-template";
@@ -50,17 +71,19 @@ export const addModalBox = addModalWindow.querySelector(".modal__box");
 //      D                     INPUT DECLARATIONS                             //
 //___________________________________________________________________________//
 //
+
+//
 //PROFILE NAME
 export const nameInput = document.querySelector(".modal__input_profile_name");
 //
 //PROFILE TITLE
 export const titleInput = document.querySelector(".modal__input_profile_title");
 //
+
 //PLACE TITLE
 export const photoTitleInput = document.querySelector(
   ".modal__input_image_title"
 );
-//
 //PLACE PHOTO
 export const photoInput = document.querySelector(".modal__input_image_link");
 //
