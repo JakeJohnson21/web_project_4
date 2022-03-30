@@ -16,27 +16,37 @@ import {
   initialCards,
   settings,
   profileConfig,
+  photoConfig,
   placeConfig,
-  placeList,
+  modalWindowConfig,
+  closeButtonConfig,
+  popupButtonConfig,
+  formConfig,
   cardSelector,
-  editModalBox,
-  addModalBox,
-  editModalWindow,
-  addModalWindow,
-  previewImageModalWindow,
-  nameInput,
-  titleInput,
-  photoInput,
-  photoTitleInput,
-  personName,
-  personTitle,
-  editModalCloseButton,
-  addModalCloseButton,
-  previewImageCloseButton,
-  editProfilePopupButton,
-  addPlacePopupButton,
 } from "../utils/constants.js";
 
+const editModalWindow = document.querySelector(modalWindowConfig.edit);
+const addModalWindow = document.querySelector(modalWindowConfig.add);
+const previewImageModalWindow = document.querySelector(
+  modalWindowConfig.preview
+);
+const addModalBox = addModalWindow.querySelector(formConfig.box);
+const editModalBox = editModalWindow.querySelector(formConfig.box);
+
+const editModalCloseButton = editModalWindow.querySelector(
+  closeButtonConfig.close
+);
+const addModalCloseButton = addModalWindow.querySelector(
+  closeButtonConfig.close
+);
+const previewImageCloseButton = previewImageModalWindow.querySelector(
+  closeButtonConfig.close
+);
+const editProfilePopupButton = document.querySelector(popupButtonConfig.edit);
+const addPlacePopupButton = document.querySelector(popupButtonConfig.add);
+
+const photoTitleInput = document.querySelector(photoConfig.title);
+const photoInput = document.querySelector(photoConfig.link);
 //__________________________________________________________________________
 //
 const addFormValidator = new FormValidator(addModalBox, settings);
@@ -44,30 +54,25 @@ addFormValidator.enableValidation();
 
 const editFormValidator = new FormValidator(editModalBox, settings);
 editFormValidator.enableValidation();
-//__________________________________________________________________________
-
-/////////  RENDER CARD  ////////////////////
-function renderCard({ name, link }, container) {
-  const card = new Card({ name, link }, cardSelector);
-  container.prepend(card.generateCard());
-}
-//---------------------------------------------------------------------------//
-//       D               CARD TEMPLATE DECLARATION                           //
-//___________________________________________________________________________//
 const user = new UserInfo({
   userName: ".profile__title-name",
   userTitle: ".profile__text-job",
 });
-// an instruction for processing a Card instance here
-const createNewCard = (item) => {
-  const card = new Card(item, cardSelector);
-  return card.generateCard();
-};
 // AN INSTANCE OF THE POPUP WITH IMAGE CLASS
 const preImage = new PopupWithImage({
   popupSelector: ".js-preview-modal",
 });
-//////////////////////////////////////////////////////////////////////////////////
+///
+// an instruction for processing a Card instance here
+const createNewCard = (item) => {
+  const card = new Card(item, cardSelector, {
+    handlePreviewPopup: () => {
+      preImage.open(photoConfig.name, photoConfig.link);
+    },
+  });
+
+  return card.generateCard();
+};
 const cardsList = new Section(
   {
     items: initialCards,
@@ -75,58 +80,32 @@ const cardsList = new Section(
   },
   ".cards"
 );
-//////////////////////////////////////////////////////////////////////////////////
 const editForm = new PopupWithForm({
   popupSelector: ".js-edit-modal",
   handleFormSubmit: (userObject) => {
     user.setUserInfo(userObject);
   },
 });
-//////////////////////////////////////////////////////////////////////////////////
 const addForm = new PopupWithForm({
   popupSelector: ".js-add-modal",
   handleFormSubmit: (card) => {
-    cardsList.addItem(card);
+    cardsList.addItem(createNewCard(card));
   },
 });
-//////////////////////////////////////////////////////////////////////////////////
-
-////////////////////////////////////////////////////////////////////////////////
-// Edit profile handler
-function handleProfileFormSubmit() {
-  personTitle.textContent = titleInput.value;
-  personName.textContent = nameInput.value;
-
-  closePopup(editModalWindow);
-}
-//_____________________________________________________
-// Edit place handler
-function handleFormPlaceSubmit(evt) {
-  evt.preventDefault();
-  // sets the input values to the card.
-  const name = photoTitleInput.value;
-  const link = photoInput.value;
-
-  closePopup(addModalWindow);
-  // renderCard({ name, link }, placeList);
-}
-//////////////////////////////////////////////////////////////////////////////////
 
 cardsList.renderItems();
 editForm.setEventListeners();
 addForm.setEventListeners();
-//////////////////////////////////////////////////////////////////////////////////
-
 //                                EVENT LISTENERS                            //
 //___________________________________________________________________________//
+const nameInput = document.querySelector(profileConfig.nameInput);
+const titleInput = document.querySelector(profileConfig.titleInput);
 
 editProfilePopupButton.addEventListener("click", () => {
   const currentUserInfo = user.getUserInfo();
   nameInput.value = currentUserInfo.userName;
   titleInput.value = currentUserInfo.userTitle;
   editForm.open();
-
-  openPopup(editModalWindow);
 });
 //________________________________________________________________________________
 addPlacePopupButton.addEventListener("click", () => {
@@ -146,5 +125,3 @@ previewImageCloseButton.addEventListener("click", () =>
   closePopup(previewImageModalWindow)
 );
 //________________________________________________________________________________
-editModalBox.addEventListener("submit", handleProfileFormSubmit);
-addModalBox.addEventListener("submit", handleFormPlaceSubmit);

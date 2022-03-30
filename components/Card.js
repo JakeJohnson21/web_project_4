@@ -15,9 +15,10 @@ const previewCaption = previewImageElement.querySelector(
 //_____________________________________________________________________________
 //
 class Card {
-  constructor(data, cardSelector) {
+  constructor(data, cardSelector, { handlePreviewPopup }) {
     this._title = data.name;
     this._link = data.link;
+    this._handlePreviewPopup = handlePreviewPopup;
     this._cardSelector = cardSelector;
   }
   //GRABS THE HTML TEMPLATE ELEMENT
@@ -58,15 +59,13 @@ class Card {
   //__________________________________________________________________________
   //
   // the full size of the image from the card. shows caption.
+  // _handlePreviewPopup() {
+  //   imageElement.src = this._link;
+  //   previewCaption.textContent = this._title;
+  //   imageElement.alt = this._title;
 
-  // Rafael- do I need to remove this from here?
-  _handlePreviewPopup() {
-    imageElement.src = this._link;
-    previewCaption.textContent = this._title;
-    imageElement.alt = this._title;
-
-    openPopup(previewImageModalWindow);
-  }
+  //   openPopup(previewImageModalWindow);
+  // }
   //__________________________________________________________________________
   generateCard() {
     //grabs the current card itself.

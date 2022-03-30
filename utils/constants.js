@@ -1,3 +1,6 @@
+// CARD TEMPLATE SELECTOR
+export const cardSelector = "#card-template";
+// INITIAL CARDS
 export const initialCards = [
   {
     name: "Milwaukee, Wisconsin",
@@ -24,8 +27,7 @@ export const initialCards = [
     link: "images/dubai.jpg",
   },
 ];
-//-------------------------------------------------------
-//
+// SETTINGS
 export const settings = {
   formSelector: ".modal__box",
   inputSelector: ".modal__input",
@@ -34,83 +36,39 @@ export const settings = {
   inputErrorClass: "modal__input_type_error",
   errorClass: "modal__input_error",
 };
-//-------------------------------------------------------
-//
+
 // PROFILE CONFIG OBJECT-
 export const profileConfig = {
   nameInput: ".modal__input_profile_name",
   titleInput: ".modal__input_profile_title",
 };
-//-------------------------------------------------------
-//
 // PLACE CONFIG OBJECT-
 export const placeConfig = {
   photoTitleInput: ".modal__input_image_title",
   photoInput: ".modal__input_image_link",
 };
-//-------------------------------------------------------
-//
 // PHOTO CONFIG OBJECT-
-export const photoConfig = {};
-//
-//-------------------------------------------------------
+export const photoConfig = {
+  name: ".modal__preview-text",
+  link: ".modal__preview-image",
+};
 
-export const placeList = document.querySelector(".cards");
-export const cardSelector = "#card-template";
+// MODAL WINDOW CONFIG OBJECT
+export const modalWindowConfig = {
+  edit: ".js-edit-modal",
+  add: ".js-add-modal",
+  preview: ".js-preview-modal",
+};
+// FORM CONFIG OBJECT
+export const formConfig = {
+  box: ".modal__box",
+};
 
-export const editModalWindow = document.querySelector(".js-edit-modal");
-export const addModalWindow = document.querySelector(".js-add-modal");
-export const previewImageModalWindow =
-  document.querySelector(".js-preview-modal");
+export const closeButtonConfig = {
+  close: ".modal__close-button",
+};
 //
-//MODAL BOX
-export const editModalBox = editModalWindow.querySelector(".modal__box");
-export const addModalBox = addModalWindow.querySelector(".modal__box");
-//
-//---------------------------------------------------------------------------//
-//      D                     INPUT DECLARATIONS                             //
-//___________________________________________________________________________//
-//
-
-//
-//PROFILE NAME
-export const nameInput = document.querySelector(".modal__input_profile_name");
-//
-//PROFILE TITLE
-export const titleInput = document.querySelector(".modal__input_profile_title");
-//
-
-//PLACE TITLE
-export const photoTitleInput = document.querySelector(
-  ".modal__input_image_title"
-);
-//PLACE PHOTO
-export const photoInput = document.querySelector(".modal__input_image_link");
-//
-
-//---------------------------------------------------------------------------//
-//      D                INPUT END POINTS (DESTINATION)                      //
-//___________________________________________________________________________//
-//
-//PROFILE NAME
-export const personName = document.querySelector(".profile__title-name");
-//
-//PROFILE TITLE
-export const personTitle = document.querySelector(".profile__text-job");
-//
-//ClOSE MODAL BUTTONS
-export const editModalCloseButton = editModalWindow.querySelector(
-  ".modal__close-button"
-);
-export const addModalCloseButton = addModalWindow.querySelector(
-  ".modal__close-button"
-);
-export const previewImageCloseButton = previewImageModalWindow.querySelector(
-  ".modal__close-button"
-);
-//
-//OPEN MODAL BUTTONS
-export const editProfilePopupButton = document.querySelector(
-  ".profile__edit-button"
-);
-export const addPlacePopupButton = document.querySelector(".profile__add");
+export const popupButtonConfig = {
+  edit: ".profile__edit-button",
+  add: ".profile__add",
+};

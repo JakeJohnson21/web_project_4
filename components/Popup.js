@@ -4,13 +4,13 @@ export default class Popup {
   }
   open() {
     this.popupSelector.classList.add("modal__is-opened");
-    document.addEventListener("keyup", () => {
+    document.addEventListener("keyup", (evt) => {
       this._handleEscapeClose(evt);
     });
   }
   close() {
     this.popupSelector.classList.remove("modal__is-opened");
-    document.removeEventListener("keyup", () => {
+    document.removeEventListener("keyup", (evt) => {
       this._handleEscapeClose(evt);
     });
   }
