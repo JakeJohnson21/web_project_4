@@ -5,7 +5,7 @@ export default class Section {
     this._container = document.querySelector(containerSelector);
   }
   addItem(element) {
-    this._container.preppend(element);
+    this._container.prepend(element);
   }
 
   clear() {

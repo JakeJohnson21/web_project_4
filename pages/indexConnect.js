@@ -5,60 +5,50 @@
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import Section from "../components/Section.js";
-import Popop from "../components/Popup.js";
 import PopupWithForm from "../components/PopupWithForm.js";
-import PopupWithImage from "../components/PopupWithImage.js";
-import { openPopup, closePopup } from "../scripts/utils.js";
-import { cardSelector, placeList } from "../components/constants.js";
-d;
+// import PopupWithImage from "../components/PopupWithImage.js";
+import { openPopup, closePopup } from "../utils/utils.js";
+import {
+  cardSelector,
+  editModalWindow,
+  placeList,
+  initialCards,
+  settings,
+  addModalWindow,
+  addModalBox,
+  editModalBox,
+  editProfilePopupButton,
+  addPlacePopupButton,
+  editModalCloseButton,
+  addModalCloseButton,
+  previewImageCloseButton,
+} from "../utils/constants.js";
 //
 //---------------------------------------------------------------------------//
 //          INITIAL CARDS ARRAY                                              //
 //___________________________________________________________________________//
 
-const initialCards = [
-  {
-    name: "Milwaukee, Wisconsin",
-    link: "images/milwaukee.jpg",
-  },
-  {
-    name: "Chicago, Illinois",
-    link: "images/chicago.jpg",
-  },
-  {
-    name: "Waikiki Beach O'ahu",
-    link: "images/waikiki.jpg",
-  },
-  {
-    name: "Sydney Harbour, Australia",
-    link: "images/sydney.jpg",
-  },
-  {
-    name: "London, England",
-    link: "images/london.jpg",
-  },
-  {
-    name: "Dubai",
-    link: "images/dubai.jpg",
-  },
-];
+//__________________________________________________________________________
 //
-const settings = {
-  formSelector: ".modal__box",
-  inputSelector: ".modal__input",
-  submitButtonSelector: ".modal__button",
-  inactiveButtonClass: "modal__button_disabled",
-  inputErrorClass: "modal__input_type_error",
-  errorClass: "modal__input_error",
-};
+const editForm = new PopupWithForm({
+  popupSelector: editModalWindow,
+  handleFormSubmit: (userObject) => {
+    UserInfo.set(userObject);
+  },
+});
 
+const addForm = new PopupWithForm({
+  popupSelector: addModalWindow,
+  handleFormSubmit: (evt) => {},
+});
 //__________________________________________________________________________
 //
 const addFormValidator = new FormValidator(addModalBox, settings);
-addFormValidator.enableValidation();
+addFormValidator.asd();
 
 const editFormValidator = new FormValidator(editModalBox, settings);
 editFormValidator.enableValidation();
+//
 //__________________________________________________________________________
 
 const cardsList = new Section(
@@ -71,5 +61,38 @@ const cardsList = new Section(
       cardsList.addItem(cardElement);
     },
   },
-  placeList
+  ".cards"
 );
+
+cardsList.renderItems();
+//__________________________________________________________________________//
+//__________________________________________________________________________//
+//__________________________________________________________________________//
+//
+editProfilePopupButton.addEventListener("click", () => {
+  titleInput.value = personTitle.textContent;
+  nameInput.value = personName.textContent;
+  openPopup(editModalWindow);
+});
+//__________________________________________________________________________
+//
+addPlacePopupButton.addEventListener("click", () => {
+  addFormValidator.resetValidation();
+  openPopup(addModalWindow);
+});
+//__________________________________________________________________________
+//
+editModalCloseButton.addEventListener("click", () => {
+  closePopup(editModalWindow);
+});
+//________________________________________________________________________________
+//
+addModalCloseButton.addEventListener("click", () => {
+  closePopup(addModalWindow);
+});
+
+previewImageCloseButton.addEventListener("click", () =>
+  closePopup(previewImageModalWindow)
+);
+//________________________________________________________________________________
+//

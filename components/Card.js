@@ -1,23 +1,18 @@
 //-----------------------//
-import { openPopup } from "../scripts/utils.js";
-//-----------------------//
-//_____________________________________________________________________________
-//
-const previewImageElement = document.querySelector(".modal__container_preview");
-const previewImageModalWindow = document.querySelector(".js-preview-modal");
-const imageElement = previewImageElement.querySelector(".modal__preview-image");
-const previewCaption = previewImageElement.querySelector(
-  ".modal__preview-text"
-);
+// import { openPopup } from "../utils/utils.js";
 
-//-----------------------------------------------------------------------------
-//       CARD CLASS
-//_____________________________________________________________________________
-//
+// const previewImageElement = document.querySelector(".modal__container_preview");
+// const previewImageModalWindow = document.querySelector(".js-preview-modal");
+// const imageElement = previewImageElement.querySelector(".modal__preview-image");
+// const previewCaption = previewImageElement.querySelector(
+//   ".modal__preview-text"
+// );
+
 class Card {
-  constructor(data, cardSelector) {
+  constructor(data, cardSelector, { handlePreviewPopup }) {
     this._title = data.name;
     this._link = data.link;
+    this._handlePreviewPopup = handlePreviewPopup;
     this._cardSelector = cardSelector;
   }
   //GRABS THE HTML TEMPLATE ELEMENT
@@ -58,13 +53,13 @@ class Card {
   //__________________________________________________________________________
   //
   // the full size of the image from the card. shows caption.
-  _handlePreviewPopup() {
-    imageElement.src = this._link;
-    previewCaption.textContent = this._title;
-    imageElement.alt = this._title;
+  // _handlePreviewPopup() {
+  //   imageElement.src = this._link;
+  //   previewCaption.textContent = this._title;
+  //   imageElement.alt = this._title;
 
-    openPopup(previewImageModalWindow);
-  }
+  //   openPopup(previewImageModalWindow);
+  // }
   //__________________________________________________________________________
   generateCard() {
     //grabs the current card itself.
