@@ -7,12 +7,23 @@ export default class Popup {
     document.addEventListener("keyup", (evt) => {
       this._handleEscapeClose(evt);
     });
+    this.popupSelector.addEventListener("click", (evt) => {
+      this._handleClickOnOverlay(evt);
+    });
   }
   close() {
     this.popupSelector.classList.remove("modal__is-opened");
     document.removeEventListener("keyup", (evt) => {
       this._handleEscapeClose(evt);
     });
+    this.popupSelector.removeEventListener("click", (evt) => {
+      this._handleClickOnOverlay(evt);
+    });
+  }
+  _handleClickOnOverlay(evt) {
+    if (!evt.target.closest(".modal__container")) {
+      this.close(evt.currentTarget);
+    }
   }
   _handleEscapeClose(evt) {
     evt.preventDefault();
