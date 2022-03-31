@@ -67,7 +67,7 @@ const preImage = new PopupWithImage({
 const createNewCard = (item) => {
   const card = new Card(item, cardSelector, {
     handlePreviewPopup: () => {
-      preImage.open(photoConfig.name, photoConfig.link);
+      preImage.open(photoConfig.title, photoConfig.link);
     },
   });
 
@@ -121,7 +121,5 @@ addModalCloseButton.addEventListener("click", () => {
   closePopup(addModalWindow);
 });
 //________________________________________________________________________________
-previewImageCloseButton.addEventListener("click", () =>
-  closePopup(previewImageModalWindow)
-);
+previewImageCloseButton.addEventListener("click", () => preImage.close());
 //________________________________________________________________________________

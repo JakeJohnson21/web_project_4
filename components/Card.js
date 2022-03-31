@@ -1,19 +1,13 @@
 //-----------------------//
-import { openPopup } from "../utils/utils.js";
-//-----------------------//
-//_____________________________________________________________________________
-//
-const previewImageElement = document.querySelector(".modal__container_preview");
-const previewImageModalWindow = document.querySelector(".js-preview-modal");
-const imageElement = previewImageElement.querySelector(".modal__preview-image");
-const previewCaption = previewImageElement.querySelector(
-  ".modal__preview-text"
-);
+// import { openPopup } from "../utils/utils.js";
 
-//-----------------------------------------------------------------------------
-//       CARD CLASS
-//_____________________________________________________________________________
-//
+// const previewImageElement = document.querySelector(".modal__container_preview");
+// const previewImageModalWindow = document.querySelector(".js-preview-modal");
+// const imageElement = previewImageElement.querySelector(".modal__preview-image");
+// const previewCaption = previewImageElement.querySelector(
+//   ".modal__preview-text"
+// );
+
 class Card {
   constructor(data, cardSelector, { handlePreviewPopup }) {
     this._title = data.name;

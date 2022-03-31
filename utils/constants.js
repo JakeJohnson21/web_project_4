@@ -49,7 +49,7 @@ export const placeConfig = {
 };
 // PHOTO CONFIG OBJECT-
 export const photoConfig = {
-  name: ".modal__preview-text",
+  title: ".modal__preview-text",
   link: ".modal__preview-image",
 };
 
