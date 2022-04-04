@@ -6,21 +6,21 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
   devtool: "inline-source-map",
   entry: {
-    main: "./src/index.js",
+    main: "./src/pages/index.js",
   },
+  stats: "errors-only",
   output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "main.js",
+    path: path.resolve(__dirname, "./dist/"), // you could name this anything you want, but let's stick to 'dist'
+    filename: "main.js", // you could also name this anything you want, but let's stick to 'main.js'
     publicPath: "",
   },
   target: ["web", "es5"],
-  stats: { children: true },
   mode: "development",
   devServer: {
-    static: path.resolve(__dirname, "./dist"),
-    compress: true,
-    port: 8080,
-    open: true,
+    static: path.resolve(__dirname, "./dist"), // specifies a folder from where to serve the application and its contents
+    compress: true, // this will speed up file loading in development mode
+    port: 8080, // will open your site at localhost:8080 (you can use another port)
+    open: true, // site will open automatically in the browser after executing npm run dev
   },
   module: {
     rules: [
@@ -30,7 +30,7 @@ module.exports = {
         // a regular expression that searches for all js files
         test: /\.js$/,
         // all files must be processed by babel-loader
-        loader: "babel-loader",
+        use: "babel-loader",
         // exclude the node_modules folder, we don't need to process files in it
         exclude: "/node_modules/",
       },
@@ -40,11 +40,7 @@ module.exports = {
           MiniCssExtractPlugin.loader,
           {
             loader: "css-loader",
-            options: {
-              importLoaders: 1,
-            },
           },
-          "postcss-loader",
         ],
       },
       {
@@ -59,6 +55,6 @@ module.exports = {
       template: "./src/index.html", // path to our index.html file
     }),
     new CleanWebpackPlugin(),
-    new MiniCssExtractPlugin(), // connect the plugin for merging CSS files
+    new MiniCssExtractPlugin(),
   ],
 };

@@ -4,7 +4,11 @@ import Section from "../components/Section.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
+import "../pages/index.css";
+import aroundSrc from "../images/around.svg";
 //--------------------------------------------------------------------------
+const aroundSvg = document.getElementById("aroundSvg");
+aroundSvg.src = aroundSrc;
 import {
   initialCards,
   settings,
