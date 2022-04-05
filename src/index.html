@@ -4,8 +4,6 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <link rel="stylesheet" href="pages/index.css" />
     <title>Around The U.S.</title>
   </head>
   <body class="page">
@@ -17,7 +15,7 @@
         <div class="profile__text">
           <img
             class="profile__pic"
-            src="images/image.jpg"
+            id="imageImg"
             alt="old man with a red hat smiling"
           />
           <div class="profile__main">
@@ -133,7 +131,7 @@
     <template id="card-template">
       <div class="card__item">
         <img class="card__image" src=" " alt="" />
-        <img src="images/Trash.svg" alt="trash icon" class="card__trash" />
+        <img id="trash-svg" alt="trash icon" class="card__trash" />
         <div class="card__text">
           <h2 class="card__place"></h2>
           <button
@@ -144,21 +142,5 @@
         </div>
       </div>
     </template>
-    <!--/_________________________________________________________________________-->
-
-    <script type="module" src="pages/index.js"></script>
-    <script type="module" src="utils/utils.js"></script>
-    <script type="module" src="components/Card.js"></script>
-    <script type="module" src="components/FormValidator.js"></script>
-    <!--/_________________________________________________________________________-->
-    <script type="module" src="components/Section.js"></script>
-    <script type="module" src="components/Popup.js"></script>
-    <script type="module" src="components/PopupWithForm.js"></script>
-    <script type="module" src="components/PopupWithImage.js"></script>
-    <script type="module" src="components/UserInfo.js"></script>
-
-    <!-- <script type="module" src="pages/indexConnect.js"></script> -->
-
-    <!--/_________________________________________________________________________-->
   </body>
 </html>

@@ -6,9 +6,8 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
 import "../pages/index.css";
 import aroundSrc from "../images/around.svg";
-//--------------------------------------------------------------------------
-const aroundSvg = document.getElementById("aroundSvg");
-aroundSvg.src = aroundSrc;
+import imageSrc from "../images/image.jpg";
+import trashSrc from "../images/Trash.svg";
 import {
   initialCards,
   settings,
@@ -20,6 +19,14 @@ import {
   formConfig,
   cardSelector,
 } from "../utils/constants.js";
+
+//--------------------------------------------------------------------------
+const trashSvg = document.getElementById("trash-svg");
+const imageImg = document.getElementById("imageImg");
+const aroundSvg = document.getElementById("aroundSvg");
+
+imageImg.src = imageSrc;
+aroundSvg.src = aroundSrc;
 
 const editModalWindow = document.querySelector(modalWindowConfig.edit);
 const addModalWindow = document.querySelector(modalWindowConfig.add);

@@ -1,30 +1,37 @@
 // CARD TEMPLATE SELECTOR
 export const cardSelector = "#card-template";
-// INITIAL CARDS
+// INITIAL CARDS IMPORT
+import milwaukeeSrc from "../images/milwaukee.jpg";
+import chicagoSrc from "../images/chicago.jpg";
+import waikikiSrc from "../images/waikiki.jpg";
+import sydneySrc from "../images/sydney.jpg";
+import londonSrc from "../images/london.jpg";
+import dubaiSrc from "../images/dubai.jpg";
+// INITIAL CARDS OBJECT
 export const initialCards = [
   {
     name: "Milwaukee, Wisconsin",
-    link: "images/milwaukee.jpg",
+    link: milwaukeeSrc,
   },
   {
     name: "Chicago, Illinois",
-    link: "images/chicago.jpg",
+    link: chicagoSrc,
   },
   {
     name: "Waikiki Beach O'ahu",
-    link: "images/waikiki.jpg",
+    link: waikikiSrc,
   },
   {
     name: "Sydney Harbour, Australia",
-    link: "images/sydney.jpg",
+    link: sydneySrc,
   },
   {
     name: "London, England",
-    link: "images/london.jpg",
+    link: londonSrc,
   },
   {
     name: "Dubai",
-    link: "images/dubai.jpg",
+    link: dubaiSrc,
   },
 ];
 // SETTINGS

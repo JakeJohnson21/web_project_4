@@ -16,6 +16,10 @@ The code has been refactored using JS classes and modular JS.
 
 Enjoy the new features!
 
+# JS Update: (project 8)
+
+The Javascript has been organized with classes. Webpack has also been introduced providing accessibility to people with older browsers.
+
 Jake Johnson,
 Developer
 
