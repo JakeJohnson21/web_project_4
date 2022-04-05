@@ -1,12 +1,4 @@
-//-----------------------//
-// import { openPopup } from "../utils/utils.js";
-
-// const previewImageElement = document.querySelector(".modal__container_preview");
-// const previewImageModalWindow = document.querySelector(".js-preview-modal");
-// const imageElement = previewImageElement.querySelector(".modal__preview-image");
-// const previewCaption = previewImageElement.querySelector(
-//   ".modal__preview-text"
-// );
+import trashSrc from "../images/Trash.svg";
 
 class Card {
   constructor(data, cardSelector, { handlePreviewPopup }) {
@@ -71,6 +63,8 @@ class Card {
     cardImage.src = this._link;
     cardImage.alt = this._title;
     this._element.querySelector(".card__place").textContent = this._title;
+    this._element.querySelector(".card__trash").src = trashSrc;
+
     //--returns the withdrawl-- (sends the card with filled in details)
     return this._element;
   }

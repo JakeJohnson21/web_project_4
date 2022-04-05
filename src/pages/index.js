@@ -7,7 +7,7 @@ import UserInfo from "../components/UserInfo.js";
 import "../pages/index.css";
 import aroundSrc from "../images/around.svg";
 import imageSrc from "../images/image.jpg";
-import trashSrc from "../images/Trash.svg";
+
 import {
   initialCards,
   settings,
