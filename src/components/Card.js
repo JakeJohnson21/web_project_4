@@ -16,15 +16,15 @@ class Card {
   }
   //__________________________________________________________________________
   //
+
   // heart shaped like button, toggles filled in or outlined.. on / off
   _handleLikeButton = () => {
-    this._element
-      .querySelector(".card__like-button")
-      .classList.toggle("card__like-button_active");
+    const cardLikeButton = this._element.querySelector(".card__like-button");
+    cardLikeButton.classList.toggle("card__like-button_active");
   };
   // trash can icon for deleting the card, removing it from the list
   _handleDeleteButton() {
-    this._element.remove();
+    this._element = null;
   }
   //__________________________________________________________________________
   //
