@@ -65,6 +65,7 @@ export const modalWindowConfig = {
   edit: ".js-edit-modal",
   add: ".js-add-modal",
   preview: ".js-preview-modal",
+  pic: ".js-pic-modal",
 };
 // FORM CONFIG OBJECT
 export const formConfig = {
@@ -78,4 +79,5 @@ export const closeButtonConfig = {
 export const popupButtonConfig = {
   edit: ".profile__edit-button",
   add: ".profile__add",
+  pic: ".profile__pic-button",
 };

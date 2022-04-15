@@ -32,6 +32,7 @@ const addModalWindow = document.querySelector(modalWindowConfig.add);
 const previewImageModalWindow = document.querySelector(
   modalWindowConfig.preview
 );
+const picModalWindow = document.querySelector(modalWindowConfig.pic);
 const addModalBox = addModalWindow.querySelector(formConfig.box);
 const editModalBox = editModalWindow.querySelector(formConfig.box);
 
@@ -41,11 +42,15 @@ const editModalCloseButton = editModalWindow.querySelector(
 const addModalCloseButton = addModalWindow.querySelector(
   closeButtonConfig.close
 );
+const picModalCloseButton = picModalWindow.querySelector(
+  closeButtonConfig.close
+);
 const previewImageCloseButton = previewImageModalWindow.querySelector(
   closeButtonConfig.close
 );
 const editProfilePopupButton = document.querySelector(popupButtonConfig.edit);
 const addPlacePopupButton = document.querySelector(popupButtonConfig.add);
+const editPicPopupButton = document.querySelector(popupButtonConfig.pic);
 
 //__________________________________________________________________________
 //
@@ -92,10 +97,15 @@ const addForm = new PopupWithForm({
     cardsList.addItem(createNewCard(card));
   },
 });
+// const picForm = new PopupWithForm({
+//   popupSelector: ".js-pic-modal",
+//   handleFormSubmit: (pic) => {},
+// });
 
 cardsList.renderItems();
 editForm.setEventListeners();
 addForm.setEventListeners();
+picForm.setEventListeners();
 //                                EVENT LISTENERS                            //
 //___________________________________________________________________________//
 const nameInput = document.querySelector(profileConfig.nameInput);
@@ -106,6 +116,11 @@ editProfilePopupButton.addEventListener("click", () => {
   nameInput.value = currentUserInfo.userName;
   titleInput.value = currentUserInfo.userTitle;
   editForm.open();
+});
+
+editPicPopupButton.addEventListener("click", () => {
+  addFormValidator.resetValidation();
+  picForm.open();
 });
 //________________________________________________________________________________
 addPlacePopupButton.addEventListener("click", () => {
@@ -118,3 +133,4 @@ editModalCloseButton.addEventListener("click", () => editForm.close());
 addModalCloseButton.addEventListener("click", () => addForm.close());
 previewImageCloseButton.addEventListener("click", () => preImage.close());
 //________________________________________________________________________________
+picModalCloseButton.addEventListener("click", () => picForm.close());
