@@ -97,10 +97,10 @@ const addForm = new PopupWithForm({
     cardsList.addItem(createNewCard(card));
   },
 });
-// const picForm = new PopupWithForm({
-//   popupSelector: ".js-pic-modal",
-//   handleFormSubmit: (pic) => {},
-// });
+const picForm = new PopupWithForm({
+  popupSelector: ".js-pic-modal",
+  handleFormSubmit: (pic) => {},
+});
 
 cardsList.renderItems();
 editForm.setEventListeners();
