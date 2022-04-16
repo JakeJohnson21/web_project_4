@@ -9,6 +9,9 @@
   top: 47px;
   width: 26px;
   height: 26px;
-
+  opacity: 0;
   z-index: 2;
+}
+.profile__pic:hover + .profile__pic-button {
+  opacity: 100;
 }

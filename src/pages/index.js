@@ -4,6 +4,7 @@ import Section from "../components/Section.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
+import ProfileImage from "../components/ProfileImage.js";
 import "./index.css";
 import aroundSrc from "../images/around.svg";
 import imageSrc from "../images/image.jpg";
@@ -59,10 +60,17 @@ addFormValidator.enableValidation();
 
 const editFormValidator = new FormValidator(editModalBox, settings);
 editFormValidator.enableValidation();
+//__________________________________________________________________________
+//
 const user = new UserInfo({
   userName: ".profile__title-name",
   userTitle: ".profile__text-job",
 });
+
+const pic = new ProfileImage({
+  image: ".profile__pic",
+});
+//__________________________________________________________________________
 // AN INSTANCE OF THE POPUP WITH IMAGE CLASS
 const preImage = new PopupWithImage({
   popupSelector: ".js-preview-modal",
@@ -99,7 +107,9 @@ const addForm = new PopupWithForm({
 });
 const picForm = new PopupWithForm({
   popupSelector: ".js-pic-modal",
-  handleFormSubmit: (pic) => {},
+  handleFormSubmit: (picObject) => {
+    pic.setProfileImage(picObject);
+  },
 });
 
 cardsList.renderItems();
