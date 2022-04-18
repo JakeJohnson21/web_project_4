@@ -52,9 +52,13 @@ const previewImageCloseButton = previewImageModalWindow.querySelector(
 const editProfilePopupButton = document.querySelector(popupButtonConfig.edit);
 const addPlacePopupButton = document.querySelector(popupButtonConfig.add);
 const editPicPopupButton = document.querySelector(popupButtonConfig.pic);
-
+const deleteCardPopupButton = document
+  .querySelector(cardSelector)
+  .content.querySelector(popupButtonConfig.delete)
+  .cloneNode(true);
 //__________________________________________________________________________
 //
+
 const addFormValidator = new FormValidator(addModalBox, settings);
 addFormValidator.enableValidation();
 
@@ -82,6 +86,7 @@ const createNewCard = (item) => {
     handlePreviewPopup: () => {
       preImage.open(item, photoConfig.title, photoConfig.link);
     },
+    handleDeleteCard: () => {},
   });
 
   return card.generateCard();
@@ -111,11 +116,24 @@ const picForm = new PopupWithForm({
     pic.setProfileImage(picObject);
   },
 });
+const deleteForm = new PopupWithForm({
+  popupSelector: ".js-delete-modal",
+  handleFormSubmit: () => {
+    document
+      .querySelector(cardSelector)
+      .content.querySelector("card__trash")
+      .cloneNode(true)
+      .addEventListener("click", function () {
+        this.cardSelector.remove();
+      });
+  },
+});
 
 cardsList.renderItems();
 editForm.setEventListeners();
 addForm.setEventListeners();
 picForm.setEventListeners();
+deleteForm.setEventListeners();
 //                                EVENT LISTENERS                            //
 //___________________________________________________________________________//
 const nameInput = document.querySelector(profileConfig.nameInput);
@@ -137,6 +155,13 @@ addPlacePopupButton.addEventListener("click", () => {
   addFormValidator.resetValidation();
   addForm.open();
 });
+//________________________________________________________________________________
+//________________________________________________________________________________
+//
+deleteCardPopupButton.addEventListener("click", () => {
+  deleteForm.open();
+});
+//________________________________________________________________________________
 //________________________________________________________________________________
 editModalCloseButton.addEventListener("click", () => editForm.close());
 //________________________________________________________________________________

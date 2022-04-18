@@ -80,4 +80,5 @@ export const popupButtonConfig = {
   edit: ".profile__edit-button",
   add: ".profile__add",
   pic: ".profile__pic-button",
+  delete: ".card__trash",
 };

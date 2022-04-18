@@ -1,10 +1,11 @@
 import trashSrc from "../images/Trash.svg";
-
+import { popupButtonConfig } from "../utils/constants";
 class Card {
-  constructor(data, cardSelector, { handlePreviewPopup }) {
+  constructor(data, cardSelector, { handlePreviewPopup, handleDeleteCard }) {
     this._title = data.name;
     this._link = data.link;
     this._handlePreviewPopup = handlePreviewPopup;
+    this._handleDeleteCard = handleDeleteCard;
     this._cardSelector = cardSelector;
   }
   //GRABS THE HTML TEMPLATE ELEMENT
@@ -33,25 +34,21 @@ class Card {
     this._element
       .querySelector(".card__like-button")
       .addEventListener("click", () => this._handleLikeButton());
-    //delete button
-    this._element
-      .querySelector(".card__trash")
-      .addEventListener("click", () => this._handleDeleteButton());
-    // //preview button
+
+    // DELETE FORM BUTTON
+    // this._element
+    //     .querySelector(".card__trash")
+    //     .addEventListener("click", () => this._handleDeleteButton());
+    //preview button
     this._element
       .querySelector(".card__image")
       .addEventListener("click", () => this._handlePreviewPopup());
   }
   //__________________________________________________________________________
   //
-  // the full size of the image from the card. shows caption.
-  // _handlePreviewPopup() {
-  //   imageElement.src = this._link;
-  //   previewCaption.textContent = this._title;
-  //   imageElement.alt = this._title;
-
-  //   openPopup(previewImageModalWindow);
-  // }
+  // deleteCardPopupButton.addEventListener("click", () => {
+  //   deleteForm.open()
+  // })
   //__________________________________________________________________________
   generateCard() {
     //grabs the current card itself.
