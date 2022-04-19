@@ -20,6 +20,7 @@ import {
   formConfig,
   cardSelector,
 } from "../utils/constants.js";
+import PopupWithFormSubmit from "../components/PopupWithFormSubmit.js";
 
 //--------------------------------------------------------------------------
 const imageImg = document.getElementById("imageImg");
@@ -86,7 +87,9 @@ const createNewCard = (item) => {
     handlePreviewPopup: () => {
       preImage.open(item, photoConfig.title, photoConfig.link);
     },
-    handleDeleteCard: () => {},
+    handleDeleteCard: () => {
+      deleteForm.open();
+    },
   });
 
   return card.generateCard();
@@ -116,16 +119,10 @@ const picForm = new PopupWithForm({
     pic.setProfileImage(picObject);
   },
 });
-const deleteForm = new PopupWithForm({
+const deleteForm = new PopupWithFormSubmit(cardSelector, {
   popupSelector: ".js-delete-modal",
   handleFormSubmit: () => {
-    document
-      .querySelector(cardSelector)
-      .content.querySelector("card__trash")
-      .cloneNode(true)
-      .addEventListener("click", function () {
-        this.cardSelector.remove();
-      });
+    cardSelector.remove();
   },
 });
 
@@ -158,9 +155,7 @@ addPlacePopupButton.addEventListener("click", () => {
 //________________________________________________________________________________
 //________________________________________________________________________________
 //
-deleteCardPopupButton.addEventListener("click", () => {
-  deleteForm.open();
-});
+
 //________________________________________________________________________________
 //________________________________________________________________________________
 editModalCloseButton.addEventListener("click", () => editForm.close());

@@ -1,5 +1,5 @@
 import trashSrc from "../images/Trash.svg";
-import { popupButtonConfig } from "../utils/constants";
+
 class Card {
   constructor(data, cardSelector, { handlePreviewPopup, handleDeleteCard }) {
     this._title = data.name;
@@ -25,7 +25,7 @@ class Card {
   };
   // trash can icon for deleting the card, removing it from the list
   _handleDeleteButton() {
-    this._element.remove();
+    this._handleDeleteCard();
   }
   //__________________________________________________________________________
   //
@@ -36,9 +36,9 @@ class Card {
       .addEventListener("click", () => this._handleLikeButton());
 
     // DELETE FORM BUTTON
-    // this._element
-    //     .querySelector(".card__trash")
-    //     .addEventListener("click", () => this._handleDeleteButton());
+    this._element
+      .querySelector(".card__trash")
+      .addEventListener("click", () => this._handleDeleteButton());
     //preview button
     this._element
       .querySelector(".card__image")
