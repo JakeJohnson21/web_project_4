@@ -24,9 +24,12 @@ class Card {
     cardLikeButton.classList.toggle("card__like-button_active");
   };
   // trash can icon for deleting the card, removing it from the list
-  _handleDeleteButton() {
-    this._handleDeleteCard();
+  _handleDeleteButton(i) {
+    this._handleDeleteCard(i);
+    console.log(this._element);
+    return this._element;
   }
+
   //__________________________________________________________________________
   //
   _setEventListeners() {
@@ -38,7 +41,7 @@ class Card {
     // DELETE FORM BUTTON
     this._element
       .querySelector(".card__trash")
-      .addEventListener("click", () => this._handleDeleteButton());
+      .addEventListener("click", () => this._handleDeleteButton(this._element));
     //preview button
     this._element
       .querySelector(".card__image")

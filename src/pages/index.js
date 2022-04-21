@@ -87,8 +87,9 @@ const createNewCard = (item) => {
     handlePreviewPopup: () => {
       preImage.open(item, photoConfig.title, photoConfig.link);
     },
-    handleDeleteCard: () => {
+    handleDeleteCard: (i) => {
       deleteForm.open();
+      console.log(i);
     },
   });
 
@@ -121,8 +122,8 @@ const picForm = new PopupWithForm({
 });
 const deleteForm = new PopupWithFormSubmit(cardSelector, {
   popupSelector: ".js-delete-modal",
-  handleFormSubmit: () => {
-    cardSelector.remove();
+  handleFormSubmit: (i) => {
+    console.log();
   },
 });
 
