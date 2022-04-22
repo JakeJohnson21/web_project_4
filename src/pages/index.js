@@ -8,6 +8,7 @@ import ProfileImage from "../components/ProfileImage.js";
 import "./index.css";
 import aroundSrc from "../images/around.svg";
 import imageSrc from "../images/image.jpg";
+import { Api } from "../utils/Api.js";
 
 import {
   initialCards,
@@ -57,6 +58,14 @@ const deleteCardPopupButton = document
   .querySelector(cardSelector)
   .content.querySelector(popupButtonConfig.delete)
   .cloneNode(true);
+
+const api = new Api({
+  baseUrl: "https://around.nomoreparties.co/v1/group-12",
+  headers: {
+    authorization: "4661177c-aa9a-4f93-9cdc-32dae0d4e0e3",
+    "Content-Type": "application/json",
+  },
+});
 //__________________________________________________________________________
 //
 

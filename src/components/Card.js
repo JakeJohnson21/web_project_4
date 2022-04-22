@@ -26,7 +26,6 @@ class Card {
   // trash can icon for deleting the card, removing it from the list
   _handleDeleteButton() {
     this._handleDeleteCard(this._element);
-    console.log(this._element);
   }
 
   //__________________________________________________________________________
