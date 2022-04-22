@@ -26,5 +26,6 @@ fetch("https://around.nomoreparties.co/v1/group-12/cards", {
 })
   .then((res) => res.json())
   .then((result) => {
+    git;
     console.log(result);
   });

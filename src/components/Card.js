@@ -24,10 +24,9 @@ class Card {
     cardLikeButton.classList.toggle("card__like-button_active");
   };
   // trash can icon for deleting the card, removing it from the list
-  _handleDeleteButton(i) {
-    this._handleDeleteCard(i);
+  _handleDeleteButton() {
+    this._handleDeleteCard(this._element);
     console.log(this._element);
-    return this._element;
   }
 
   //__________________________________________________________________________
