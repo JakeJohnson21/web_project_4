@@ -8,7 +8,7 @@ import ProfileImage from "../components/ProfileImage.js";
 import "./index.css";
 import aroundSrc from "../images/around.svg";
 import imageSrc from "../images/image.jpg";
-import { Api } from "../utils/Api.js";
+import { Api } from "../components/Api.js";
 
 import {
   initialCards,
@@ -69,6 +69,8 @@ const api = new Api({
 //__________________________________________________________________________
 //
 
+//__________________________________________________________________________
+//
 const addFormValidator = new FormValidator(addModalBox, settings);
 addFormValidator.enableValidation();
 
@@ -107,6 +109,7 @@ const createNewCard = (item) => {
 
   return card.generateCard();
 };
+console.log(api.getInitalCards());
 const cardsList = new Section(
   {
     items: initialCards,
