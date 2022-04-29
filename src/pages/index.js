@@ -54,10 +54,6 @@ const previewImageCloseButton = previewImageModalWindow.querySelector(
 const editProfilePopupButton = document.querySelector(popupButtonConfig.edit);
 const addPlacePopupButton = document.querySelector(popupButtonConfig.add);
 const editPicPopupButton = document.querySelector(popupButtonConfig.pic);
-const deleteCardPopupButton = document
-  .querySelector(cardSelector)
-  .content.querySelector(popupButtonConfig.delete)
-  .cloneNode(true);
 
 const api = new Api({
   baseUrl: "https://around.nomoreparties.co/v1/group-12",
@@ -93,6 +89,7 @@ const preImage = new PopupWithImage({
 });
 ///
 // an instruction for processing a Card instance here
+
 const createNewCard = (item) => {
   const card = new Card(item, cardSelector, {
     handlePreviewPopup: () => {
@@ -109,14 +106,29 @@ const createNewCard = (item) => {
 
   return card.generateCard();
 };
-console.log(api.getInitalCards());
-const cardsList = new Section(
-  {
-    items: initialCards,
-    renderer: (item) => cardsList.addItem(createNewCard(item)),
-  },
-  ".cards"
-);
+let cardsList;
+
+api.getInitialCards().then((cards) => {
+  cardsList = new Section(
+    {
+      items: cards,
+      renderer: (item) => cardsList.addItem(createNewCard(item)),
+    },
+    ".cards"
+  );
+
+  cardsList.renderItems();
+});
+///////////////////////////////////////////
+// const cardsList = new Section(
+//   {
+//     items: initialCards,
+//     renderer: (item) => cardsList.addItem(createNewCard(item)),
+//   },
+//   ".cards"
+// );
+///////////////////////////////////////////
+
 const editForm = new PopupWithForm({
   popupSelector: ".js-edit-modal",
   handleFormSubmit: (userObject) => {
@@ -139,7 +151,6 @@ const deleteForm = new PopupWithFormSubmit({
   popupSelector: ".js-delete-modal",
 });
 
-cardsList.renderItems();
 editForm.setEventListeners();
 addForm.setEventListeners();
 picForm.setEventListeners();
