@@ -34,6 +34,9 @@ export const initialCards = [
     link: dubaiSrc,
   },
 ];
+export const likes = {
+  cardLikes: ".card__like-text",
+};
 // SETTINGS
 export const settings = {
   formSelector: ".modal__box",

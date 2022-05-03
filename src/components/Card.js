@@ -1,12 +1,20 @@
 import trashSrc from "../images/Trash.svg";
 
 class Card {
-  constructor(data, cardSelector, { handlePreviewPopup, handleDeleteCard }) {
+  constructor(
+    data,
+    cardSelector,
+    { handlePreviewPopup, handleDeleteCard, ownerId, currentLikes }
+  ) {
     this._title = data.name;
     this._link = data.link;
     this._handlePreviewPopup = handlePreviewPopup;
+
     this._handleDeleteCard = handleDeleteCard;
+    // this._handleLikesCount = handleLikesCount;
     this._cardSelector = cardSelector;
+    this._ownerId = ownerId;
+    this._currentLikes = currentLikes;
   }
   //GRABS THE HTML TEMPLATE ELEMENT
   _getTemplate() {
@@ -17,11 +25,24 @@ class Card {
   }
   //__________________________________________________________________________
   //
-
+  _handleTrashVisibility() {
+    this._element
+      .querySelector(".card__trash")
+      .classList.add(
+        this._userId === this._ownerId
+          ? "card__trash_visibile"
+          : "card__trash_hidden"
+      );
+  }
+  _likesCount() {
+    this._element.querySelector(".card__like-text").textContent =
+      this._currentLikes.value;
+  }
   // heart shaped like button, toggles filled in or outlined.. on / off
   _handleLikeButton = () => {
     const cardLikeButton = this._element.querySelector(".card__like-button");
     cardLikeButton.classList.toggle("card__like-button_active");
+    // this.handleLikesCount();
   };
   // trash can icon for deleting the card, removing it from the list
   _handleDeleteButton() {
@@ -61,8 +82,10 @@ class Card {
     cardImage.src = this._link;
     cardImage.alt = this._title;
     this._element.querySelector(".card__place").textContent = this._title;
+    this._handleTrashVisibility();
     this._element.querySelector(".card__trash").src = trashSrc;
-
+    this._likesCount();
+    console.log(this._ownerId);
     //--returns the withdrawl-- (sends the card with filled in details)
     return this._element;
   }

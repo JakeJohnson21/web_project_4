@@ -11,7 +11,6 @@ import imageSrc from "../images/image.jpg";
 import { Api } from "../components/Api.js";
 
 import {
-  initialCards,
   settings,
   profileConfig,
   photoConfig,
@@ -20,8 +19,21 @@ import {
   popupButtonConfig,
   formConfig,
   cardSelector,
+  likes,
 } from "../utils/constants.js";
+
 import PopupWithFormSubmit from "../components/PopupWithFormSubmit.js";
+//////////////////////////////////////////
+fetch("https://around.nomoreparties.co/v1/group-12/cards", {
+  headers: {
+    authorization: "4661177c-aa9a-4f93-9cdc-32dae0d4e0e3",
+    "Content-Type": "application/json",
+  },
+})
+  .then((res) => {
+    return res.json();
+  })
+  .then((res) => console.log(res));
 
 //--------------------------------------------------------------------------
 const imageImg = document.getElementById("imageImg");
@@ -29,7 +41,7 @@ const aroundSvg = document.getElementById("aroundSvg");
 
 imageImg.src = imageSrc;
 aroundSvg.src = aroundSrc;
-
+const cardLikes = document.querySelector(likes.cardLikes);
 const editModalWindow = document.querySelector(modalWindowConfig.edit);
 const addModalWindow = document.querySelector(modalWindowConfig.add);
 const previewImageModalWindow = document.querySelector(
@@ -62,6 +74,7 @@ const api = new Api({
     "Content-Type": "application/json",
   },
 });
+
 //__________________________________________________________________________
 //
 
@@ -89,7 +102,13 @@ const preImage = new PopupWithImage({
 });
 ///
 // an instruction for processing a Card instance here
-
+////////////////////////////////////////////////////
+// api.getLikes().then((data) =>
+//   data.forEach((like) => {
+//     like.likes.length = cardLikes.textContent;
+//   })
+// );
+////////////////////////////////////////////////////
 const createNewCard = (item) => {
   const card = new Card(item, cardSelector, {
     handlePreviewPopup: () => {
@@ -98,14 +117,27 @@ const createNewCard = (item) => {
     handleDeleteCard: (card) => {
       deleteForm.open();
       deleteForm.setSubmitAction(() => {
-        card.remove();
-        deleteForm.close();
+        api.deleteCard(card).then(() => {
+          card.remove();
+          deleteForm.close();
+        });
+      });
+    },
+    ownerId: () => {
+      api.getOwnerId().then((owner) => {
+        return owner.id;
+      });
+    },
+    currentLikes: (card) => {
+      api.getLikes(card).then((like) => {
+        card.likes.length = like;
       });
     },
   });
 
   return card.generateCard();
 };
+let userID;
 let cardsList;
 
 api.getInitialCards().then((cards) => {
@@ -116,35 +148,29 @@ api.getInitialCards().then((cards) => {
     },
     ".cards"
   );
+  api.getUserInfo(cards).then((userInfo) => {
+    userID = userInfo.id;
+  });
 
   cardsList.renderItems();
 });
-///////////////////////////////////////////
-// const cardsList = new Section(
-//   {
-//     items: initialCards,
-//     renderer: (item) => cardsList.addItem(createNewCard(item)),
-//   },
-//   ".cards"
-// );
-///////////////////////////////////////////
 
 const editForm = new PopupWithForm({
   popupSelector: ".js-edit-modal",
-  handleFormSubmit: (userObject) => {
-    user.setUserInfo(userObject);
+  handleFormSubmit: (user) => {
+    api.postNewProfile(user).then(() => user.setUserInfo(user));
   },
 });
 const addForm = new PopupWithForm({
   popupSelector: ".js-add-modal",
   handleFormSubmit: (card) => {
-    cardsList.addItem(createNewCard(card));
+    api.postNewCard(card).then(() => cardsList.addItem(createNewCard(card)));
   },
 });
 const picForm = new PopupWithForm({
   popupSelector: ".js-pic-modal",
-  handleFormSubmit: (picObject) => {
-    pic.setProfileImage(picObject);
+  handleFormSubmit: (newPic) => {
+    api.updateProfilePic(newPic).then(() => pic.setProfileImage(newPic));
   },
 });
 const deleteForm = new PopupWithFormSubmit({

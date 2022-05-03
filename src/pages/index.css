@@ -39,7 +39,9 @@
 @import url(../blocks/modal/__input/_type/_error/modal__input_type_error.css);
 @import url(../blocks/modal/__input-error/_active/modal__input-error_active.css);
 @import url(../blocks/modal/__button/modal__button.css);
-@import url(../blocks/card/__like/__like-text/card__like-text.css);
+@import url(../blocks/card/__like-text/card__like-text.css);
 @import url(../blocks/card/__like/card__like.css);
 @import url(../blocks/profile/__pic-button/profile__pic-button.css);
-@import url(../blocks/profile/__image/profile__image.css); ;;;
+@import url(../blocks/profile/__image/profile__image.css);
+@import url(../blocks/card/__trash/_hidden/card__trash_hidden.css);
+@import url(../blocks/card/__trash/_visible/card__trash_visible.css);
