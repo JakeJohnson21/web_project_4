@@ -59,14 +59,14 @@ export class Api {
   postNewCard(newCard) {
     return fetch("https://around.nomoreparties.co/v1/group-12/cards", {
       method: "POST",
-      body: JSON.stringify({
-        name: newCard.name,
-        link: newCard.link,
-      }),
       headers: {
         authorization: "4661177c-aa9a-4f93-9cdc-32dae0d4e0e3",
         "Content-Type": "application/json",
       },
+      body: JSON.stringify({
+        name: newCard.name,
+        link: newCard.link,
+      }),
     })
       .then((res) => {
         if (res.ok) {
@@ -93,13 +93,13 @@ export class Api {
       return Promise.reject(`ERROR: ${res.status}`);
     });
   }
-  updateProfilePic(newProfilePic) {
+  updateProfilePic(newPic) {
     return fetch(
       "https://around.nomoreparties.co/v1/group-12/users/me/avatar ",
       {
         method: "PATCH",
         body: JSON.stringify({
-          avatar: newProfilePic,
+          avatar: newPic.avatar,
         }),
         headers: {
           authorization: "4661177c-aa9a-4f93-9cdc-32dae0d4e0e3",

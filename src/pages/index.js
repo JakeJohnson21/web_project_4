@@ -28,7 +28,7 @@ import {
 
 import PopupWithFormSubmit from "../components/PopupWithFormSubmit.js";
 //////////////////////////////////////////
-fetch("https://around.nomoreparties.co/v1/group-12/cards", {
+fetch("https://around.nomoreparties.co/v1/group-12/users/me", {
   headers: {
     authorization: "4661177c-aa9a-4f93-9cdc-32dae0d4e0e3",
     "Content-Type": "application/json",
@@ -167,20 +167,22 @@ api.getInitialCards().then((cards) => {
 
 const editForm = new PopupWithForm({
   popupSelector: ".js-edit-modal",
-  handleFormSubmit: (user) => {
-    api.postNewProfile(user).then(() => userInfo.setUserInfo(user));
+  handleFormSubmit: (newProfile) => {
+    api.postNewProfile(newProfile).then(() => userInfo.setUserInfo(newProfile));
   },
 });
 const addForm = new PopupWithForm({
   popupSelector: ".js-add-modal",
   handleFormSubmit: (card) => {
-    api.postNewCard(card).then(() => cardsList.addItem(createNewCard(card)));
+    api
+      .postNewCard(card)
+      .then((newCard) => cardsList.addItem(createNewCard(newCard)));
   },
 });
 const picForm = new PopupWithForm({
   popupSelector: ".js-pic-modal",
-  handleFormSubmit: (newPic) => {
-    api.updateProfilePic(newPic).then(() => pic.setProfileImage(newPic));
+  handleFormSubmit: (somePic) => {
+    api.updateProfilePic(somePic).then(() => pic.setProfileImage(somePic));
   },
 });
 const deleteForm = new PopupWithFormSubmit({
