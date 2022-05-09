@@ -1,39 +1,6 @@
 // CARD TEMPLATE SELECTOR
 export const cardSelector = "#card-template";
-// INITIAL CARDS IMPORT
-import milwaukeeSrc from "../images/milwaukee.jpg";
-import chicagoSrc from "../images/chicago.jpg";
-import waikikiSrc from "../images/waikiki.jpg";
-import sydneySrc from "../images/sydney.jpg";
-import londonSrc from "../images/london.jpg";
-import dubaiSrc from "../images/dubai.jpg";
-// INITIAL CARDS OBJECT
-export const initialCards = [
-  {
-    name: "Milwaukee, Wisconsin",
-    link: milwaukeeSrc,
-  },
-  {
-    name: "Chicago, Illinois",
-    link: chicagoSrc,
-  },
-  {
-    name: "Waikiki Beach O'ahu",
-    link: waikikiSrc,
-  },
-  {
-    name: "Sydney Harbour, Australia",
-    link: sydneySrc,
-  },
-  {
-    name: "London, England",
-    link: londonSrc,
-  },
-  {
-    name: "Dubai",
-    link: dubaiSrc,
-  },
-];
+
 export const likes = {
   cardLikes: ".card__like-text",
 };
@@ -46,7 +13,12 @@ export const settings = {
   inputErrorClass: "modal__input_type_error",
   errorClass: "modal__input_error",
 };
-
+//
+export const modalButtonConfig = {
+  saveButton: ".modal__button_save",
+  createButton: ".modal__button_create",
+  modalButton: ".modal__button",
+};
 // PROFILE CONFIG OBJECT-
 export const profileConfig = {
   nameInput: ".modal__input_profile_name",

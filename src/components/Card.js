@@ -4,17 +4,18 @@ class Card {
   constructor(
     data,
     cardSelector,
-    { handlePreviewPopup, handleDeleteCard, ownerId, currentLikes }
+    { handlePreviewPopup, handleDeleteCard, userID, addLike, removeLike }
   ) {
     this._title = data.name;
     this._link = data.link;
     this._handlePreviewPopup = handlePreviewPopup;
-
     this._handleDeleteCard = handleDeleteCard;
-    // this._handleLikesCount = handleLikesCount;
     this._cardSelector = cardSelector;
-    this._ownerId = ownerId;
-    this._currentLikes = currentLikes;
+    this._ownerId = data.owner._id;
+    this._userId = userID;
+    this._currentLikes = data.likes.length;
+    this._addLike = addLike;
+    this._removeLike = removeLike;
   }
   //GRABS THE HTML TEMPLATE ELEMENT
   _getTemplate() {
@@ -36,12 +37,18 @@ class Card {
   }
   _likesCount() {
     this._element.querySelector(".card__like-text").textContent =
-      this._currentLikes.value;
+      this._currentLikes;
   }
   // heart shaped like button, toggles filled in or outlined.. on / off
   _handleLikeButton = () => {
     const cardLikeButton = this._element.querySelector(".card__like-button");
     cardLikeButton.classList.toggle("card__like-button_active");
+    if (cardLikeButton.classList.contains("card__like-button_active")) {
+      this._addLike();
+    } else {
+      this._removeLike();
+    }
+
     // this.handleLikesCount();
   };
   // trash can icon for deleting the card, removing it from the list
@@ -85,7 +92,6 @@ class Card {
     this._handleTrashVisibility();
     this._element.querySelector(".card__trash").src = trashSrc;
     this._likesCount();
-    console.log(this._ownerId);
     //--returns the withdrawl-- (sends the card with filled in details)
     return this._element;
   }

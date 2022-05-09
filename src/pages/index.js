@@ -10,6 +10,9 @@ import aroundSrc from "../images/around.svg";
 import imageSrc from "../images/image.jpg";
 import { Api } from "../components/Api.js";
 
+let userID;
+let cardsList;
+let theLikes;
 import {
   settings,
   profileConfig,
@@ -20,6 +23,7 @@ import {
   formConfig,
   cardSelector,
   likes,
+  modalButtonConfig,
 } from "../utils/constants.js";
 
 import PopupWithFormSubmit from "../components/PopupWithFormSubmit.js";
@@ -67,6 +71,17 @@ const editProfilePopupButton = document.querySelector(popupButtonConfig.edit);
 const addPlacePopupButton = document.querySelector(popupButtonConfig.add);
 const editPicPopupButton = document.querySelector(popupButtonConfig.pic);
 
+const loadingCreate = document.querySelector(modalButtonConfig.createButton);
+const loadingSave = document.querySelector(modalButtonConfig.saveButton);
+const modalButton = document.querySelector(modalButtonConfig.modalButton);
+
+function renderLoading(isLoading) {
+  if (isLoading) {
+    modalButton.textContent = "Saving...";
+  } else {
+    modalButton.textContent = "Save";
+  }
+}
 const api = new Api({
   baseUrl: "https://around.nomoreparties.co/v1/group-12",
   headers: {
@@ -117,42 +132,31 @@ const createNewCard = (item) => {
     handleDeleteCard: (card) => {
       deleteForm.open();
       deleteForm.setSubmitAction(() => {
-        api.deleteCard(card).then(() => {
+        api.deleteCard(item._id).then(() => {
           card.remove();
           deleteForm.close();
         });
       });
     },
-    ownerId: () => {
-      api.getOwnerId().then((owner) => {
-        return owner.id;
-      });
-    },
-    currentLikes: (card) => {
-      api.getLikes(card).then((like) => {
-        card.likes.length = like;
-      });
-    },
+    userID,
   });
 
   return card.generateCard();
 };
-let userID;
-let cardsList;
 
 api.getInitialCards().then((cards) => {
-  cardsList = new Section(
-    {
-      items: cards,
-      renderer: (item) => cardsList.addItem(createNewCard(item)),
-    },
-    ".cards"
-  );
-  api.getUserInfo(cards).then((userInfo) => {
-    userID = userInfo.id;
+  api.getOwnerId().then((userInfo) => {
+    theLikes = userInfo.likes;
+    userID = userInfo._id;
+    cardsList = new Section(
+      {
+        items: cards,
+        renderer: (item) => cardsList.addItem(createNewCard(item)),
+      },
+      ".cards"
+    );
+    cardsList.renderItems();
   });
-
-  cardsList.renderItems();
 });
 
 const editForm = new PopupWithForm({
