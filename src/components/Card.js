@@ -1,4 +1,5 @@
 import trashSrc from "../images/Trash.svg";
+import { likes } from "../utils/constants";
 
 class Card {
   constructor(
@@ -6,6 +7,7 @@ class Card {
     cardSelector,
     { handlePreviewPopup, handleDeleteCard, userID, addLike, removeLike }
   ) {
+    this._cardId = data._id;
     this._title = data.name;
     this._link = data.link;
     this._handlePreviewPopup = handlePreviewPopup;
@@ -26,6 +28,7 @@ class Card {
   }
   //__________________________________________________________________________
   //
+
   _handleTrashVisibility() {
     this._element
       .querySelector(".card__trash")
@@ -35,18 +38,32 @@ class Card {
           : "card__trash_hidden"
       );
   }
+
   _likesCount() {
     this._element.querySelector(".card__like-text").textContent =
       this._currentLikes;
   }
+  _currentLikesCount() {
+    return this._element.querySelector(".card__like-text");
+  }
+  incrementLikes() {
+    const likesElement = this._currentLikesCount();
+    likesElement.textContent++;
+  }
+  decrementLikes() {
+    const likesElement = this._currentLikesCount();
+    likesElement.textContent;
+  }
+
+  handleLike() {}
   // heart shaped like button, toggles filled in or outlined.. on / off
   _handleLikeButton = () => {
     const cardLikeButton = this._element.querySelector(".card__like-button");
     cardLikeButton.classList.toggle("card__like-button_active");
     if (cardLikeButton.classList.contains("card__like-button_active")) {
-      this._addLike();
+      this._addLike(this._cardId);
     } else {
-      this._removeLike();
+      this._removeLike(this._cardId);
     }
 
     // this.handleLikesCount();

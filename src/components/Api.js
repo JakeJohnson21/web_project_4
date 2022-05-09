@@ -53,7 +53,6 @@ export class Api {
           return res.json();
         }
       })
-      .then((data) => console.log(data))
       .catch((err) => console.log(err));
   }
 
@@ -135,7 +134,7 @@ export class Api {
       }
     });
   }
-  removeLike(cardId) {
+  removeLikes(cardId) {
     fetch(`https://around.nomoreparties.co/v1/group-12/cards/likes/${cardId}`, {
       method: "DELETE",
       headers: {

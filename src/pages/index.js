@@ -102,7 +102,7 @@ const editFormValidator = new FormValidator(editModalBox, settings);
 editFormValidator.enableValidation();
 //__________________________________________________________________________
 //
-const user = new UserInfo({
+const userInfo = new UserInfo({
   userName: ".profile__title-name",
   userTitle: ".profile__text-job",
 });
@@ -139,6 +139,12 @@ const createNewCard = (item) => {
       });
     },
     userID,
+    addLike: (cardId) => {
+      api.addLikes(cardId).then(() => card.incrementLikes());
+    },
+    removeLike: (cardId) => {
+      api.removeLikes(cardId).then(() => card.decrementLikes());
+    },
   });
 
   return card.generateCard();
@@ -162,7 +168,7 @@ api.getInitialCards().then((cards) => {
 const editForm = new PopupWithForm({
   popupSelector: ".js-edit-modal",
   handleFormSubmit: (user) => {
-    api.postNewProfile(user).then(() => user.setUserInfo(user));
+    api.postNewProfile(user).then(() => userInfo.setUserInfo(user));
   },
 });
 const addForm = new PopupWithForm({
@@ -191,7 +197,7 @@ const nameInput = document.querySelector(profileConfig.nameInput);
 const titleInput = document.querySelector(profileConfig.titleInput);
 
 editProfilePopupButton.addEventListener("click", () => {
-  const currentUserInfo = user.getUserInfo();
+  const currentUserInfo = userInfo.getUserInfo();
   nameInput.value = currentUserInfo.userName;
   titleInput.value = currentUserInfo.userTitle;
   editForm.open();
