@@ -1,14 +1,12 @@
+/////
+import { Api } from "../components/Api.js";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import Section from "../components/Section.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
-import UserInfo from "../components/UserInfo.js";
-import ProfileImage from "../components/ProfileImage.js";
 import "./index.css";
 import aroundSrc from "../images/around.svg";
-import imageSrc from "../images/image.jpg";
-import { Api } from "../components/Api.js";
 
 let userID;
 let cardsList;
@@ -23,6 +21,7 @@ import {
   formConfig,
   cardSelector,
   modalButtonConfig,
+  profileElements,
 } from "../utils/constants.js";
 
 import PopupWithFormSubmit from "../components/PopupWithFormSubmit.js";
@@ -42,7 +41,6 @@ fetch("https://around.nomoreparties.co/v1/group-12/users/me/", {
 const imageImg = document.getElementById("imageImg");
 const aroundSvg = document.getElementById("aroundSvg");
 
-imageImg.src = imageSrc;
 aroundSvg.src = aroundSrc;
 
 const editModalWindow = document.querySelector(modalWindowConfig.edit);
@@ -50,7 +48,9 @@ const addModalWindow = document.querySelector(modalWindowConfig.add);
 const previewImageModalWindow = document.querySelector(
   modalWindowConfig.preview
 );
-const profileName = document.querySelector(".profile__title-name");
+const profileName = document.querySelector(profileElements.name);
+const profileTitle = document.querySelector(profileElements.about);
+const profilePic = document.querySelector(profileElements.image);
 
 const picModalWindow = document.querySelector(modalWindowConfig.pic);
 const addModalBox = addModalWindow.querySelector(formConfig.box);
@@ -72,10 +72,6 @@ const editProfilePopupButton = document.querySelector(popupButtonConfig.edit);
 const addPlacePopupButton = document.querySelector(popupButtonConfig.add);
 const editPicPopupButton = document.querySelector(popupButtonConfig.pic);
 
-const loadingCreate = document.querySelector(modalButtonConfig.createButton);
-const loadingSave = document.querySelector(modalButtonConfig.saveButton);
-const modalButton = document.querySelector(modalButtonConfig.modalButton);
-
 const api = new Api({
   baseUrl: "https://around.nomoreparties.co/v1/group-12",
   headers: {
@@ -92,17 +88,24 @@ const editFormValidator = new FormValidator(editModalBox, settings);
 editFormValidator.enableValidation();
 //__________________________________________________________________________
 //
+api.getProfileInfo().then((userData) => {
+  const name = userData.name;
+  const about = userData.about;
+  const avatar = userData.avatar;
+  profileName.textContent = name;
+  profileTitle.textContent = about;
+  profilePic.src = avatar;
+  profilePic.alt = name;
+});
 
-const userInfo = new UserInfo({
-  userName: ".profile__title-name",
-  userTitle: ".profile__text-job",
-});
-api.getProfileInfo().then((res) => {
-  res.name = userInfo.userName.textContent;
-});
-const newPic = new ProfileImage({
-  image: ".profile__pic",
-});
+// const userInfo = new UserInfo({
+//   userName: ".profile__title-name",
+//   userTitle: ".profile__text-job",
+// });
+
+// const newPic = new ProfileImage({
+//   image: ".profile__pic",
+// });
 //__________________________________________________________________________
 // AN INSTANCE OF THE POPUP WITH IMAGE CLASS
 const preImage = new PopupWithImage({
@@ -210,11 +213,6 @@ addPlacePopupButton.addEventListener("click", () => {
   addFormValidator.resetValidation();
   addForm.open();
 });
-//________________________________________________________________________________
-//________________________________________________________________________________
-//
-
-//________________________________________________________________________________
 //________________________________________________________________________________
 editModalCloseButton.addEventListener("click", () => editForm.close());
 //________________________________________________________________________________
