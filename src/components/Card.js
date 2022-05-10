@@ -52,10 +52,9 @@ class Card {
   }
   decrementLikes() {
     const likesElement = this._currentLikesCount();
-    likesElement.textContent;
+    likesElement.textContent--;
   }
 
-  handleLike() {}
   // heart shaped like button, toggles filled in or outlined.. on / off
   _handleLikeButton = () => {
     const cardLikeButton = this._element.querySelector(".card__like-button");
@@ -65,8 +64,6 @@ class Card {
     } else {
       this._removeLike(this._cardId);
     }
-
-    // this.handleLikesCount();
   };
   // trash can icon for deleting the card, removing it from the list
   _handleDeleteButton() {

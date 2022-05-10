@@ -36,7 +36,7 @@ export class Api {
       .catch((err) => console.log(err));
   }
 
-  postNewProfile(newProfile) {
+  updateProfile(me) {
     return fetch("https://around.nomoreparties.co/v1/group-12/users/me", {
       method: "PATCH",
       headers: {
@@ -44,10 +44,31 @@ export class Api {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name: newProfile.name,
-        about: newProfile.about,
+        name: me.name,
+        about: me.title,
       }),
     })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+      })
+      .catch((err) => console.log(err));
+  }
+  updateProfilePic(me) {
+    return fetch(
+      "https://around.nomoreparties.co/v1/group-12/users/me/avatar ",
+      {
+        method: "PATCH",
+        headers: {
+          authorization: "4661177c-aa9a-4f93-9cdc-32dae0d4e0e3",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          avatar: me.link,
+        }),
+      }
+    )
       .then((res) => {
         if (res.ok) {
           return res.json();
@@ -93,27 +114,6 @@ export class Api {
       return Promise.reject(`ERROR: ${res.status}`);
     });
   }
-  updateProfilePic(newPic) {
-    return fetch(
-      "https://around.nomoreparties.co/v1/group-12/users/me/avatar ",
-      {
-        method: "PATCH",
-        body: JSON.stringify({
-          avatar: newPic.avatar,
-        }),
-        headers: {
-          authorization: "4661177c-aa9a-4f93-9cdc-32dae0d4e0e3",
-          "Content-Type": "application/json",
-        },
-      }
-    )
-      .then((res) => {
-        if (!res.ok) {
-          return Promise.reject(`Error: ${res.status}`);
-        }
-      })
-      .catch((err) => console.log(err));
-  }
 
   addLikes(cardId) {
     return fetch(
@@ -135,17 +135,21 @@ export class Api {
     });
   }
   removeLikes(cardId) {
-    fetch(`https://around.nomoreparties.co/v1/group-12/cards/likes/${cardId}`, {
-      method: "DELETE",
-      headers: {
-        authorization: "4661177c-aa9a-4f93-9cdc-32dae0d4e0e3",
-        "Content-Type": "application/json",
-      },
-    }).then((res) => {
+    return fetch(
+      `https://around.nomoreparties.co/v1/group-12/cards/likes/${cardId}`,
+      {
+        method: "DELETE",
+        headers: {
+          authorization: "4661177c-aa9a-4f93-9cdc-32dae0d4e0e3",
+          "Content-Type": "application/json",
+        },
+      }
+    ).then((res) => {
       if (res.ok) {
         res.json();
+      } else {
+        return Promise.reject(`Error: ${res.status}`);
       }
-      return Promise.reject(`Error: ${res.status}`);
     });
   }
   getOwnerId() {

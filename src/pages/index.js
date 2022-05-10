@@ -22,13 +22,12 @@ import {
   popupButtonConfig,
   formConfig,
   cardSelector,
-  likes,
   modalButtonConfig,
 } from "../utils/constants.js";
 
 import PopupWithFormSubmit from "../components/PopupWithFormSubmit.js";
 //////////////////////////////////////////
-fetch("https://around.nomoreparties.co/v1/group-12/users/me", {
+fetch("https://around.nomoreparties.co/v1/group-12/users/me/", {
   headers: {
     authorization: "4661177c-aa9a-4f93-9cdc-32dae0d4e0e3",
     "Content-Type": "application/json",
@@ -45,12 +44,14 @@ const aroundSvg = document.getElementById("aroundSvg");
 
 imageImg.src = imageSrc;
 aroundSvg.src = aroundSrc;
-const cardLikes = document.querySelector(likes.cardLikes);
+
 const editModalWindow = document.querySelector(modalWindowConfig.edit);
 const addModalWindow = document.querySelector(modalWindowConfig.add);
 const previewImageModalWindow = document.querySelector(
   modalWindowConfig.preview
 );
+const profileName = document.querySelector(".profile__title-name");
+
 const picModalWindow = document.querySelector(modalWindowConfig.pic);
 const addModalBox = addModalWindow.querySelector(formConfig.box);
 const editModalBox = editModalWindow.querySelector(formConfig.box);
@@ -75,13 +76,6 @@ const loadingCreate = document.querySelector(modalButtonConfig.createButton);
 const loadingSave = document.querySelector(modalButtonConfig.saveButton);
 const modalButton = document.querySelector(modalButtonConfig.modalButton);
 
-function renderLoading(isLoading) {
-  if (isLoading) {
-    modalButton.textContent = "Saving...";
-  } else {
-    modalButton.textContent = "Save";
-  }
-}
 const api = new Api({
   baseUrl: "https://around.nomoreparties.co/v1/group-12",
   headers: {
@@ -89,10 +83,6 @@ const api = new Api({
     "Content-Type": "application/json",
   },
 });
-
-//__________________________________________________________________________
-//
-
 //__________________________________________________________________________
 //
 const addFormValidator = new FormValidator(addModalBox, settings);
@@ -102,12 +92,15 @@ const editFormValidator = new FormValidator(editModalBox, settings);
 editFormValidator.enableValidation();
 //__________________________________________________________________________
 //
+
 const userInfo = new UserInfo({
   userName: ".profile__title-name",
   userTitle: ".profile__text-job",
 });
-
-const pic = new ProfileImage({
+api.getProfileInfo().then((res) => {
+  res.name = userInfo.userName.textContent;
+});
+const newPic = new ProfileImage({
   image: ".profile__pic",
 });
 //__________________________________________________________________________
@@ -115,15 +108,7 @@ const pic = new ProfileImage({
 const preImage = new PopupWithImage({
   popupSelector: ".js-preview-modal",
 });
-///
-// an instruction for processing a Card instance here
-////////////////////////////////////////////////////
-// api.getLikes().then((data) =>
-//   data.forEach((like) => {
-//     like.likes.length = cardLikes.textContent;
-//   })
-// );
-////////////////////////////////////////////////////
+
 const createNewCard = (item) => {
   const card = new Card(item, cardSelector, {
     handlePreviewPopup: () => {
@@ -152,6 +137,10 @@ const createNewCard = (item) => {
 
 api.getInitialCards().then((cards) => {
   api.getOwnerId().then((userInfo) => {
+    // profileName = userInfo.name;
+    // profileTitle = userInfo.about;
+    // profilePic = userInfo.avatar;
+
     theLikes = userInfo.likes;
     userID = userInfo._id;
     cardsList = new Section(
@@ -167,22 +156,29 @@ api.getInitialCards().then((cards) => {
 
 const editForm = new PopupWithForm({
   popupSelector: ".js-edit-modal",
-  handleFormSubmit: (newProfile) => {
-    api.postNewProfile(newProfile).then(() => userInfo.setUserInfo(newProfile));
+  handleFormSubmit: (profile) => {
+    editForm.renderLoading(true, "Sav");
+    api.updateProfile(profile).then(() => {
+      userInfo.setUserInfo(profile);
+      editForm.renderLoading(false, "Save");
+    });
   },
+  popupSubmitButton: "",
 });
 const addForm = new PopupWithForm({
   popupSelector: ".js-add-modal",
   handleFormSubmit: (card) => {
-    api
-      .postNewCard(card)
-      .then((newCard) => cardsList.addItem(createNewCard(newCard)));
+    addForm.renderLoading(true, "Creat");
+    api.postNewCard(card).then((newCard) => {
+      cardsList.addItem(createNewCard(newCard));
+      addForm.renderLoading(false, "Create");
+    });
   },
 });
 const picForm = new PopupWithForm({
   popupSelector: ".js-pic-modal",
   handleFormSubmit: (somePic) => {
-    api.updateProfilePic(somePic).then(() => pic.setProfileImage(somePic));
+    api.updateProfilePic(somePic).then(() => newPic.setProfileImage(somePic));
   },
 });
 const deleteForm = new PopupWithFormSubmit({

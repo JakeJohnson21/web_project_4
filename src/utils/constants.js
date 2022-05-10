@@ -1,9 +1,6 @@
 // CARD TEMPLATE SELECTOR
 export const cardSelector = "#card-template";
 
-export const likes = {
-  cardLikes: ".card__like-text",
-};
 // SETTINGS
 export const settings = {
   formSelector: ".modal__box",
@@ -56,4 +53,9 @@ export const popupButtonConfig = {
   add: ".profile__add",
   pic: ".profile__pic-button",
   delete: ".card__trash",
+};
+export const profileElements = {
+  name: ".profile__title-name",
+  about: ".profile__text-job",
+  image: ".profile__pic",
 };

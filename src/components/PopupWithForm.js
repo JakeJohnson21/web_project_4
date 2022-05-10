@@ -9,6 +9,7 @@ export default class PopupWithForm extends Popup {
 
     this._popupForm = this.popupElement.querySelector(".modal__box");
     this._handleFormSubmit = handleFormSubmit;
+    this._submitButton = this.popupElement.querySelector(".modal__button");
     //     ^^^^^^^^^^^^^        ^^^^^^^^^^^
     //          |                 |
     // this is what connects       this is passed in when creating an instance
@@ -33,6 +34,13 @@ export default class PopupWithForm extends Popup {
   close() {
     this._popupForm.reset();
     super.close();
+  }
+  renderLoading(isLoading, whatDoing) {
+    if (isLoading) {
+      this._submitButton.textContent = `${whatDoing}ing...`;
+    } else {
+      this._submitButton.textContent = whatDoing;
+    }
   }
 
   setEventListeners() {
