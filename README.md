@@ -20,6 +20,10 @@ Enjoy the new features!
 
 The Javascript has been organized with classes. Webpack has also been introduced providing accessibility to people with older browsers.
 
+# JS Update: (project 9)
+
+Now the data is live. The use of an API now makes the site interactive with other users around the world!
+
 Jake Johnson,
 Developer
 

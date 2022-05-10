@@ -10,12 +10,6 @@ export const settings = {
   inputErrorClass: "modal__input_type_error",
   errorClass: "modal__input_error",
 };
-//
-export const modalButtonConfig = {
-  saveButton: ".modal__button_save",
-  createButton: ".modal__button_create",
-  modalButton: ".modal__button",
-};
 // PROFILE CONFIG OBJECT-
 export const profileConfig = {
   nameInput: ".modal__input_profile_name",
