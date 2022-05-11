@@ -68,7 +68,6 @@ class Card {
     cardLikeButton.classList.toggle("card__like-button_active");
     if (cardLikeButton.classList.contains("card__like-button_active")) {
       this._addLike(this._cardId);
-      console.log(this._userId);
     } else {
       this._removeLike(this._cardId);
     }
@@ -107,7 +106,7 @@ class Card {
     //grabs current cards event listeners
     this._setEventListeners();
     // grabs the current cards image / title
-    this.doneLiked();
+
     const cardImage = this._element.querySelector(".card__image");
     cardImage.src = this._link;
     cardImage.alt = this._title;
@@ -115,6 +114,7 @@ class Card {
     this._handleTrashVisibility();
     this._element.querySelector(".card__trash").src = trashSrc;
     this._likesCount();
+    this.doneLiked();
     //--returns the withdrawl-- (sends the card with filled in details)
     return this._element;
   }
