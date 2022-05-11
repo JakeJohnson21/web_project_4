@@ -27,6 +27,14 @@ class Card {
   }
   //__________________________________________________________________________
   //
+  doneLiked() {
+    const likeElement = this._element.querySelector(".card__like-button");
+    if (this._ownerId === this._userId) {
+      likeElement.classList.add("card__like-button_active");
+    } else {
+      likeElement.classList.remove("card__like-button_active");
+    }
+  }
 
   _handleTrashVisibility() {
     this._element
@@ -60,6 +68,7 @@ class Card {
     cardLikeButton.classList.toggle("card__like-button_active");
     if (cardLikeButton.classList.contains("card__like-button_active")) {
       this._addLike(this._cardId);
+      console.log(this._userId);
     } else {
       this._removeLike(this._cardId);
     }
@@ -98,6 +107,7 @@ class Card {
     //grabs current cards event listeners
     this._setEventListeners();
     // grabs the current cards image / title
+    this.doneLiked();
     const cardImage = this._element.querySelector(".card__image");
     cardImage.src = this._link;
     cardImage.alt = this._title;
