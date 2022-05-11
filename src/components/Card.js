@@ -1,5 +1,4 @@
 import trashSrc from "../images/Trash.svg";
-import { likes } from "../utils/constants";
 
 class Card {
   constructor(

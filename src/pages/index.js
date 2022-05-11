@@ -22,13 +22,12 @@ import {
   popupButtonConfig,
   formConfig,
   cardSelector,
-  modalButtonConfig,
   profileElements,
 } from "../utils/constants.js";
 
 import PopupWithFormSubmit from "../components/PopupWithFormSubmit.js";
 //////////////////////////////////////////
-fetch("https://around.nomoreparties.co/v1/group-12/users/me/", {
+fetch("https://around.nomoreparties.co/v1/group-12/cards/", {
   headers: {
     authorization: "4661177c-aa9a-4f93-9cdc-32dae0d4e0e3",
     "Content-Type": "application/json",
@@ -40,7 +39,7 @@ fetch("https://around.nomoreparties.co/v1/group-12/users/me/", {
   .then((res) => console.log(res));
 
 //--------------------------------------------------------------------------
-const imageImg = document.getElementById("imageImg");
+
 const aroundSvg = document.getElementById("aroundSvg");
 
 aroundSvg.src = aroundSrc;
@@ -142,10 +141,6 @@ const createNewCard = (item) => {
 
 api.getInitialCards().then((cards) => {
   api.getOwnerId().then((userInfo) => {
-    // profileName = userInfo.name;
-    // profileTitle = userInfo.about;
-    // profilePic = userInfo.avatar;
-
     theLikes = userInfo.likes;
     userID = userInfo._id;
     cardsList = new Section(
