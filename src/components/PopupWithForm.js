@@ -4,17 +4,19 @@ export default class PopupWithForm extends Popup {
   // THIS IS HOW IT KNOWS WHICH POPUP TO USE
   // you are entering it at the very beginning when calling (using) the class
   // you tell it what it is, the rest of the code just processes it.
-  constructor({ /* -> */ popupSelector, /* <- */ handleFormSubmit }) {
+  constructor({
+    popupSelector,
+    buttonText,
+    loadingButtonText,
+    handleFormSubmit,
+  }) {
     super({ popupSelector });
 
     this._popupForm = this.popupElement.querySelector(".modal__box");
     this._handleFormSubmit = handleFormSubmit;
     this._submitButton = this.popupElement.querySelector(".modal__button");
-    //     ^^^^^^^^^^^^^        ^^^^^^^^^^^
-    //          |                 |
-    // this is what connects       this is passed in when creating an instance
-    // to it.                      function format. The "popupSelector" will be the html class
-    //                             and the "handleFormSubmit" will be a callback function.
+    this._buttonText = buttonText;
+    this._loadingButtonText = loadingButtonText;
   }
 
   _getInputValues() {
@@ -35,12 +37,11 @@ export default class PopupWithForm extends Popup {
     this._popupForm.reset();
     super.close();
   }
-  renderLoading(isLoading, whatDoing) {
-    if (isLoading) {
-      this._submitButton.textContent = `${whatDoing}ing...`;
-    } else {
-      this._submitButton.textContent = whatDoing;
-    }
+  showLoading() {
+    this._submitButton.textContent = this._loadingButtonText;
+  }
+  hideLoading() {
+    this._submitButton.textContent = this._buttonText;
   }
 
   setEventListeners() {
@@ -49,8 +50,6 @@ export default class PopupWithForm extends Popup {
       // Add a _handleFormSubmit() function call
       // Pass an object which is the result of the _getInputValues work to it
       this._handleFormSubmit(this._getInputValues());
-
-      this.close();
     });
   }
 }

@@ -4,8 +4,9 @@ class Card {
   constructor(
     data,
     cardSelector,
-    { handlePreviewPopup, handleDeleteCard, userID, addLike, removeLike }
+    { likes, handlePreviewPopup, handleDeleteCard, userID }
   ) {
+    this._likes = likes;
     this._cardId = data._id;
     this._title = data.name;
     this._link = data.link;
@@ -14,9 +15,7 @@ class Card {
     this._cardSelector = cardSelector;
     this._ownerId = data.owner._id;
     this._userId = userID;
-    this._currentLikes = data.likes.length;
-    this._addLike = addLike;
-    this._removeLike = removeLike;
+    this._likesArray = data.likes;
   }
   //GRABS THE HTML TEMPLATE ELEMENT
   _getTemplate() {
@@ -27,15 +26,6 @@ class Card {
   }
   //__________________________________________________________________________
   //
-  doneLiked() {
-    const likeElement = this._element.querySelector(".card__like-button");
-    if (this._ownerId === this._userId) {
-      likeElement.classList.add("card__like-button_active");
-    } else {
-      likeElement.classList.remove("card__like-button_active");
-    }
-  }
-
   _handleTrashVisibility() {
     this._element
       .querySelector(".card__trash")
@@ -45,40 +35,46 @@ class Card {
           : "card__trash_hidden"
       );
   }
+  updateLikes(likes) {
+    this._likes = likes;
 
-  _likesCount() {
+    this._renderLikes();
+  }
+
+  _isLiked() {
+    if (this._likesArray.includes(this._userId)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  _renderLikes() {
+    // THIS IS WHERE THE ON LOAD STUFF GOES
+    // CURRENT LIKE COUNT ON LOAD
+    // USER LIKES ARE ACTIVE
+    const cardLikeButton = this._element.querySelector(".card__like-button");
+
     this._element.querySelector(".card__like-text").textContent =
-      this._currentLikes;
-  }
-  _currentLikesCount() {
-    return this._element.querySelector(".card__like-text");
-  }
-  incrementLikes() {
-    const likesElement = this._currentLikesCount();
-    likesElement.textContent++;
-  }
-  decrementLikes() {
-    const likesElement = this._currentLikesCount();
-    likesElement.textContent--;
+      this._likesArray.length;
+    if (this._isLiked()) {
+      cardLikeButton.classList.add("card__like-button_active");
+    } else {
+      cardLikeButton.classList.remove("card__like-button_active");
+    }
   }
 
   // heart shaped like button, toggles filled in or outlined.. on / off
   _handleLikeButton = () => {
     const cardLikeButton = this._element.querySelector(".card__like-button");
     cardLikeButton.classList.toggle("card__like-button_active");
-    if (cardLikeButton.classList.contains("card__like-button_active")) {
-      this._addLike(this._cardId);
-    } else {
-      this._removeLike(this._cardId);
-    }
   };
   // trash can icon for deleting the card, removing it from the list
   _handleDeleteButton() {
     this._handleDeleteCard(this._element);
   }
 
-  //__________________________________________________________________________
-  //
+  //___________________________________________-________________________________________
   _setEventListeners() {
     //like button
     this._element
@@ -94,12 +90,7 @@ class Card {
       .querySelector(".card__image")
       .addEventListener("click", () => this._handlePreviewPopup());
   }
-  //__________________________________________________________________________
-  //
-  // deleteCardPopupButton.addEventListener("click", () => {
-  //   deleteForm.open()
-  // })
-  //__________________________________________________________________________
+  //_____________________________________________________________________________________
   generateCard() {
     //grabs the current card itself.
     this._element = this._getTemplate();
@@ -113,8 +104,7 @@ class Card {
     this._element.querySelector(".card__place").textContent = this._title;
     this._handleTrashVisibility();
     this._element.querySelector(".card__trash").src = trashSrc;
-    this._likesCount();
-    this.doneLiked();
+    this._renderLikes();
     //--returns the withdrawl-- (sends the card with filled in details)
     return this._element;
   }
