@@ -20,8 +20,7 @@ export default class UserInfo {
     this.userName.textContent = name;
     this.userTitle.textContent = title;
   }
-  setProfileImage({ link, name }) {
+  setProfileImage({ link }) {
     this.userImage.src = link;
-    this.userImage.alt = name;
   }
 }

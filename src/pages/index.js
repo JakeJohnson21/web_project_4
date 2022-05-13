@@ -109,30 +109,16 @@ const previewPopup = new PopupWithImage({
 
 const createNewCard = (item) => {
   const card = new Card(item, cardSelector, {
-    likes: (cardId) => {
-      api
-        .addLike(cardId)
-        .then(() => {
-          card.updateLikes(cardId);
-        })
-        .catch((err) => console.log(`Error: ${err.status}`));
-      api
-        .removeLike(cardId)
-        .then(() => {
-          card.updateLikes(cardId);
-        })
-        .catch((err) => console.log(`Error: ${err.status}`));
-    },
     handlePreviewPopup: () => {
       previewPopup.open(item, photoConfig.title, photoConfig.link);
     },
     handleDeleteCard: (card) => {
       deleteForm.open();
       deleteForm.setSubmitAction(() => {
+        deleteForm.showLoading();
         api
           .deleteCard(item._id)
           .then(() => {
-            deleteForm.showLoading();
             card.remove();
             deleteForm.close();
           })
@@ -144,13 +130,13 @@ const createNewCard = (item) => {
     addLike: (cardId) => {
       api
         .addLike(cardId)
-        .then(() => card.incrementLikes())
+        .then(({ likes }) => card.updateLikes(likes))
         .catch((err) => console.log(`Error: ${err.status}`));
     },
     removeLike: (cardId) => {
       api
         .removeLike(cardId)
-        .then(() => card.decrementLikes())
+        .then(({ likes }) => card.updateLikes(likes))
         .catch((err) => console.log(`Error: ${err.status}`));
     },
   });
@@ -194,14 +180,18 @@ const cardForm = new PopupWithForm({
 });
 const picForm = new PopupWithForm({
   popupSelector: ".js-pic-modal",
+  buttonText: "Save",
+  loadingButtonText: "Saving...",
   handleFormSubmit: (profileImage) => {
+    picForm.showLoading();
     api
       .updateProfile(profileImage)
       .then(() => {
         userInfo.setProfileImage(profileImage);
         picForm.close();
       })
-      .catch((err) => console.log(`Error: ${err.status}`));
+      .catch((err) => console.log(`Error: ${err.status}`))
+      .finally(() => picForm.hideLoading());
   },
 });
 const deleteForm = new PopupWithFormSubmit({
