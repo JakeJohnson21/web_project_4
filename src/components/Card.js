@@ -62,9 +62,6 @@ class Card {
   }
 
   _handleLikeButton = () => {
-    const cardLikeButton = this._element.querySelector(".card__like-button");
-    cardLikeButton.classList.toggle("card__like-button_active");
-
     if (this._isLiked()) {
       this._removeLike(this._cardId);
     } else {

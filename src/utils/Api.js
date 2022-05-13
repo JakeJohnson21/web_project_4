@@ -41,6 +41,17 @@ export class Api {
   }
   //__________________________________________________________________________
   //
+  updateProfilePicture(user) {
+    return fetch(`${this._baseUrl}users/me/avatar`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: user.link,
+      }),
+    }).then((res) => this._getResponseData(res));
+  }
+  //__________________________________________________________________________
+  //
   postNewCard(newCard) {
     return fetch(`${this._baseUrl}cards`, {
       method: "POST",

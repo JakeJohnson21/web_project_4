@@ -185,7 +185,7 @@ const picForm = new PopupWithForm({
   handleFormSubmit: (profileImage) => {
     picForm.showLoading();
     api
-      .updateProfile(profileImage)
+      .updateProfilePicture(profileImage)
       .then(() => {
         userInfo.setProfileImage(profileImage);
         picForm.close();
